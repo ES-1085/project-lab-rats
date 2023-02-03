@@ -4,6 +4,11 @@ author: by Team name
 output: github_document
 ---
 
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+```
+
 ## Summary
 
 Write-up of your project and findings go here. 
@@ -20,7 +25,11 @@ And make sure to hide your code with  `echo = FALSE` unless the point you are tr
 Your results with proper output and graphics go in your presentation, this space is for a brief summary of your project.
 
 ```{r load-data, echo = FALSE}
-# load data here, if you like
+whr_df_2015 <- read_csv("data/whr_2015.csv")
+whr_df_2016 <- read_csv("data/whr_2016.csv")
+whr_df_2017 <- read_csv("data/whr_2017.csv")
+whr_df_2018 <- read_csv("data/whr_2018.csv")
+whr_df_2019 <- read_csv("data/whr_2019.csv")
 ```
 
 ## Presentation
@@ -32,6 +41,8 @@ Our presentation can be found [here](presentation/presentation.html).
 Include a citation for your data here. 
 See http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840 for guidance on proper citation for datasets. 
 If you got your data off the web, make sure to note the retrieval date.
+
+
 
 ## References
 
