@@ -1,6 +1,6 @@
-Project title
+Suicide rates and the World Happiness Report 
 ================
-by Team name
+by Lab rats 
 
 ## Summary
 
