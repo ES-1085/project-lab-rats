@@ -10,14 +10,16 @@ library(broom)
 ```
 
 ## 1. Introduction
-
+General question: How does world happiness rankings of countries correlate to their respective suicide mortality rate?
 
 
 ## 2. Data
+WHR 2015-2019
 
-
+visualizing: Scatter plot of all the countries 
+Possible color code for continent/region 
 
 ## 3. Data analysis plan
-
+We will be using GDP and
 
 
