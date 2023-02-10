@@ -22,11 +22,26 @@ Secondary research question: How does GDP per capita impact happiness, and to wh
 
 ## 2. Data
 WHR 2015-2019
-
+ 
 visualizing: Scatter plot of all the countries 
 Possible color code for continent/region 
 
 ## 3. Data analysis plan
-We will be using GDP and
+Variables we will consider for our analysis: 
 
+World Happiness Report dataset, for the years between 2015-2019: 
+$ Country                         
+$ Region                          
+$ `Happiness Rank`                
+$ `Happiness Score`               
+$ `Standard Error`                
+$ `Economy (GDP per Capita)`      
+$ Family                          
+$ `Health (Life Expectancy)`      
+$ Freedom                         
+$ `Trust (Government Corruption)` 
+$ Generosity                      
+$ `Dystopia Residual`
+
+World Suicide rates dataset: 
 
