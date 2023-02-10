@@ -30,6 +30,7 @@ whr_df_2016 <- read_csv("data/whr_2016.csv")
 whr_df_2017 <- read_csv("data/whr_2017.csv")
 whr_df_2018 <- read_csv("data/whr_2018.csv")
 whr_df_2019 <- read_csv("data/whr_2019.csv")
+suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 ```
 
 ## Presentation
@@ -42,9 +43,6 @@ Include a citation for your data here.
 See http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840 for guidance on proper citation for datasets. 
 If you got your data off the web, make sure to note the retrieval date.
 
-
-
 ## References
 
 List any references here. You should, at a minimum, list your data source.
-
