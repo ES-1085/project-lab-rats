@@ -1,5 +1,5 @@
 ---
-title: "The Relationship Between World Happiness Report Scores and WHO Country Suicide Rates - an Analysis"
+title: "The Relationship Between World Happiness Report and WHO Country Suicide Rates - an Analysis"
 author: "Lab rats"
 output: github_document
 ---
@@ -11,17 +11,16 @@ library(broom)
 
 ## 1. Introduction
 Our group had a common interest in public health and thought the topic would have ample opportunity for data analysis. 
-We were able to find large data sets on suicide mortality rates from around the world, but wanted to know what factors contributed to varying suicide rates in various countries.
+We were able to find large data sets on suicide mortality rates from around the world, but wanted to know what factors contributed to higher or lower suicide rates in various countries.
 We decided that comparing suicide rates to World Happiness Report (WHR) scores would allow us to see how the data narrates mental health for each country, and what specific variables show large contribution. 
 WHR includes many independent variables, such as GDP per capita, family size, trust in government, generosity, etc.
 We agreed that GDP per capita would allow us to see exactly how economy affects peoples' happiness, and therefore increase or decrease rates of happiness. 
 
-Primary research question: How do the scores of countries on the World Happiness Report correlate with their respective suicide mortality rate?
+Primary research question: How does the ranking of a certain country on the World Happiness Report correlate with their respective suicide mortality rate?
 Secondary research question: How does GDP per capita impact happiness, and to what extent does that data correlate with suicide mortality rates?
 
 
 ## 2. Data
-
 WHR 2015-2019
  
 visualizing: Scatter plot of all the countries 
@@ -34,19 +33,36 @@ World Happiness Report dataset, for the years between 2015-2019:
 $ `Country`                         
 $ `Region`                          
 $ `Happiness Rank`                
-$ `Happiness Score`               
-$ `Standard Error`                
+$ `Happiness Score`                               
 $ `Economy (GDP per Capita)`      
-$ `Family`                         
+$ `Social Support`                         
 $ `Health (Life Expectancy)`      
 $ `Freedom`                         
 $ `Trust (Government Corruption)` 
-$ `Generosity`                     
-$ `Dystopia Residual`
+$ Generosity                      
+
 
 World Suicide rates dataset,  for the years between 2015-2019: 
 
-Initially, we would also like to make an analysis associanting light exposure to the happiness index and suicide rates. 
-However, in our preliminary research so far we could not find a dataset with this information byt country. 
-We will continue the research to see if it is possible to add this variable from another dataset.
+
+$`WHO Region Code`                                                
+$ `WHO Region`                                                     
+$ `Country Code`                                                   
+$ Country                                                          
+$ Year                                                             
+$ IsLatestYear                                                    
+$ Sex                                                             
+$ `Age Group`                                                      
+$ `Crude suicide rates (per 100 000 population) (numeric)`         
+$ `Crude suicide rates (per 100 000 population) (low estimation)`  
+$ `Crude suicide rates (per 100 000 population) (high estimation)` 
+$ `Crude suicide rates (per 100 000 population) (string)
+
+Initially, we would also like to make an analysis associanting light exposure to the happiness index and suicide rates. However, in our preliminary research so far we could not find a dataset with this information byt country. We will continue the research to see if it is possible to add this variable from another dataset. 
+
+Since our dataset has a large set of observations, considering 'ncountries' out of the total countries in the world, we envision several possibilities to run our analysis. We could: 
+* consider all of the countries in the dataset, grouping them by their regions 
+* select a specific number of regions to analyze 
+* equalize the population numbers for each region, trying to sample an equal amount of people per region/continent to be analyzed. Doing so, we would have to ramdomly exclude some countries of the analysis. 
+*  choose specific countries to compare and contrast, dimishing considerably the number of observations. 
 
