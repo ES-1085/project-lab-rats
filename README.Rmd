@@ -36,7 +36,7 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 ## Presentation
 
 ```{r}
-suicide %>%
+suicide <- suicide %>%
   mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
                              TRUE ~ Country))
 ```
