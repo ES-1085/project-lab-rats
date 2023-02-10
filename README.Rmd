@@ -35,7 +35,11 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 
 ## Presentation
 
-Our presentation can be found [here](presentation/presentation.html).
+```{r}
+suicide %>%
+  mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
+                             TRUE ~ Country))
+```
 
 ## Data 
 
