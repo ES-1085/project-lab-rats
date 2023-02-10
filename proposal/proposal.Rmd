@@ -10,7 +10,10 @@ library(broom)
 ```
 
 ## 1. Introduction
-Our group had a common interest in public health and though the topic would have ample opportunity for data analysis. We were able to find large data sets on world suicide mortality rates, but wanted to know what environmental factors contributed to higher or lower rates in countries. We decided that comparing suicide rates to World Happiness scores would allow us to see how the data narrates mental health for each country, and what specific variables show large contribution. WHS included many independent variables, such as GDP, family sixe, trust in government, generosity, etc. We agreed that GDP would allow us to see exactly how economy affects peoples' happiness, and therefor increase or decrease rates of happiness. 
+Our group had a common interest in public health and though the topic would have ample opportunity for data analysis.  
+We were able to find large data sets on world suicide mortality rates, but wanted to know what environmental factors contributed to higher or lower rates in countries.
+We decided that comparing suicide rates to World Happiness scores would allow us to see how the data narrates mental health for each country, and what specific variables show large contribution. WHS included many independent variables, such as GDP, family sixe, trust in government, generosity, etc.
+ We agreed that GDP would allow us to see exactly how economy affects peoples' happiness, and therefor increase or decrease rates of happiness. 
 
 General question: How does world happiness rankings of countries correlate to their respective suicide mortality rate?
 Side Quest: How does economy impact happiness, and does that data correlate with high or low rates of suicide mortality?
