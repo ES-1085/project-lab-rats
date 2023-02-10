@@ -5,9 +5,19 @@ Place data file(s) in this folder.
 Then, include codebooks (variables, and their descriptions) for your data file(s)
 using the following format.
 
-## name of data file
+## whr_2015.csv 
 
-- `variable1`: Description of variable 1
-- `variable2`: Description of variable 2
-- `variable3`: Description of variable 3
-- ...
+- `Country`: name of country 
+- `Region`: geographic region where the country is located 
+- `Happiness Rank`: ranking position of the country in question in the world happiness report of 2015
+- `Happiness Score`: 
+- `Standard Error`: 
+- `Economy (GDP per Capita)`: GDP per capta of the country in question in that specific year 
+- `Family`: 
+- `Health (Life Expectancy)`: 
+- `Freedom`: 
+-`Trust (Government Corruption)`: 
+-`Generosity`: 
+-`Dystopia Residual`: 
+
+ ...
