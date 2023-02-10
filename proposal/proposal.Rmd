@@ -12,7 +12,8 @@ library(broom)
 ## 1. Introduction
 Our group had a common interest in public health and thought the topic would have ample opportunity for data analysis. 
 We were able to find large data sets on suicide mortality rates from around the world, but wanted to know what factors contributed to higher or lower suicide rates in various countries.
-We decided that comparing suicide rates to World Happiness Report (WHR) scores would allow us to see how the data narrates mental health for each country, and what specific variables show large contribution. WHR includes many independent variables, such as GDP per capita, family size, trust in government, generosity, etc.
+We decided that comparing suicide rates to World Happiness Report (WHR) scores would allow us to see how the data narrates mental health for each country, and what specific variables show large contribution. 
+WHR includes many independent variables, such as GDP per capita, family size, trust in government, generosity, etc.
 We agreed that GDP per capita would allow us to see exactly how economy affects peoples' happiness, and therefore increase or decrease rates of happiness. 
 
 Primary research question: How does the ranking of a certain country on the World Happiness Report correlate with their respective suicide mortality rate?
