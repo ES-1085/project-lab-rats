@@ -16,7 +16,7 @@ using the following format.
 - `Family`: 
 - `Health (Life Expectancy)`: 
 - `Freedom`: 
--`Trust (Government Corruption)`: 
+-`Trust (Government Corruption)`: index measuring the absence of corruption in business and government
 -`Generosity`: 
 -`Dystopia Residual`: 
 

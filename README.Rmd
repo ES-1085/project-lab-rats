@@ -1,6 +1,6 @@
 ---
-title: Project title
-author: by Team name
+title: 
+author: Lab rats
 output: github_document
 ---
 
