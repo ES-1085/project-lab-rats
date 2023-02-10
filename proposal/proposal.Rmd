@@ -1,5 +1,5 @@
 ---
-title: "How do"
+title: "The Relationship Between World Happiness Report and WHO Country Suicide Rates - an Analysis"
 author: "Lab rats"
 output: github_document
 ---
