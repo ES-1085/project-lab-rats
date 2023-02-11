@@ -39,30 +39,31 @@ $ `Social Support`
 $ `Health (Life Expectancy)`      
 $ `Freedom`                         
 $ `Trust (Government Corruption)` 
-$ Generosity                      
+$ `Generosity `                     
 
 
 World Suicide rates dataset,  for the years between 2015-2019: 
 
 
 $`WHO Region Code`                                                
-$ `WHO Region`                                                     
-$ `Country Code`                                                   
-$ Country                                                          
-$ Year                                                             
-$ IsLatestYear                                                    
-$ Sex                                                             
-$ `Age Group`                                                      
-$ `Crude suicide rates (per 100 000 population) (numeric)`         
-$ `Crude suicide rates (per 100 000 population) (low estimation)`  
-$ `Crude suicide rates (per 100 000 population) (high estimation)` 
-$ `Crude suicide rates (per 100 000 population) (string)
+$ `WHO Region`                                                    
+$ `Country Code`                                                  
+$ `Country`                                                      
+$ `Year`                                                         
+$ `IsLatestYear`                                                 
+$ `Sex`                                                           
+$ `Age Group`                                                     
+$ `Crude suicide rates (per 100 000 population) (numeric)`        
+$ `Crude suicide rates (per 100 000 population) (low estimation)` 
+$ `Crude suicide rates (per 100 000 population) (high estimation)`
+$ `Crude suicide rates (per 100 000 population) (string)`
 
-Initially, we would also like to make an analysis associanting light exposure to the happiness index and suicide rates. However, in our preliminary research so far we could not find a dataset with this information byt country. We will continue the research to see if it is possible to add this variable from another dataset. 
+Initially, we would also like to make an analysis associanting light exposure to the happiness index and suicide rates. 
+However, in our preliminary research so far we could not find a dataset with this information byt country. We will continue the research to see if it is possible to add this variable from another dataset. 
 
-Since our dataset has a large set of observations, considering 'ncountries' out of the total countries in the world, we envision several possibilities to run our analysis. We could: 
+Since our dataset has a large set of observations, considering 155-158 countries out of the total countries in the world, we envision several possibilities to run our analysis. We could: 
 * consider all of the countries in the dataset, grouping them by their regions 
 * select a specific number of regions to analyze 
-* equalize the population numbers for each region, trying to sample an equal amount of people per region/continent to be analyzed. Doing so, we would have to ramdomly exclude some countries of the analysis. 
+* equalize the population numbers for each region, trying to sample an equal amount of people per region/continent to be analyzed. Doing so, we would have to randomly exclude some countries of the analysis. 
 *  choose specific countries to compare and contrast, dimishing considerably the number of observations. 
 
