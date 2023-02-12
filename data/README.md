@@ -5,6 +5,21 @@ Place data file(s) in this folder.
 Then, include codebooks (variables, and their descriptions) for your data file(s)
 using the following format.
 
+## suicide_2000_2019_v1.csv
+
+- `WHO Region Code`: the code of a WHO region
+- `WHO Region`: the WHO region 
+- `Country Code`: the code of a certain country
+- `Country`: a unique country
+- `Year`: 
+- `IsLatestYear`: a check whether data is from the latest year (2019)
+- `Sex`: 
+- `Age Group`: 
+- `Crude suicide rates (per 100 000 population) (numeric)`:
+- `Crude suicide rates (per 100 000 population) (low estimation)`: 
+- `Crude suicide rates (per 100 000 population) (high estimation)`:
+- `Crude suicide rates (per 100 000 population) (string)`: 
+
 ## whr_2015.csv 
 
 - `Country`: name of country 
