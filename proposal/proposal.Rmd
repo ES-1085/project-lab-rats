@@ -22,7 +22,8 @@ Secondary research question: How does GDP per capita impact happiness, and to wh
 
 ## 2. Data
 
-We chose two main datasets for our project. The first one was a compilation of suicide rates from the majority of countries created by the World Health Organization (WHO) for the period 2000 to 2019 (source: https://www.kaggle.com/datasets/mikekzan/who-crude-suicide-mortality-rate). The second one was a collection of scores of the WHR from 2015 to 2019, with data for each year located in a separate subdataset (source: https://www.kaggle.com/datasets/unsdsn/world-happiness).
+We chose two main datasets for our project. The first one was a compilation of suicide rates from the majority of countries created by the World Health Organization (WHO) for the period 2000 to 2019 (source: https://www.kaggle.com/datasets/mikekzan/who-crude-suicide-mortality-rate). 
+The second one was a collection of scores of the WHR from 2015 to 2019, with data for each year located in a separate subdataset (source: https://www.kaggle.com/datasets/unsdsn/world-happiness).
 
 However, we plan to modify these datasets to a significant degree to fit our needs. For example, we first intend to merge
 the separate subdatasets of the WHR in one large dataset (with an additional column "year"). In addition, we want to harmonise the names of countries
