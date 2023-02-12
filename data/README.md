@@ -11,14 +11,14 @@ using the following format.
 - `WHO Region`: the WHO region 
 - `Country Code`: the code of a certain country
 - `Country`: a unique country
-- `Year`: 
+- `Year`: the year
 - `IsLatestYear`: a check whether data is from the latest year (2019)
-- `Sex`: 
-- `Age Group`: 
-- `Crude suicide rates (per 100 000 population) (numeric)`:
-- `Crude suicide rates (per 100 000 population) (low estimation)`: 
-- `Crude suicide rates (per 100 000 population) (high estimation)`:
-- `Crude suicide rates (per 100 000 population) (string)`: 
+- `Sex`: the sex of the group of people
+- `Age Group`: an age group
+- `Crude suicide rates (per 100 000 population) (numeric)`: the numeric crude suicide rates per 100 000 people
+- `Crude suicide rates (per 100 000 population) (low estimation)`: the low estimate of crude suicide rates per 100 000 people
+- `Crude suicide rates (per 100 000 population) (high estimation)`: the high estimate crude suicide rates per 100 000 people
+- `Crude suicide rates (per 100 000 population) (string)`: the crude suicide rates per 100 000 people in a string format
 
 ## whr_2015.csv 
 
