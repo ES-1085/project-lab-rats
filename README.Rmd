@@ -1,6 +1,6 @@
 ---
-title: Project title
-author: by Team name
+title: "The Relationship Between World Happiness Report Scores and WHO Country Suicide Rates - an Analysis"
+author: "Lab rats"
 output: github_document
 ---
 
