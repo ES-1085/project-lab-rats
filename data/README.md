@@ -7,6 +7,8 @@ using the following format.
 
 ## suicide_2000_2019_v1.csv
 
+This dataset contains 12 variables and 17,019 observations.
+
 - `WHO Region Code`: the code of a WHO region
 - `WHO Region`: the WHO region 
 - `Country Code`: the code of a certain country
@@ -21,6 +23,8 @@ using the following format.
 - `Crude suicide rates (per 100 000 population) (string)`: the crude suicide rates per 100 000 people in a string format
 
 ## whr_2015.csv 
+
+This dataset contains 12 variables and 158 observations.
 
 - `Country`: name of country 
 - `Region`: geographic region where the country is located 
@@ -37,6 +41,8 @@ using the following format.
 
 ## whr_2016.csv 
 
+This dataset contains 13 variables and 157 observations.
+
 - `Country`: name of country 
 - `Region`: geographic region where the country is located 
 - `Happiness Rank`: ranking position of the country in question in the world happiness report of 2015
@@ -51,6 +57,8 @@ using the following format.
 -`Dystopia Residual`: 
 
 ## whr_2017.csv 
+
+This dataset contains 12 variables and 155 observations.
 
 - `Country`: name of country 
 - `Region`: geographic region where the country is located 
@@ -67,6 +75,8 @@ using the following format.
 
 ## whr_2018.csv 
 
+This dataset contains 9 variables and 156 observations.
+
 - `Country`: name of country 
 - `Region`: geographic region where the country is located 
 - `Happiness Rank`: ranking position of the country in question in the world happiness report of 2015
@@ -81,6 +91,8 @@ using the following format.
 -`Dystopia Residual`: 
 
 ## whr_2019.csv 
+
+This dataset contains 9 variables and 156 observations.
 
 - `Country`: name of country 
 - `Region`: geographic region where the country is located 
