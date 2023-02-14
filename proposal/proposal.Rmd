@@ -21,10 +21,21 @@ Secondary research question: How does GDP per capita impact happiness, and to wh
 
 
 ## 2. Data
-WHR 2015-2019
- 
-visualizing: Scatter plot of all the countries 
-Possible color code for continent/region 
+
+We chose two main datasets for our project. The first one was a compilation of suicide rates from the majority of countries created by the World Health Organization (WHO) 
+for the period 2000 to 2019 (source: https://www.kaggle.com/datasets/mikekzan/who-crude-suicide-mortality-rate). 
+The second one was a collection of scores of the WHR from 2015 to 2019, with data for each year located in a separate subdataset (source: https://www.kaggle.com/datasets/unsdsn/world-happiness).
+
+However, we plan to modify these datasets to a significant degree to fit our needs. For example, we first intend to merge
+the separate subdatasets of the WHR in one large dataset (with an additional column "year"). In addition, we want to harmonise the names of countries
+all datasets (e.g., the WHO dataset has the "Syrian Arab Republic", whereas the WHR dataset has "Syria"). Afterwards, we will filter out countries that
+do not appear in all datasets. Lastly, we will assign consistent regions for all countries, which will not be an easy endeavour,
+recognising the inherent limitations of categorising countries with their unique characteristics.
+
+Our first graph will be a scatterplot showing the correlation between the WHR scores and suicide mortality rates of all countries. Then we plan to
+create such a graph for each region. Afterwards, we want to plot the correlation between GDP per capita (a variable in the WHR datasets) and the
+happiness score on a global and regional scale. Lastly, we want to create graphs showing the correlation of the two aforementioned variables
+with suicide mortality rates. However, it is of utmost importance to state that our plans are subject to change as the project evolves.
 
 ## 3. Data analysis plan
 Variables we will consider for our analysis: 
@@ -33,17 +44,37 @@ World Happiness Report dataset, for the years between 2015-2019:
 $ `Country`                         
 $ `Region`                          
 $ `Happiness Rank`                
-$ `Happiness Score`               
-$ `Standard Error`                
+$ `Happiness Score`                               
 $ `Economy (GDP per Capita)`      
-$ `Family`                         
+$ `Social Support`                         
 $ `Health (Life Expectancy)`      
 $ `Freedom`                         
 $ `Trust (Government Corruption)` 
-$ Generosity                      
-$ `Dystopia Residual`
+$ `Generosity `                     
+
 
 World Suicide rates dataset,  for the years between 2015-2019: 
 
-Initially, we would also like to make an analysis associanting light exposure to the happiness index and suicide rates. However, in our preliminary research so far we could not find a dataset with this information byt country. We will continue the research to see if it is possible to add this variable from another dataset. 
+
+$`WHO Region Code`                                                
+$ `WHO Region`                                                    
+$ `Country Code`                                                  
+$ `Country`                                                      
+$ `Year`                                                         
+$ `IsLatestYear`                                                 
+$ `Sex`                                                           
+$ `Age Group`                                                     
+$ `Crude suicide rates (per 100 000 population) (numeric)`        
+$ `Crude suicide rates (per 100 000 population) (low estimation)` 
+$ `Crude suicide rates (per 100 000 population) (high estimation)`
+$ `Crude suicide rates (per 100 000 population) (string)`
+
+Initially, we would also like to make an analysis associanting light exposure to the happiness index and suicide rates. 
+However, in our preliminary research so far we could not find a dataset with this information byt country. We will continue the research to see if it is possible to add this variable from another dataset. 
+
+Since our dataset has a large set of observations, considering 155-158 countries out of the total countries in the world, we envision several possibilities to run our analysis. We could: 
+* consider all of the countries in the dataset, grouping them by their regions 
+* select a specific number of regions to analyze 
+* equalize the population numbers for each region, trying to sample an equal amount of people per region/continent to be analyzed. Doing so, we would have to randomly exclude some countries of the analysis. 
+*  choose specific countries to compare and contrast, dimishing considerably the number of observations. 
 
