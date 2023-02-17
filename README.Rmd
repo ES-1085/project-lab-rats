@@ -34,6 +34,12 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 suicide_2 <- read_csv("data/World_Suicide_rates.csv")
 ```
 
+### Tidying data 
+
+```{r tidy-data}
+
+```
+
 ## Presentation
 
 ```{r}
