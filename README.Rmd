@@ -37,7 +37,11 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 
 ```{r tidy-data-2015}
 whr_2015 %>%
-  mutate(Year = 2015)
+  mutate(Year = 2015) 
+
+#%>%
+  
+  
 ```
 
 ```{r tidy-data-2016}
