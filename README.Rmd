@@ -36,7 +36,14 @@ suicide_2 <- read_csv("data/World_Suicide_rates.csv")
 
 ### Tidying data 
 
-```{r tidy-data}
+```{r tidy-data-2019}
+whr_2019 <- whr_2019 %>% 
+  mutate (Year = 2019)
+```
+
+```{r tidy-data-2018}
+whr_2018 <- whr_2018 %>% 
+  mutate (Year = 2018)
 
 ```
 
