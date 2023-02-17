@@ -31,20 +31,33 @@ whr_2017 <- read_csv("data/whr_2017.csv")
 whr_2018 <- read_csv("data/whr_2018.csv")
 whr_2019 <- read_csv("data/whr_2019.csv")
 suicide <- read_csv("data/suicide_2000_2019_v1.csv")
-suicide_2 <- read_csv("data/World_Suicide_rates.csv")
 ```
 
 ### Tidying data 
 
-```{r tidy-data-2019}
-whr_2019 <- whr_2019 %>% 
-  mutate (Year = 2019)
+```{r tidy-data-2015}
+whr_2015 %>%
+  mutate(Year = 2015)
+```
+
+```{r tidy-data-2016}
+whr_2016 %>%
+  mutate(Year = 2016)
+```
+
+```{r tidy-data-2017}
+whr_2017 %>%
+  mutate(Year = 2017)
 ```
 
 ```{r tidy-data-2018}
 whr_2018 <- whr_2018 %>% 
   mutate (Year = 2018)
+```
 
+```{r tidy-data-2019}
+whr_2019 <- whr_2019 %>% 
+  mutate (Year = 2019)
 ```
 
 ## Presentation
@@ -57,8 +70,7 @@ suicide <- suicide %>%
 whr_2015 <- whr_2015 %>%
   rename("Social support" = "Family")
 
-whr_2015 %>%
-  mutate(Year = 2015)
+
 ```
 
 ## Data 
