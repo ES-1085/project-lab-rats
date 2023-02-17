@@ -36,8 +36,11 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 ### Tidying data 
 
 ```{r tidy-data-2015}
+
 whr_2015 <- whr_2015 %>%
-  mutate(Year = 2015)
+  mutate(Year = 2015) %>% 
+  subset(select = -c(`Standard Error`, `Dystopia Residual`))
+
 ```
 
 ```{r tidy-data-2016}
