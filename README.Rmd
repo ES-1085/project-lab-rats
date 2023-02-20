@@ -39,7 +39,8 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 
 whr_2015 <- whr_2015 %>%
   mutate(Year = 2015) %>% 
-  subset(select = -c(`Standard Error`, `Dystopia Residual`))
+    # subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
+   rename("Social Support"= "Family")
 
 ```
 
