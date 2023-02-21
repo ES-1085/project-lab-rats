@@ -90,8 +90,6 @@ suicide <- suicide %>%
 
 # whr_2015 <- whr_2015 %>%
 #   rename("Social Support" = "Family")
-
-
 ```
 
 ## Data 
