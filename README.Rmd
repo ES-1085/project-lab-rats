@@ -39,19 +39,13 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 
 whr_2015 <- whr_2015 %>%
   mutate(Year = 2015) %>% 
-<<<<<<< HEAD
    subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
    rename("Social Support" = "Family")
-=======
-  # subset(select = -c(`Standard Error`, `Dystopia Residual`)) %>%
-   # rename("Social support" = "Family") %>%
    # rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
   rename("Social support" = "Social Support",
          "GDP per capita" = "Economy (GDP per Capita)" ,
          "Overall rank" = "Happiness Rank", 
          "Life expectancy" = "Health (Life Expectancy)")
-  
->>>>>>> 90ab116a55bed43c3fc95011de186853409c1984
 ```
 
 ```{r tidy-data-2016}
@@ -71,7 +65,6 @@ whr_2017 <- whr_2017 %>%
   mutate(Year = 2017)%>%
   subset(select = -c(`Whisker.low`, `Whisker.high`, `Dystopia.Residual`)) %>%
      rename("Social Support"= "Family") %>%
-  rena
 ```
 
 ```{r tidy-data-2018}
@@ -84,9 +77,8 @@ whr_2018 <- whr_2018 %>%
 ```{r tidy-data-2019}
 whr_2019 <- whr_2019 %>% 
   mutate (Year = 2019) %>%
-  rename("Freedom" = "Freedom to make life choices")%>%
-  rename("Trust (Government Corruption)" = "Perceptions of corruption") 
-
+  rename("Freedom" = "Freedom to make life choices") %>%
+  rename("Trust (Government Corruption)" = "Perceptions of corruption")
 ```
 
 ## Presentation
