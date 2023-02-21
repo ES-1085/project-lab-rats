@@ -105,13 +105,21 @@ whr_2017 <- whr_2017 %>%
 ```
 
 ``` r
-whr_2018 <- whr_2018 %>% 
-  mutate (Year = 2018)
+whr_2017 <- whr_2017 %>%
+  rename("Social Support" = "Family") 
+  #subset(select = -c(Whisker.high, Whisker.low))
 ```
+
+
+
+    ```r
+    whr_2018 <- whr_2018 %>% 
+      mutate (Year = 2018)
 
 ``` r
 whr_2019 <- whr_2019 %>% 
-  mutate (Year = 2019)
+  mutate (Year = 2019) %>%
+  rename("Freedom" = "Freedom to make life choices" )
 ```
 
 ## Presentation
@@ -122,7 +130,7 @@ suicide <- suicide %>%
                              TRUE ~ Country))
 
 whr_2015 <- whr_2015 %>%
-  rename("Social support" = "Family")
+  rename("Social Support" = "Family")
 ```
 
 ## Data
