@@ -99,12 +99,8 @@ whr_2015 <- whr_2015 %>%
 ``` r
 whr_2016 <- whr_2016 %>%
   mutate(Year = 2016) %>%
-<<<<<<< HEAD
-  subset(select = -c(`Region`, `Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`))
-=======
   subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
      rename("Social Support"= "Family")
->>>>>>> 210f5145c2d593e9f3d29f9a8e35c7f992bde692
 ```
 
 ``` r
