@@ -92,28 +92,40 @@ your project.
 ``` r
 whr_2015 <- whr_2015 %>%
   mutate(Year = 2015) %>% 
-  subset(select = -c(`Standard Error`, `Dystopia Residual`))
+   subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
+   rename("Social Support"= "Family")
 ```
 
 ``` r
 whr_2016 <- whr_2016 %>%
   mutate(Year = 2016) %>%
+<<<<<<< HEAD
   subset(select = -c(`Region`, `Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`))
+=======
+  subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
+     rename("Social Support"= "Family")
+>>>>>>> 210f5145c2d593e9f3d29f9a8e35c7f992bde692
 ```
 
 ``` r
 whr_2017 <- whr_2017 %>%
-  mutate(Year = 2017)
+  mutate(Year = 2017)%>%
+  subset(select = -c(`Whisker.low`, `Whisker.high`, `Dystopia.Residual`)) %>%
+     rename("Social Support"= "Family")
 ```
 
 ``` r
 whr_2018 <- whr_2018 %>% 
-  mutate (Year = 2018)
+  mutate (Year = 2018) %>%
+  rename("Freedom" = "Freedom to make life choices")%>%
+  rename("Trust (Government Corruption)" = "Perceptions of corruption")
 ```
 
 ``` r
 whr_2019 <- whr_2019 %>% 
-  mutate (Year = 2019)
+  mutate (Year = 2019) %>%
+  rename("Freedom" = "Freedom to make life choices")%>%
+  rename("Trust (Government Corruption)" = "Perceptions of corruption") 
 ```
 
 ## Presentation
@@ -123,8 +135,8 @@ suicide <- suicide %>%
   mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
                              TRUE ~ Country))
 
-whr_2015 <- whr_2015 %>%
-  rename("Social support" = "Family")
+# whr_2015 <- whr_2015 %>%
+#   rename("Social Support" = "Family")
 ```
 
 ## Data
