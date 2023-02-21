@@ -91,7 +91,11 @@ your project.
 
 ``` r
 whr_2015 <- whr_2015 %>%
-  mutate(Year = 2015)
+  mutate(Year = 2015) %>% 
+   subset(select = -c(`Standard Error`, `Dystopia Residual`)) 
+
+# %>%
+  # colnames ( "Family" = "Social Support")
 ```
 
 ``` r
