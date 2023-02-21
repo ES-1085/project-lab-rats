@@ -92,8 +92,9 @@ your project.
 ``` r
 whr_2015 <- whr_2015 %>%
   mutate(Year = 2015) %>% 
-   subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
-   rename("Social Support"= "Family")
+  # subset(select = -c(`Standard Error`, `Dystopia Residual`)) %>%
+   rename("Social Support"= "Family") %>%
+   rename("Perceptions of corruption" = "Trust (Government Corruption)")
 ```
 
 ``` r
