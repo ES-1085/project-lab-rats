@@ -97,7 +97,8 @@ whr_2015 <- whr_2015 %>%
 
 ``` r
 whr_2016 <- whr_2016 %>%
-  mutate(Year = 2016)
+  mutate(Year = 2016) %>%
+  subset(select = -c(`Region`, `Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`))
 ```
 
 ``` r
