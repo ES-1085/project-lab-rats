@@ -39,13 +39,14 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 
 whr_2015 <- whr_2015 %>%
   mutate(Year = 2015) %>% 
-<<<<<<< HEAD
-  subset(select = -c(`Standard Error`, `Dystopia Residual`))
-=======
-   subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
-   rename("Social Support"= "Family")
-
->>>>>>> 210f5145c2d593e9f3d29f9a8e35c7f992bde692
+  # subset(select = -c(`Standard Error`, `Dystopia Residual`)) %>%
+   # rename("Social support" = "Family") %>%
+   # rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+  rename("Social support" = "Social Support",
+         "GDP per capita" = "Economy (GDP per Capita)" ,
+         "Overall rank" = "Happiness Rank", 
+         "Life expectancy" = "Health (Life Expectancy)")
+  
 ```
 
 ```{r tidy-data-2016}
