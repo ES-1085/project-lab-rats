@@ -84,7 +84,6 @@ whr_2018 <- whr_2018 %>%
          "Country" = "Country or region", 
          "Happiness score" = "Score")
 ```
-  
 
 ```{r tidy-data-2019}
 whr_2019 <- whr_2019 %>% 
