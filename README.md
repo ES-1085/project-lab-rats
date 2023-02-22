@@ -92,37 +92,50 @@ your project.
 ``` r
 whr_2015 <- whr_2015 %>%
   mutate(Year = 2015) %>% 
-  # subset(select = -c(`Standard Error`, `Dystopia Residual`)) %>%
-   rename("Social Support"= "Family") %>%
-   rename("Perceptions of corruption" = "Trust (Government Corruption)")
+   #subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
+   #rename("Social Support" = "Family") %>%
+    rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+   #rename("Social support" = "Social Support") %>%
+   rename( "GDP per capita" = "Economy (GDP per Capita)",
+          "Overall rank" = "Happiness Rank", 
+          "Life expectancy" = "Health (Life Expectancy)")
 ```
 
 ``` r
 whr_2016 <- whr_2016 %>%
-  mutate(Year = 2016) %>%
-  subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
-     rename("Social Support"= "Family")
+mutate(Year = 2016) %>%
+# subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
+# rename("Social support"= "Family") %>%
+rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+rename("Overall rank" = "Happiness Rank") %>%
+rename("Happiness score" = "Happiness Score") %>%
+rename("GDP per capita" = "Economy (GDP per Capita)") %>%
+rename("Life expectancy" = "Health (Life Expectancy)")
 ```
 
 ``` r
-whr_2017 <- whr_2017 %>%
-  mutate(Year = 2017)%>%
-  subset(select = -c(`Whisker.low`, `Whisker.high`, `Dystopia.Residual`)) %>%
-     rename("Social Support"= "Family")
+# whr_2017 <- whr_2017 %>%
+#   mutate(Year = 2017)%>%
+  # subset(select = -c(`Whisker.low`, `Whisker.high`, `Dystopia.Residual`)) %>%
+     # rename("Social Support"= "Family")
 ```
 
 ``` r
 whr_2018 <- whr_2018 %>% 
   mutate (Year = 2018) %>%
-  rename("Freedom" = "Freedom to make life choices")%>%
-  rename("Trust (Government Corruption)" = "Perceptions of corruption")
+  # rename("Freedom" = "Freedom to make life choices")%>%
+  rename("Life expectancy" = "Healthy life expectancy", 
+         "Country" = "Country or region", 
+         "Happiness score" = "Score")
 ```
 
 ``` r
 whr_2019 <- whr_2019 %>% 
   mutate (Year = 2019) %>%
-  rename("Freedom" = "Freedom to make life choices")%>%
-  rename("Trust (Government Corruption)" = "Perceptions of corruption") 
+  # rename("Freedom" = "Freedom to make life choices")%>%
+  rename("Country" = "Country or region", 
+         "Life expectancy" = "Healthy life expectancy", 
+         "Happiness score" = "Score") 
 ```
 
 ## Presentation
