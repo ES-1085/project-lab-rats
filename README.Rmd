@@ -45,25 +45,32 @@ whr_2015 <- whr_2015 %>%
    # # rename("GDP per capita" = "Economy (GDP per Capita)",
    #        "Overall rank" = "Happiness Rank", 
    #        "Life expectancy" = "Health (Life Expectancy)") %>%
-  rename("Happiness score" = "Happiness Score")
+  # rename("Happiness score" = "Happiness Score") %>% 
+  subset(select = -c(`Region`))
 ```
 
 ```{r tidy-data-2016}
 whr_2016 <- whr_2016 %>%
-mutate(Year = 2016) %>%
+# mutate(Year = 2016) %>%
 # subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
 # rename("Social support"= "Family") %>%
-rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
-rename("Overall rank" = "Happiness Rank") %>%
-rename("Happiness score" = "Happiness Score") %>%
-rename("GDP per capita" = "Economy (GDP per Capita)") %>%
-rename("Life expectancy" = "Health (Life Expectancy)")
+# rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+# rename("Overall rank" = "Happiness Rank") %>%
+# rename("Happiness score" = "Happiness Score") %>%
+# rename("GDP per capita" = "Economy (GDP per Capita)") %>%
+# rename("Life expectancy" = "Health (Life Expectancy)") %>%
+  subset(select = -c(`Region`))
 ```
 
 ```{r tidy-data-2017}
 whr_2017 <- whr_2017 %>%
+<<<<<<< HEAD
   mutate(Year = 2017)%>%
   #rmsubset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
+=======
+  #mutate(Year = 2017)%>%
+   # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) #%>%
+>>>>>>> 5e18136d30d4adb994e8bf54a536938460cf5c0a
      #rename("Social Support"= "Family") %>%
            #rename("Overall rank" = "Happiness.Rank") %>%
             rename("Happiness score" = "Happiness.Score") %>%
@@ -99,7 +106,6 @@ whr_2019 <- whr_2019 %>%
 suicide <- suicide %>%
   mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
                              TRUE ~ Country))
-
 
 ```
 
