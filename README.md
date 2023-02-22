@@ -116,7 +116,7 @@ whr_2015 <- whr_2015 %>%
 ``` r
 whr_2017 <- whr_2017 %>%
   mutate(Year = 2017)%>%
-  #subset(select = -c(`Dystopia.Residual`)) %>%
+  #subset(select = -c(`1Whisker.High`,`Whisker Low`, `Dystopia.Residual`)) %>%
      #rename("Social Support"= "Family") %>%
            rename("Happiness rank" = "Happiness.Rank") %>%
             rename("Happiness score" = "Happiness.Score") %>%
