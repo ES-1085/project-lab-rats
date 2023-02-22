@@ -94,6 +94,10 @@ whr_2019 <- whr_2019 %>%
 
 ```
 
+```{r suicide-tidy-data}
+suicide <- suicide %>%
+  
+```
 
 ## Presentation
 
