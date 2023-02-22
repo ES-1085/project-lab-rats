@@ -63,9 +63,9 @@ rename("Life expectancy" = "Health (Life Expectancy)")
 ```{r tidy-data-2017}
 whr_2017 <- whr_2017 %>%
   #mutate(Year = 2017)%>%
-   subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) #%>%
+   # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) #%>%
      #rename("Social Support"= "Family") %>%
-           # rename("Happiness rank" = "Happiness.Rank")  %>%
+           rename("Overall rank" = "Happiness rank") 
             #rename("Happiness score" = "Happiness.Score") %>%
             #rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
             #rename("Life expectancy" = "Health..Life.Expectancy.") %>%
