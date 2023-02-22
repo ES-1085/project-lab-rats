@@ -72,13 +72,6 @@ whr_2017 <- whr_2017 %>%
             #rename("Perceptions of corruption" = "Trust..Government.Corruption.")
 ```
 
-```{r tidy-columns-2017}
-whr_2017 <- whr_2017 %>%
-  rename("Social Support" = "Family") %>%
-  subset(select = -c(Whisker.high, Whisker.low))
-```
-
-
 ```{r tidy-data-2018}
 whr_2018 <- whr_2018 %>% 
   mutate (Year = 2018) %>%
@@ -86,10 +79,6 @@ whr_2018 <- whr_2018 %>%
   rename("Life expectancy" = "Healthy life expectancy", 
          "Country" = "Country or region", 
          "Happiness score" = "Score")
-```
-  
-  subset(select = -c(`Whisker.low`, `Whisker.high`, `Dystopia.Residual`)) %>%
-     rename("Social Support"= "Family") %>%
 ```
   
 
