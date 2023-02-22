@@ -100,8 +100,7 @@ suicide <- suicide %>%
   mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
                              TRUE ~ Country))
 
-# whr_2015 <- whr_2015 %>%
-#   rename("Social Support" = "Family")
+
 ```
 
 ## Data 
