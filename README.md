@@ -117,7 +117,7 @@ rename("Life expectancy" = "Health (Life Expectancy)")
 ``` r
 whr_2017 <- whr_2017 %>%
   mutate(Year = 2017)%>%
-  #subset(select = -c(`Whisker.High`,`Whisker Low`, `Dystopia.Residual`)) %>%
+  #subset(select = -c(`Whisker.high`,`Whisker.low`, `Dystopia.Residual`)) %>%
      #rename("Social Support"= "Family") %>%
            rename("Happiness rank" = "Happiness.Rank") %>%
             rename("Happiness score" = "Happiness.Score") %>%
