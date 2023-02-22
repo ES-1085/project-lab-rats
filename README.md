@@ -127,12 +127,6 @@ whr_2017 <- whr_2017 %>%
 ```
 
 ``` r
-whr_2017 <- whr_2017 %>%
-  rename("Social Support" = "Family") %>%
-  subset(select = -c(Whisker.high, Whisker.low))
-```
-
-``` r
 whr_2018 <- whr_2018 %>% 
   mutate (Year = 2018) %>%
   # rename("Freedom" = "Freedom to make life choices")%>%
@@ -141,19 +135,14 @@ whr_2018 <- whr_2018 %>%
          "Happiness score" = "Score")
 ```
 
-subset(select = -c(`Whisker.low`, `Whisker.high`, `Dystopia.Residual`))
-%\>% rename(“Social Support”= “Family”) %\>%
-
-      
-
-
-    ```r
-    whr_2019 <- whr_2019 %>% 
-      mutate (Year = 2019) %>%
-      # rename("Freedom" = "Freedom to make life choices")%>%
-      rename("Country" = "Country or region", 
-             "Life expectancy" = "Healthy life expectancy", 
-             "Happiness score" = "Score") 
+``` r
+whr_2019 <- whr_2019 %>% 
+  mutate (Year = 2019) %>%
+  # rename("Freedom" = "Freedom to make life choices")%>%
+  rename("Country" = "Country or region", 
+         "Life expectancy" = "Healthy life expectancy", 
+         "Happiness score" = "Score") 
+```
 
 ## Presentation
 
