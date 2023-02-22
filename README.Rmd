@@ -69,6 +69,10 @@ whr_2017 <- whr_2017 %>%
   #mutate(Year = 2017)%>%
    # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) #%>%
     #rename("Social Support"= "Family") %>%
+  #rmsubset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
+  #mutate(Year = 2017)%>%
+   # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) #%>%
+     #rename("Social Support"= "Family") %>%
            #rename("Overall rank" = "Happiness.Rank") %>%
             rename("Happiness score" = "Happiness.Score") %>%
             rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
@@ -84,7 +88,6 @@ whr_2018 <- whr_2018 %>%
          "Country" = "Country or region", 
          "Happiness score" = "Score")
 ```
-  
 
 ```{r tidy-data-2019}
 whr_2019 <- whr_2019 %>% 
