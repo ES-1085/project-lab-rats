@@ -47,8 +47,8 @@ whr_2015 <- whr_2015 %>%
           #rename("Overall rank" = "Happiness Rank",)
           # "Life expectancy" = "Health (Life Expectancy)") %>%
   # rename("Happiness score" = "Happiness Score") %>% 
-    subset(select = -c(`Region`)) #%>%
   #clean_names()
+   # subset(select = -c(`region`)) %>%
 ```
 
 ```{r tidy-data-2016}
