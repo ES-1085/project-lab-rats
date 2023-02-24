@@ -64,6 +64,7 @@ whr_2016 <- whr_2016 %>%
 # rename("GDP per capita" = "Economy (GDP per Capita)") %>%
 # rename("Life expectancy" = "Health (Life Expectancy)") %>%
   # subset(select = -c(`Region`)) %>%
+  #hi
   clean_names()
 ```
 
