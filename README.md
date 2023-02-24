@@ -17,6 +17,17 @@ library(tidyverse)
     ## ✖ dplyr::filter() masks stats::filter()
     ## ✖ dplyr::lag()    masks stats::lag()
 
+``` r
+library(janitor)
+```
+
+    ## 
+    ## Attaching package: 'janitor'
+    ## 
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     chisq.test, fisher.test
+
 ## Summary
 
 Write-up of your project and findings go here. Think of this as the text
@@ -99,49 +110,60 @@ whr_2015 <- whr_2015 %>%
    # # rename("GDP per capita" = "Economy (GDP per Capita)",
    #        "Overall rank" = "Happiness Rank", 
    #        "Life expectancy" = "Health (Life Expectancy)") %>%
-  rename("Happiness score" = "Happiness Score")
+  # rename("Happiness score" = "Happiness Score") %>% 
+   # subset(select = -c(`region`)) %>%
+  clean_names()
 ```
 
 ``` r
 whr_2016 <- whr_2016 %>%
-mutate(Year = 2016) %>%
+# mutate(Year = 2016) %>%
 # subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
 # rename("Social support"= "Family") %>%
-rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
-rename("Overall rank" = "Happiness Rank") %>%
-rename("Happiness score" = "Happiness Score") %>%
-rename("GDP per capita" = "Economy (GDP per Capita)") %>%
-rename("Life expectancy" = "Health (Life Expectancy)")
+# rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+# rename("Overall rank" = "Happiness Rank") %>%
+# rename("Happiness score" = "Happiness Score") %>%
+# rename("GDP per capita" = "Economy (GDP per Capita)") %>%
+# rename("Life expectancy" = "Health (Life Expectancy)") %>%
+  # subset(select = -c(`Region`)) %>%
+  clean_names()
 ```
 
 ``` r
 whr_2017 <- whr_2017 %>%
-  #mutate(Year = 2017)%>%
-  subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) #%>%
+  mutate(Year = 2017)%>%
+  # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
      #rename("Social Support"= "Family") %>%
-           #rename("Happiness rank" = "Happiness.Rank") %>%
-            #rename("Happiness score" = "Happiness.Score") %>%
-            #rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
-            #rename("Life expectancy" = "Health..Life.Expectancy.") %>%
-            #rename("Perceptions of corruption" = "Trust..Government.Corruption.")
+           #rename("Overall rank" = "Happiness.Rank") %>%
+            # rename("Happiness score" = "Happiness.Score") %>%
+            # rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
+            # rename("Life expectancy" = "Health..Life.Expectancy.") %>%
+            # rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
+  clean_names()
 ```
 
 ``` r
 whr_2018 <- whr_2018 %>% 
-  mutate (Year = 2018) %>%
+  # mutate (Year = 2018) #%>%
   # rename("Freedom" = "Freedom to make life choices")%>%
-  rename("Life expectancy" = "Healthy life expectancy", 
-         "Country" = "Country or region", 
-         "Happiness score" = "Score")
+  # rename("Life expectancy" = "Healthy life expectancy", 
+  #        "Country" = "Country or region", 
+  #        "Happiness score" = "Score") %>%
+    clean_names()
 ```
 
 ``` r
 whr_2019 <- whr_2019 %>% 
   mutate (Year = 2019) %>%
   # rename("Freedom" = "Freedom to make life choices")%>%
-  rename("Country" = "Country or region", 
-         "Life expectancy" = "Healthy life expectancy", 
-         "Happiness score" = "Score") 
+  # rename("Country" = "Country or region", 
+  #        "Life expectancy" = "Healthy life expectancy", 
+  #        "Happiness score" = "Score") %>%
+  clean_names()
+```
+
+``` r
+# suicide <- suicide %>%
 ```
 
 ## Presentation
@@ -150,9 +172,6 @@ whr_2019 <- whr_2019 %>%
 suicide <- suicide %>%
   mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
                              TRUE ~ Country))
-
-# whr_2015 <- whr_2015 %>%
-#   rename("Social Support" = "Family")
 ```
 
 ## Data
