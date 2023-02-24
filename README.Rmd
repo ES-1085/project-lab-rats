@@ -47,7 +47,8 @@ whr_2015 <- whr_2015 %>%
    #        "Overall rank" = "Happiness Rank", 
    #        "Life expectancy" = "Health (Life Expectancy)") %>%
   # rename("Happiness score" = "Happiness Score") %>% 
-  subset(select = -c(`Region`))
+   # subset(select = -c(`region`)) %>%
+  clean_names()
 ```
 
 ```{r tidy-data-2016}
@@ -95,7 +96,7 @@ whr_2019 <- whr_2019 %>%
 ```
 
 ```{r suicide-tidy-data}
-suicide <- suicide %>%
+# suicide <- suicide %>%
   
 ```
 
