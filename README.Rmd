@@ -1,3 +1,5 @@
+lab rats
+
 ---
 title: "The Relationship Between World Happiness Report Scores and WHO Country Suicide Rates - an Analysis"
 author: "Lab rats"
@@ -38,65 +40,65 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 
 ```{r tidy-data-2015}
 whr_2015 <- whr_2015 %>%
-   #mutate(Year = 2015) %>% 
+  # mutate(Year = 2015) %>% 
    #subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
    #rename("Social Support" = "Family") %>%
-     #rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
-  # rename("Social support" = "Social Support") %>%
-    #rename("GDP per capita" = "Economy (GDP per Capita)",
-          #rename("Overall rank" = "Happiness Rank",)
-          # "Life expectancy" = "Health (Life Expectancy)") %>%
+    # rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+   #rename("Social support" = "Social Support") %>%
+   # # rename("GDP per capita" = "Economy (GDP per Capita)",
+   #        "Overall rank" = "Happiness Rank", 
+   #        "Life expectancy" = "Health (Life Expectancy)") %>%
   # rename("Happiness score" = "Happiness Score") %>% 
-  #clean_names()
    # subset(select = -c(`region`)) %>%
+  clean_names()
 ```
 
 ```{r tidy-data-2016}
 whr_2016 <- whr_2016 %>%
- mutate(Year = 2016) %>%
- subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
- rename("Social support"= "Family") %>%
- rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
- rename("Overall rank" = "Happiness Rank") %>%
- rename("Happiness score" = "Happiness Score") %>%
- rename("GDP per capita" = "Economy (GDP per Capita)") %>%
- rename("Life expectancy" = "Health (Life Expectancy)") #%>%
-  #subset(select = -c(`Region`))
+# mutate(Year = 2016) %>%
+# subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
+# rename("Social support"= "Family") %>%
+# rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+# rename("Overall rank" = "Happiness Rank") %>%
+# rename("Happiness score" = "Happiness Score") %>%
+# rename("GDP per capita" = "Economy (GDP per Capita)") %>%
+# rename("Life expectancy" = "Health (Life Expectancy)") %>%
+  # subset(select = -c(`Region`)) %>%
+  clean_names()
 ```
 
 ```{r tidy-data-2017}
 whr_2017 <- whr_2017 %>%
   mutate(Year = 2017)%>%
-<<<<<<< HEAD
   # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
      rename("Social Support"= "family") %>%
-=======
-  #subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
-  #mutate(Year = 2017)%>%
->>>>>>> a80ae42db17db8e637dbcfa248388382c8d96fc9
            #rename("Overall rank" = "Happiness.Rank") %>%
-            rename("Happiness score" = "Happiness.Score") %>%
-            rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
-            rename("Life expectancy" = "Health..Life.Expectancy.") %>%
-            rename("Perceptions of corruption" = "Trust..Government.Corruption.")
+            # rename("Happiness score" = "Happiness.Score") %>%
+            # rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
+            # rename("Life expectancy" = "Health..Life.Expectancy.") %>%
+            # rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
+  clean_names()
+  
 ```
 
 ```{r tidy-data-2018}
 whr_2018 <- whr_2018 %>% 
-  mutate (Year = 2018) #%>%
+  # mutate (Year = 2018) #%>%
   # rename("Freedom" = "Freedom to make life choices")%>%
-  rename("Life expectancy" = "Healthy life expectancy", 
-         "Country" = "Country or region", 
-         "Happiness score" = "Score")
+  # rename("Life expectancy" = "Healthy life expectancy", 
+  #        "Country" = "Country or region", 
+  #        "Happiness score" = "Score") %>%
+    clean_names()
 ```
 
 ```{r tidy-data-2019}
 whr_2019 <- whr_2019 %>% 
   mutate (Year = 2019) %>%
   # rename("Freedom" = "Freedom to make life choices")%>%
-  rename("Country" = "Country or region", 
-         "Life expectancy" = "Healthy life expectancy", 
-         "Happiness score" = "Score") 
+  # rename("Country" = "Country or region", 
+  #        "Life expectancy" = "Healthy life expectancy", 
+  #        "Happiness score" = "Score") %>%
+  clean_names()
 
 ```
 
