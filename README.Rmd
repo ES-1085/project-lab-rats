@@ -120,8 +120,7 @@ whr_2019 <- whr_2019 %>%
   # rename("Country" = "Country or region",
   #        "Life expectancy" = "Healthy life expectancy",
   #        "Happiness score" = "Score") %>%
-  clean_names()
-
+  # clean_names()
 ```
 
 ```{r reordering-cols-2019}
