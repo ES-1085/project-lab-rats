@@ -114,19 +114,25 @@ whr_2018 <- whr_2018 %>%
 
 
 ```{r tidy-data-2019}
-whr_2019 <- whr_2019 %>% 
-  # mutate (Year = 2019) %>%
-  # rename("Freedom" = "Freedom to make life choices")%>%
-  # rename("Country" = "Country or region",
-  #        "Life expectancy" = "Healthy life expectancy",
-  #        "Happiness score" = "Score") %>%
-  # clean_names()
+
+whr_2019 <- whr_2019 %>%
+   mutate (Year = 2019) %>%
+  rename("Freedom" = "freedom_to_make_life_choices") %>%
+   #rename("Country" = "Country or region",
+          #"Life expectancy" = "Healthy life expectancy",
+          #"Happiness score" = "Score") %>%
+  clean_names()
 ```
 
 ```{r reordering-cols-2019}
 whr_2019 <- whr_2019 %>% 
   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
+
+```{r remove-col-2019}
+whr_2019 <- subset(whr_2019, select = -c(year_2))
+```
+
 
 ```{r suicide-tidy-data}
 # suicide <- suicide %>%
