@@ -112,7 +112,6 @@ whr_2018 <- whr_2018 %>%
   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
 ```
 
-
 ```{r tidy-data-2019}
 whr_2019 <- whr_2019 %>% 
   # mutate (Year = 2019) %>%
@@ -128,6 +127,11 @@ whr_2019 <- whr_2019 %>%
 whr_2019 <- whr_2019 %>% 
   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
+
+```{r create-whr}
+whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019)
+```
+
 
 ```{r suicide-tidy-data}
 # suicide <- suicide %>%
