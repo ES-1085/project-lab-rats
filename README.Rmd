@@ -54,6 +54,12 @@ whr_2015 <- whr_2015 %>%
 
 ```
 
+```{r reordering-cols-2015}
+whr_2015 <- whr_2015 %>% 
+  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+
+```
+
 ```{r tidy-data-2016}
 whr_2016 <- whr_2016 %>%
 mutate(Year = 2016) %>%
@@ -80,7 +86,6 @@ whr_2017 <- whr_2017 %>%
    #           rename("Life expectancy" = "Health..Life.Expectancy.") %>%
    #           rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
   clean_names()
-  #hi
 ```
 
 ```{r tidy-data-2018}
