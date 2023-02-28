@@ -75,6 +75,11 @@ clean_names()
 
 ```
 
+```{r reordering-cols-2016}
+whr_2016 <- whr_2016 %>% 
+  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+```
+
 ```{r tidy-data-2017}
 whr_2017 <- whr_2017 %>%
    mutate(Year = 2017) %>%
