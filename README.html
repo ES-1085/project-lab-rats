@@ -444,6 +444,7 @@ summary of your project.</p>
 <div id="tidying-data" class="section level3">
 <h3>Tidying data</h3>
 <pre class="r"><code>whr_2015 &lt;- whr_2015 %&gt;%
+<<<<<<< HEAD
   # mutate(Year = 2015) %&gt;% 
    #subset(select = -c(`Standard Error`,`Dystopia Residual`)) %&gt;%
    #rename(&quot;Social Support&quot; = &quot;Family&quot;) %&gt;%
@@ -489,6 +490,52 @@ summary of your project.</p>
   # rename(&quot;Freedom&quot; = &quot;Freedom to make life choices&quot;)%&gt;%
   # rename(&quot;Country&quot; = &quot;Country or region&quot;, 
   #        &quot;Life expectancy&quot; = &quot;Healthy life expectancy&quot;, 
+=======
+  mutate(Year = 2015) %&gt;%
+  subset(select = -c(`Standard Error`,`Dystopia Residual`)) %&gt;%
+  rename(&quot;Social Support&quot; = &quot;Family&quot;) %&gt;%
+  rename(&quot;Perceptions of corruption&quot; = &quot;Trust (Government Corruption)&quot;) %&gt;%
+  rename(&quot;Social support&quot; = &quot;Social Support&quot;) %&gt;%
+   rename(&quot;GDP per capita&quot; = &quot;Economy (GDP per Capita)&quot;,
+         &quot;Overall rank&quot; = &quot;Happiness Rank&quot;,
+         &quot;Life expectancy&quot; = &quot;Health (Life Expectancy)&quot;) %&gt;%
+  rename(&quot;Happiness score&quot; = &quot;Happiness Score&quot;) %&gt;%
+  subset(select = -c(`Region`)) %&gt;%
+  clean_names()</code></pre>
+<pre class="r"><code>whr_2016 &lt;- whr_2016 %&gt;%
+mutate(Year = 2016) %&gt;%
+subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %&gt;%
+rename(&quot;Social support&quot;= &quot;Family&quot;) %&gt;%
+rename(&quot;Perceptions of corruption&quot; = &quot;Trust (Government Corruption)&quot;) %&gt;%
+rename(&quot;Overall rank&quot; = &quot;Happiness Rank&quot;) %&gt;%
+rename(&quot;Happiness score&quot; = &quot;Happiness Score&quot;) %&gt;%
+rename(&quot;GDP per capita&quot; = &quot;Economy (GDP per Capita)&quot;) %&gt;%
+rename(&quot;Life expectancy&quot; = &quot;Health (Life Expectancy)&quot;) %&gt;%
+subset(select = -c(`Region`)) %&gt;%
+clean_names()</code></pre>
+<pre class="r"><code>whr_2017 &lt;- whr_2017 %&gt;%
+   mutate(Year = 2017) %&gt;%
+   # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %&gt;%
+   #    rename(&quot;Social Support&quot;= &quot;Family&quot;) %&gt;%
+   #         rename(&quot;Overall rank&quot; = &quot;Happiness.Rank&quot;) %&gt;%
+   #           rename(&quot;Happiness score&quot; = &quot;Happiness.Score&quot;) %&gt;%
+   #           rename(&quot;GDP per capita&quot; = &quot;Economy..GDP.per.Capita.&quot;) %&gt;%
+   #           rename(&quot;Life expectancy&quot; = &quot;Health..Life.Expectancy.&quot;) %&gt;%
+   #           rename(&quot;Perceptions of corruption&quot; = &quot;Trust..Government.Corruption.&quot;) %&gt;%
+  clean_names()</code></pre>
+<pre class="r"><code>whr_2018 &lt;- whr_2018 %&gt;% 
+  mutate (Year = 2018) %&gt;%
+  rename(&quot;Freedom&quot; = &quot;Freedom to make life choices&quot;)%&gt;%
+  rename(&quot;Life expectancy&quot; = &quot;Healthy life expectancy&quot;,
+         &quot;Country&quot; = &quot;Country or region&quot;,
+         &quot;Happiness score&quot; = &quot;Score&quot;) %&gt;%
+  clean_names()</code></pre>
+<pre class="r"><code>whr_2019 &lt;- whr_2019 %&gt;% 
+  # mutate (Year = 2019) %&gt;%
+  # rename(&quot;Freedom&quot; = &quot;Freedom to make life choices&quot;)%&gt;%
+  # rename(&quot;Country&quot; = &quot;Country or region&quot;,
+  #        &quot;Life expectancy&quot; = &quot;Healthy life expectancy&quot;,
+>>>>>>> bf6cfe994c24361483e68462b98204c96de30224
   #        &quot;Happiness score&quot; = &quot;Score&quot;) %&gt;%
   clean_names()</code></pre>
 <pre class="r"><code># suicide &lt;- suicide %&gt;%</code></pre>
