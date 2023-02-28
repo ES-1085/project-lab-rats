@@ -104,6 +104,12 @@ whr_2018 <- whr_2018 %>%
   clean_names()
 ```
 
+```{r reordering-cols-2018}
+whr_2018 <- whr_2018 %>% 
+  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+```
+
+
 ```{r tidy-data-2019}
 whr_2019 <- whr_2019 %>% 
   # mutate (Year = 2019) %>%
