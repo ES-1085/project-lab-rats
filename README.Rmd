@@ -70,16 +70,15 @@ whr_2016 <- whr_2016 %>%
 
 ```{r tidy-data-2017}
 whr_2017 <- whr_2017 %>%
-  mutate(Year = 2017)%>%
-   subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
-     rename("Social Support"= "Family") %>%
-           rename("Overall rank" = "Happiness.Rank") %>%
-             rename("Happiness score" = "Happiness.Score") %>%
-             rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
-             rename("Life expectancy" = "Health..Life.Expectancy.") %>%
-             rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
+ # mutate(Year = 2017)%>%
+   #subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) #%>%
+     #rename("Social Support"= "Family") %>%
+           #rename("Overall rank" = "Happiness.Rank") #%>%
+             #rename("Happiness score" = "Happiness.Score") #%>%
+             #rename("GDP per capita" = "Economy..GDP.per.Capita.") #%>%
+             #rename("Life expectancy" = "Health..Life.Expectancy.") %>%
+             #rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
   clean_names()
-  #hi
 ```
 
 ```{r tidy-data-2018}
