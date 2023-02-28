@@ -66,6 +66,7 @@ rename("GDP per capita" = "Economy (GDP per Capita)") %>%
 rename("Life expectancy" = "Health (Life Expectancy)") %>%
 subset(select = -c(`Region`)) %>%
 clean_names()
+
 ```
 
 ```{r tidy-data-2017}
@@ -79,7 +80,7 @@ whr_2017 <- whr_2017 %>%
    #           rename("Life expectancy" = "Health..Life.Expectancy.") %>%
    #           rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
   clean_names()
-  
+  #hi
 ```
 
 ```{r tidy-data-2018}
