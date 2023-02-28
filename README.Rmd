@@ -56,8 +56,7 @@ whr_2015 <- whr_2015 %>%
 
 ```{r reordering-cols-2015}
 whr_2015 <- whr_2015 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
-
+  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r tidy-data-2016}
@@ -72,12 +71,11 @@ rename("GDP per capita" = "Economy (GDP per Capita)") %>%
 rename("Life expectancy" = "Health (Life Expectancy)") %>%
 subset(select = -c(`Region`)) %>%
 clean_names()
-
 ```
 
 ```{r reordering-cols-2016}
 whr_2016 <- whr_2016 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r tidy-data-2017}
@@ -92,6 +90,11 @@ whr_2017 <- whr_2017 %>%
    #           rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
   clean_names()
 
+```
+
+```{r reordering-cols-2017}
+whr_2017 <- whr_2017 %>% 
+  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
 ```
 
 ```{r tidy-data-2018}
@@ -119,6 +122,11 @@ whr_2019 <- whr_2019 %>%
   #        "Happiness score" = "Score") %>%
   clean_names()
 
+```
+
+```{r reordering-cols-2019}
+whr_2019 <- whr_2019 %>% 
+  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r suicide-tidy-data}
