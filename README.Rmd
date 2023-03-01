@@ -146,6 +146,18 @@ suicide <- suicide %>%
   filter(year %in% c("2015", "2016", "2017", "2018", "2019")) 
 ```
 
+## Visualizations
+
+```{r whr-2015-gdp-happiness}
+whr %>% 
+  filter(year == 2015) %>%
+  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015)")
+```
+
+
 ## Presentation
 
 ```{r}
