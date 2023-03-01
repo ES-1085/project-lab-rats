@@ -28,11 +28,11 @@ And make sure to hide your code with  `echo = FALSE` unless the point you are tr
 Your results with proper output and graphics go in your presentation, this space is for a brief summary of your project.
 
 ```{r load-data, echo = FALSE}
-whr_2015 <- read_csv("data/whr_2015.csv")
-whr_2016 <- read_csv("data/whr_2016.csv")
-whr_2017 <- read_csv("data/whr_2017.csv")
-whr_2018 <- read_csv("data/whr_2018.csv")
-whr_2019 <- read_csv("data/whr_2019.csv")
+# whr_2015 <- read_csv("data/whr_2015.csv")
+# whr_2016 <- read_csv("data/whr_2016.csv")
+# whr_2017 <- read_csv("data/whr_2017.csv")
+# whr_2018 <- read_csv("data/whr_2018.csv")
+# whr_2019 <- read_csv("data/whr_2019.csv")
 suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 ```
 
@@ -139,8 +139,11 @@ whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019)
 
 
 ```{r suicide-tidy-data}
-# suicide <- suicide %>%
-  
+suicide <- suicide %>%
+  clean_names() %>%
+  select(-c("who_region_code", "who_region", "country_code", "is_latest_year", "crude_suicide_rates_per_100_000_population_low_estimation", "crude_suicide_rates_per_100_000_population_high_estimation", "crude_suicide_rates_per_100_000_population_string")) %>%
+  rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %>%
+  filter(year %in% c("2015", "2016", "2017", "2018", "2019"))
 ```
 
 ## Presentation
