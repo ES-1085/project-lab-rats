@@ -99,11 +99,11 @@ whr_2017 <- whr_2017 %>%
 
 ```{r tidy-data-2018}
 whr_2018 <- whr_2018 %>% 
-  # mutate (Year = 2018) %>%
-  # rename("Freedom" = "Freedom to make life choices")%>%
-  # rename("Life expectancy" = "Healthy life expectancy",
-  #        "Country" = "Country or region",
-  #        "Happiness score" = "Score") %>%
+  mutate (Year = 2018) %>%
+  rename("Freedom" = "freedom_to_make_life_choices")%>%
+  #rename("Life expectancy" = "Healthy life expectancy",
+         #"Country" = "Country or region",
+         #"Happiness score" = "Score") %>%
   clean_names()
 ```
 
