@@ -7,11 +7,11 @@ output: github_document
 ---
 
 ```{r}
-#install.packages("tidyverse")
+install.packages("tidyverse")
 library(tidyverse)
-library(janitor)
-install.packages("naniar")
-install.packages("visdat")
+# library(janitor)
+# install.packages("naniar")
+# install.packages("visdat")
 ```
 
 ## Summary
@@ -181,6 +181,16 @@ suicide <- suicide %>%
                                country == "Bolivia (Plurinational State of)" ~ "Bolivia", TRUE ~ country))
 ```
 
+```{r expand-suicide-dataset}
+
+suicide_complete <- suicide %>% 
+  expand (country, year, sex, age_group)
+
+suicide_complete %>% dplyr::anti_join(suicide)
+
+suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
+
+```
 
 
 ## Visualizations
@@ -196,14 +206,14 @@ whr %>%
 
 ```{r missing-values}
 
-visdat::vis_dat(suicide)
 
-visdat::vis_miss(suicide)
+# visdat::vis_miss(suicide_2)
 
-visdat::vis_dat(whr_2)
+visdat::vis_dat(whr)
 
 
-visdat::vis_miss(whr_2)
+visdat::vis_miss(whr)
+
 ```
 
 
