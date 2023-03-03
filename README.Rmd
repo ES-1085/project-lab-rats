@@ -10,6 +10,8 @@ output: github_document
 #install.packages("tidyverse")
 library(tidyverse)
 library(janitor)
+install.packages("naniar")
+install.packages("visdat")
 ```
 
 ## Summary
@@ -81,7 +83,7 @@ whr_2016 <- whr_2016 %>%
 ```{r tidy-data-2017}
 whr_2017 <- whr_2017 %>%
    mutate(Year = 2017) %>%
-   subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
+   # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
       # rename("Social Support"= "Family") %>%
       #      rename("Overall rank" = "Happiness.Rank") %>%
       #        rename("Happiness score" = "Happiness.Score") %>%
@@ -100,7 +102,7 @@ whr_2017 <- whr_2017 %>%
 ```{r tidy-data-2018}
 whr_2018 <- whr_2018 %>% 
   mutate (Year = 2018) %>%
-  rename("Freedom" = "freedom_to_make_life_choices")%>%
+  # rename("Freedom" = "freedom_to_make_life_choices")%>%
   #rename("Life expectancy" = "Healthy life expectancy",
          #"Country" = "Country or region",
          #"Happiness score" = "Score") %>%
@@ -129,7 +131,12 @@ whr_2019 <- whr_2019 %>%
 ```
 
 ```{r remove-col-2019}
-whr_2019 <- subset(whr_2019, select = -c(year_2))
+# whr_2019 <- subset(whr_2019, select = -c(year_2))
+```
+
+```{r expand-whr-datasets}
+
+
 ```
 
 
@@ -140,10 +147,10 @@ whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019)
 
 ```{r suicide-tidy-data}
 suicide <- suicide %>%
-  clean_names() %>%
-  select(-c("who_region_code", "who_region", "country_code", "is_latest_year", "crude_suicide_rates_per_100_000_population_low_estimation", "crude_suicide_rates_per_100_000_population_high_estimation", "crude_suicide_rates_per_100_000_population_string")) %>%
-  rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %>%
-  filter(year %in% c("2015", "2016", "2017", "2018", "2019")) 
+  clean_names() #%>%
+  # select(-c("who_region_code", "who_region", "country_code", "is_latest_year", "crude_suicide_rates_per_100_000_population_low_estimation", "crude_suicide_rates_per_100_000_population_high_estimation", "crude_suicide_rates_per_100_000_population_string")) %>%
+  # rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %>%
+  # filter(year %in% c("2015", "2016", "2017", "2018", "2019")) 
 ```
 
 ```{r country-names-suicide}
@@ -170,6 +177,7 @@ suicide <- suicide %>%
 ```
 
 
+
 ## Visualizations
 
 ```{r whr-2015-gdp-happiness}
@@ -179,6 +187,18 @@ whr %>%
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015)")
+```
+
+```{r missing-values}
+
+visdat::vis_dat(suicide)
+
+visdat::vis_miss(suicide)
+
+visdat::vis_dat(whr)
+
+
+visdat::vis_miss(whr)
 ```
 
 
