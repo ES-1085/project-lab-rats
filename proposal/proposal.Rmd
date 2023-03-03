@@ -37,9 +37,6 @@ create such a graph for each region. Afterwards, we want to plot the correlation
 happiness score on a global and regional scale. Lastly, we want to create graphs showing the correlation of the two aforementioned variables
 with suicide mortality rates. However, it is of utmost importance to state that our plans are subject to change as the project evolves.
 
-glimpse(whr)
-skim(whr)
-
 ## 3. Data analysis plan
 Variables we will consider for our analysis: 
 
@@ -56,9 +53,8 @@ $ `Trust (Government Corruption)`
 $ `Generosity `                     
 
 
-World Suicide rates dataset,  for the years between 2015-2019: 
+World Suicide rates dataset, for the years between 2015-2019: 
 
-<<<<<<< HEAD
 Initially, we would also like to make an analysis associating light exposure to the happiness index and suicide rates. However, in our preliminary research so far we could not find a dataset with this information by country. We will continue the research to see if it is possible to add this variable from another dataset. 
 =======
 
