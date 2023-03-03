@@ -146,7 +146,24 @@ whr <- whr %>% dplyr::right_join(whr_complete)
 
 
 ```{r create-whr}
-whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019)
+whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
+  arrange(country)
+
+# cut Somaliland, northern cyprus 
+```
+
+```{r}
+whr <- whr %>%
+  mutate(country = case_when(country == "United States" ~ "USA",
+                       country == "United Kingdom" ~"UK",
+                       country == "United Arab Emirates" ~ "UAE",
+                       country == "Palestinian Territories" ~ "Palestine",
+                       country == "Congo (Kinshasa)" ~ "DRC",
+                      country == "Congo (Brazzaville)" ~ "Congo",
+                      country == "Central African Republic" ~ "CAR",
+     country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country)) %>%
+whr_2<- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
+  
 ```
 
 
