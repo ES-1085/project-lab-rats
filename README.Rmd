@@ -134,7 +134,10 @@ whr_2019 <- subset(whr_2019, select = -c(year_2))
 
 
 ```{r create-whr}
-whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019)
+whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
+  arrange(country)
+
+#USA, UAE, UK, Cape, Verde, Syria, Bolivia, Lao, Iran, cut Somaliland, Palestine, congo (kinshasa)= DRC, Congo, central african republic=CAR, Hong Kong, 
 ```
 
 
