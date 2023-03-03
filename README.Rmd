@@ -149,6 +149,42 @@ suicide <- suicide %>%
   filter(year %in% c("2015", "2016", "2017", "2018", "2019")) 
 ```
 
+```{r country-names-suicide}
+
+suicide <- suicide %>%
+    mutate(country = case_when(#country == "Syrian Arab Republic" ~ "Syria",
+                               #country == "United States of America" ~ "USA",
+                               #country == "United Republic of Tanzania" ~ "Tanzania",
+                               #country =="Russian Federation" ~ "Russia",
+                               country == "The former Yugoslav Republic of Macedonia" ~ "North Macedonia", 
+                               country == "Lao People's Democratic Republic" ~ "Laos", 
+                               country == "Cabo Verde" ~ "Cape Verde", 
+                               country == "Brunei Darussalam" ~ "Brunei", 
+                               country == "Republic of Korea" ~ "South Korea", 
+                               country == "Democratic People's Republic of Korea" ~ "North Korea", 
+                               country == "Democratic Republic of the Congo" ~ "DRC", 
+                               country == "Iran (Islamic Republic of)" ~ "Iran", 
+                               country == "Republic of Moldova" ~ "Moldova", 
+                               country == "Venezuela (Bolivarian Republic of)" ~ "Venezuela", 
+                               country == "United Arab Emirates" ~ "UAE", 
+                               country == "United Kingdom of Great Britain and Northern Ireland" ~ "UK", 
+                               country == "Micronesia (Federated States of)" ~ "Micronesia", 
+                               country == "Bolivia (Plurinational State of)" ~ "Bolivia", TRUE ~ country))
+```
+
+
+## Visualizations
+
+```{r whr-2015-gdp-happiness}
+whr %>% 
+  filter(year == 2015) %>%
+  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015)")
+```
+
+
 ## Presentation
 
 ```{r}
