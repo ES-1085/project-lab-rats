@@ -134,8 +134,13 @@ whr_2019 <- whr_2019 %>%
 # whr_2019 <- subset(whr_2019, select = -c(year_2))
 ```
 
-```{r expand-whr-datasets}
+```{r expand-whr-dataset}
+whr_complete <- whr %>% 
+  expand(country,year)
 
+whr_complete %>% dplyr::anti_join(whr)
+
+whr <- whr %>% dplyr::right_join(whr_complete)
 
 ```
 
@@ -195,10 +200,10 @@ visdat::vis_dat(suicide)
 
 visdat::vis_miss(suicide)
 
-visdat::vis_dat(whr)
+visdat::vis_dat(whr_2)
 
 
-visdat::vis_miss(whr)
+visdat::vis_miss(whr_2)
 ```
 
 
