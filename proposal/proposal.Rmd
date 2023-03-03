@@ -37,6 +37,9 @@ create such a graph for each region. Afterwards, we want to plot the correlation
 happiness score on a global and regional scale. Lastly, we want to create graphs showing the correlation of the two aforementioned variables
 with suicide mortality rates. However, it is of utmost importance to state that our plans are subject to change as the project evolves.
 
+glimpse(whr)
+skim(whr)
+
 ## 3. Data analysis plan
 Variables we will consider for our analysis: 
 
