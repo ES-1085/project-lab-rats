@@ -152,6 +152,11 @@ whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
 # cut Somaliland, northern cyprus 
 ```
 
+```{r create-whr-csv}
+
+```
+
+
 ```{r}
 whr <- whr %>%
   mutate(country = case_when(country == "United States" ~ "USA",

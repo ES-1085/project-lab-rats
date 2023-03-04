@@ -38,7 +38,12 @@ happiness score on a global and regional scale. Lastly, we want to create graphs
 with suicide mortality rates. However, it is of utmost importance to state that our plans are subject to change as the project evolves.
 
 ```{r glimpse}
-
+whr_2015 <- read_csv("data_copy/whr_2015.csv")
+whr_2016 <- read_csv("data_copy/whr_2016.csv")
+whr_2017 <- read_csv("data_copy/whr_2017.csv")
+whr_2018 <- read_csv("data_copy/whr_2018.csv")
+whr_2019 <- read_csv("data_copy/whr_2019.csv")
+whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019)
 whr %>%
   glimpse() 
   
