@@ -35,7 +35,9 @@ Your results with proper output and graphics go in your presentation, this space
 # whr_2017 <- read_csv("data/whr_2017.csv")
 # whr_2018 <- read_csv("data/whr_2018.csv")
 # whr_2019 <- read_csv("data/whr_2019.csv")
-suicide <- read_csv("data/suicide_2000_2019_v1.csv")
+# suicide <- read_csv("data/suicide_2000_2019_v1.csv")
+
+
 ```
 
 ### Tidying data 
@@ -53,12 +55,12 @@ suicide <- read_csv("data/suicide_2000_2019_v1.csv")
 #    rename("Happiness score" = "Happiness Score") %>%
 #  subset(select = -c(`Region`)) %>%
 #   clean_names()
-
 ```
 
 ```{r reordering-cols-2015}
-whr_2015 <- whr_2015 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
+
+# whr_2015 <- whr_2015 %>% 
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r tidy-data-2016}
@@ -122,6 +124,10 @@ whr_2015 <- whr_2015 %>%
 #    rename("Country" = "Country or region",
 #           "Life expectancy" = "Healthy life expectancy",
 #           "Happiness score" = "Score") %>%
+#   #rename("Freedom" = "freedom_to_make_life_choices") %>%
+#    #rename("Country" = "Country or region",
+#           #"Life expectancy" = "Healthy life expectancy",
+#           #"Happiness score" = "Score") %>%
 #   clean_names()
 ```
 
@@ -135,19 +141,19 @@ whr_2015 <- whr_2015 %>%
 ```
 
 ```{r expand-whr-dataset}
-whr_complete <- whr %>% 
-  expand(country,year)
-
-whr_complete %>% dplyr::anti_join(whr)
-
-whr <- whr %>% dplyr::right_join(whr_complete)
+# whr_complete <- whr %>% 
+#   expand(country,year)
+# 
+# whr_complete %>% dplyr::anti_join(whr)
+# 
+# whr <- whr %>% dplyr::right_join(whr_complete)
 
 ```
 
 
 ```{r create-whr}
-whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
-  arrange(country)
+# whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
+#   arrange(country)
 
 # cut Somaliland, northern cyprus 
 ```
@@ -156,7 +162,7 @@ whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
 ```{r}
 whr <- whr %>%
   mutate(country = case_when(country == "United States" ~ "USA",
-                       country == "United Kingdom" ~"UK",
+                       country == "United Kingdom" ~ "UK",
                        country == "United Arab Emirates" ~ "UAE",
                        country == "Palestinian Territories" ~ "Palestine",
                        country == "Congo (Kinshasa)" ~ "DRC",
@@ -164,7 +170,6 @@ whr <- whr %>%
                       country == "Central African Republic" ~ "CAR",
      country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country)) 
 whr_2<- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
-  
 ```
 
 ```{r create-whr-csv}
