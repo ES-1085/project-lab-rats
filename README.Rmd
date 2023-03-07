@@ -9,7 +9,7 @@ output: github_document
 ```{r}
 install.packages("tidyverse")
 library(tidyverse)
-# library(janitor)
+library(janitor)
 # install.packages("naniar")
 # install.packages("visdat")
 ```
@@ -35,14 +35,16 @@ Your results with proper output and graphics go in your presentation, this space
 # whr_2017 <- read_csv("data/whr_2017.csv")
 # whr_2018 <- read_csv("data/whr_2018.csv")
 # whr_2019 <- read_csv("data/whr_2019.csv")
-suicide <- read_csv("data/suicide_2000_2019_v1.csv")
+# suicide <- read_csv("data/suicide_2000_2019_v1.csv")
+
+
 ```
 
 ### Tidying data 
 
 ```{r tidy-data-2015}
-whr_2015 <- whr_2015 %>%
-  mutate(Year = 2015) %>%
+# whr_2015 <- whr_2015 %>%
+#   mutate(Year = 2015) %>%
   #subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
   # rename("Social Support" = "Family") %>%
   # rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
@@ -52,18 +54,19 @@ whr_2015 <- whr_2015 %>%
   #        "Life expectancy" = "Health (Life Expectancy)") %>%
   # rename("Happiness score" = "Happiness Score") %>%
   # subset(select = -c(`Region`)) %>%
-  clean_names()
+  # clean_names()
 
 ```
 
 ```{r reordering-cols-2015}
-whr_2015 <- whr_2015 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
+
+# whr_2015 <- whr_2015 %>% 
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r tidy-data-2016}
-whr_2016 <- whr_2016 %>%
-mutate(Year = 2016) %>%
+# whr_2016 <- whr_2016 %>%
+# mutate(Year = 2016) %>%
 # subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
 # rename("Social support"= "Family") %>%
 # rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
@@ -72,17 +75,17 @@ mutate(Year = 2016) %>%
 # rename("GDP per capita" = "Economy (GDP per Capita)") %>%
 # rename("Life expectancy" = "Health (Life Expectancy)") %>%
 # subset(select = -c(`Region`)) %>%
-clean_names()
+#clean_names()
 ```
 
 ```{r reordering-cols-2016}
-whr_2016 <- whr_2016 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
+# whr_2016 <- whr_2016 %>% 
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r tidy-data-2017}
-whr_2017 <- whr_2017 %>%
-   mutate(Year = 2017) %>%
+# whr_2017 <- whr_2017 %>%
+#    mutate(Year = 2017) %>%
    # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
       # rename("Social Support"= "Family") %>%
       #      rename("Overall rank" = "Happiness.Rank") %>%
@@ -90,44 +93,44 @@ whr_2017 <- whr_2017 %>%
       #        rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
       #        rename("Life expectancy" = "Health..Life.Expectancy.") %>%
       #        rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
-  clean_names()
+ # clean_names()
 
 ```
 
 ```{r reordering-cols-2017}
-whr_2017 <- whr_2017 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+# whr_2017 <- whr_2017 %>% 
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
 ```
 
 ```{r tidy-data-2018}
-whr_2018 <- whr_2018 %>% 
-  mutate (Year = 2018) %>%
+# whr_2018 <- whr_2018 %>% 
+#   mutate (Year = 2018) %>%
   # rename("Freedom" = "freedom_to_make_life_choices")%>%
   #rename("Life expectancy" = "Healthy life expectancy",
          #"Country" = "Country or region",
          #"Happiness score" = "Score") %>%
-  clean_names()
+  #clean_names()
 ```
 
 ```{r reordering-cols-2018}
-whr_2018 <- whr_2018 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+# whr_2018 <- whr_2018 %>% 
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
 ```
 
 ```{r tidy-data-2019}
 
-whr_2019 <- whr_2019 %>%
-   mutate (Year = 2019) %>%
-  #rename("Freedom" = "freedom_to_make_life_choices") %>%
-   #rename("Country" = "Country or region",
-          #"Life expectancy" = "Healthy life expectancy",
-          #"Happiness score" = "Score") %>%
-  clean_names()
+# whr_2019 <- whr_2019 %>%
+#    mutate (Year = 2019) %>%
+#   #rename("Freedom" = "freedom_to_make_life_choices") %>%
+#    #rename("Country" = "Country or region",
+#           #"Life expectancy" = "Healthy life expectancy",
+#           #"Happiness score" = "Score") %>%
+#   clean_names()
 ```
 
 ```{r reordering-cols-2019}
-whr_2019 <- whr_2019 %>% 
-  select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
+# whr_2019 <- whr_2019 %>% 
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r remove-col-2019}
@@ -135,19 +138,19 @@ whr_2019 <- whr_2019 %>%
 ```
 
 ```{r expand-whr-dataset}
-whr_complete <- whr %>% 
-  expand(country,year)
-
-whr_complete %>% dplyr::anti_join(whr)
-
-whr <- whr %>% dplyr::right_join(whr_complete)
+# whr_complete <- whr %>% 
+#   expand(country,year)
+# 
+# whr_complete %>% dplyr::anti_join(whr)
+# 
+# whr <- whr %>% dplyr::right_join(whr_complete)
 
 ```
 
 
 ```{r create-whr}
-whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
-  arrange(country)
+# whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
+#   arrange(country)
 
 # cut Somaliland, northern cyprus 
 ```
@@ -161,8 +164,9 @@ whr <- whr %>%
                        country == "Congo (Kinshasa)" ~ "DRC",
                       country == "Congo (Brazzaville)" ~ "Congo",
                       country == "Central African Republic" ~ "CAR",
-     country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country)) %>%
-whr_2<- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
+     country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
+  
+whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
   
 ```
 

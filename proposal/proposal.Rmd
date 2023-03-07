@@ -7,7 +7,16 @@ output: github_document
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
+
 ```
+
+```{r load-data}
+write_csv(whr, "whr.csv")
+ whr <- read_csv("proposal/whr.csv")
+# suicide <- read_csv("data/suicide_2000_2019_v1.csv")
+
+```
+
 
 ## 1. Introduction
 Our group had a common interest in public health and thought the topic would have ample opportunity for data analysis. 
