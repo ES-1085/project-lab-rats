@@ -160,51 +160,51 @@ Your results with proper output and graphics go in your presentation, this space
 ```
 
 
-```{r}
-whr <- whr %>%
-  mutate(country = case_when(country == "United States" ~ "USA",
-                       country == "United Kingdom" ~ "UK",
-                       country == "United Arab Emirates" ~ "UAE",
-                       country == "Palestinian Territories" ~ "Palestine",
-                       country == "Congo (Kinshasa)" ~ "DRC",
-                       country == "Congo (Brazzaville)" ~ "Congo",
-                       country == "Central African Republic" ~ "CAR",
-     country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
-  
-whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
+```{r country-names-whr}
+# whr <- whr %>%
+#   mutate(country = case_when(country == "United States" ~ "USA",
+#                        country == "United Kingdom" ~ "UK",
+#                        country == "United Arab Emirates" ~ "UAE",
+#                        country == "Palestinian Territories" ~ "Palestine",
+#                        country == "Congo (Kinshasa)" ~ "DRC",
+#                        country == "Congo (Brazzaville)" ~ "Congo",
+#                        country == "Central African Republic" ~ "CAR",
+#      country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
+#   
+# whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
   
 ```
 
 
 ```{r suicide-tidy-data}
-suicide <- suicide %>%
-  clean_names() #%>%
+# suicide <- suicide %>%
+#   clean_names() #%>%
   # select(-c("who_region_code", "who_region", "country_code", "is_latest_year", "crude_suicide_rates_per_100_000_population_low_estimation", "crude_suicide_rates_per_100_000_population_high_estimation", "crude_suicide_rates_per_100_000_population_string")) %>%
-  # rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %>%
-  # filter(year %in% c("2015", "2016", "2017", "2018", "2019")) 
+   #rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %>%
+   #filter(year %in% c("2015", "2016", "2017", "2018", "2019"))
 ```
 
 ```{r country-names-suicide}
 
-suicide <- suicide %>%
-    mutate(country = case_when(#country == "Syrian Arab Republic" ~ "Syria",
-                               #country == "United States of America" ~ "USA",
-                               #country == "United Republic of Tanzania" ~ "Tanzania",
-                               #country =="Russian Federation" ~ "Russia",
-                               country == "The former Yugoslav Republic of Macedonia" ~ "North Macedonia", 
-                               country == "Lao People's Democratic Republic" ~ "Laos", 
-                               country == "Cabo Verde" ~ "Cape Verde", 
-                               country == "Brunei Darussalam" ~ "Brunei", 
-                               country == "Republic of Korea" ~ "South Korea", 
-                               country == "Democratic People's Republic of Korea" ~ "North Korea", 
-                               country == "Democratic Republic of the Congo" ~ "DRC", 
-                               country == "Iran (Islamic Republic of)" ~ "Iran", 
-                               country == "Republic of Moldova" ~ "Moldova", 
-                               country == "Venezuela (Bolivarian Republic of)" ~ "Venezuela", 
-                               country == "United Arab Emirates" ~ "UAE", 
-                               country == "United Kingdom of Great Britain and Northern Ireland" ~ "UK", 
-                               country == "Micronesia (Federated States of)" ~ "Micronesia", 
-                               country == "Bolivia (Plurinational State of)" ~ "Bolivia", TRUE ~ country))
+#suicide <- suicide #%>%
+    # mutate(country = case_when(#country == "Syrian Arab Republic" ~ "Syria",
+    #                            #country == "United States of America" ~ "USA",
+    #                            #country == "United Republic of Tanzania" ~ "Tanzania",
+    #                            #country =="Russian Federation" ~ "Russia",
+    #                            country == "The former Yugoslav Republic of Macedonia" ~ "North Macedonia", 
+    #                            country == "Lao People's Democratic Republic" ~ "Laos", 
+    #                            country == "Cabo Verde" ~ "Cape Verde", 
+    #                            country == "Brunei Darussalam" ~ "Brunei", 
+    #                            country == "Republic of Korea" ~ "South Korea", 
+    #                            country == "Democratic People's Republic of Korea" ~ "North Korea", 
+    #                            country == "Democratic Republic of the Congo" ~ "DRC", 
+    #                            country == "Iran (Islamic Republic of)" ~ "Iran", 
+    #                            country == "Republic of Moldova" ~ "Moldova", 
+    #                            country == "Venezuela (Bolivarian Republic of)" ~ "Venezuela", 
+    #                            country == "United Arab Emirates" ~ "UAE", 
+    #                            country == "United Kingdom of Great Britain and Northern Ireland" ~ "UK", 
+    #                            country == "Micronesia (Federated States of)" ~ "Micronesia", 
+    #                            country == "Bolivia (Plurinational State of)" ~ "Bolivia", TRUE ~ country))
 ```
 
 ```{r expand-suicide-dataset}
