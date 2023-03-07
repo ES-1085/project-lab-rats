@@ -175,8 +175,15 @@ Your results with proper output and graphics go in your presentation, this space
 ```
 
 
-```{r create-whr-csv}
-write.csv(whr_2, file= '/Users/kristaps/Data/whr_2.csv')
+```{r read-new-datasets}
+
+whr <- read_csv("data/whr.csv")
+
+whr_2 <- read_csv ("data/whr_2.csv")
+
+suicide <- read_csv ("data/suicide.csv")
+
+suicide_2 <- read_csv("data/suicide_2.csv")
 ```
 
 
@@ -227,11 +234,12 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 
 ```{r whr-2015-gdp-happiness}
 whr %>% 
-  filter(year == 2015) %>%
+  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point() +
   geom_smooth(method = "lm") +
-  labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015)")
+  labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2)
 ```
 
 ```{r missing-values}
