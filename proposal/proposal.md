@@ -9,8 +9,8 @@ library(broom)
 ```
 
 ``` r
-#write_csv(whr, "whr.csv")
- whr <- read_csv("../data/whr.csv")
+ # write_csv(whr, "whr.csv")
+ whr <- read_csv("whr.csv")
 ```
 
     ## Rows: 850 Columns: 10
@@ -23,8 +23,47 @@ library(broom)
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 ``` r
-# suicide <- read_csv("data/suicide_2000_2019_v1.csv")
+# write_csv(suicide, "suicide.csv")
+suicide <- read_csv ("suicide.csv")
 ```
+
+    ## Rows: 17019 Columns: 12
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (7): WHO Region Code, WHO Region, Country Code, Country, Sex, Age Group,...
+    ## dbl (4): Year, Crude suicide rates (per 100 000 population) (numeric), Crude...
+    ## lgl (1): IsLatestYear
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+# write_csv(suicide_2, "suicide_2.csv")
+suicide_2 <- read_csv("suicide_2.csv")
+```
+
+    ## Rows: 32940 Columns: 5
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (3): country, sex, age_group
+    ## dbl (2): year, suicide_rates
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+# write_csv(whr_2, "whr_2.csv")
+whr_2 <- read_csv ("whr_2.csv")
+```
+
+    ## Rows: 840 Columns: 10
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (2): country, perceptions_of_corruption
+    ## dbl (8): overall_rank, happiness_score, gdp_per_capita, social_support, life...
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 ## 1. Introduction
 

@@ -11,9 +11,18 @@ library(broom)
 ```
 
 ```{r load-data}
-#write_csv(whr, "whr.csv")
+ # write_csv(whr, "whr.csv")
  whr <- read_csv("whr.csv")
-# suicide <- read_csv("data/suicide_2000_2019_v1.csv")
+
+# write_csv(whr_2, "whr_2.csv")
+whr_2 <- read_csv ("whr_2.csv")
+
+# write_csv(suicide, "suicide.csv")
+suicide <- read_csv ("suicide.csv")
+
+# write_csv(suicide_2, "suicide_2.csv")
+suicide_2 <- read_csv("suicide_2.csv")
+
 
 ```
 
