@@ -163,12 +163,12 @@ Your results with proper output and graphics go in your presentation, this space
 ```{r}
 whr <- whr %>%
   mutate(country = case_when(country == "United States" ~ "USA",
-                       country == "United Kingdom" ~"UK",
+                       country == "United Kingdom" ~ "UK",
                        country == "United Arab Emirates" ~ "UAE",
                        country == "Palestinian Territories" ~ "Palestine",
                        country == "Congo (Kinshasa)" ~ "DRC",
-                      country == "Congo (Brazzaville)" ~ "Congo",
-                      country == "Central African Republic" ~ "CAR",
+                       country == "Congo (Brazzaville)" ~ "Congo",
+                       country == "Central African Republic" ~ "CAR",
      country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
   
 whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
