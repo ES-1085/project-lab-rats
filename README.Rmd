@@ -247,6 +247,10 @@ visdat::vis_miss(whr)
 ```
 
 
+```{r GDP-Suicide-rates}
+
+```
+
 ## Presentation
 
 ```{r}
@@ -255,6 +259,7 @@ suicide <- suicide %>%
                              TRUE ~ Country))
 
 ```
+
 
 ## Data 
 
