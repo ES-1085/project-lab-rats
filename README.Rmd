@@ -175,8 +175,15 @@ Your results with proper output and graphics go in your presentation, this space
 ```
 
 
-```{r create-whr-csv}
-write.csv(whr_2, file= '/Users/kristaps/Data/whr_2.csv')
+```{r read-new-datasets}
+
+whr <- read_csv("data/whr.csv")
+
+whr_2 <- read_csv ("data/whr_2.csv")
+
+suicide <- read_csv ("data/suicide.csv")
+
+suicide_2 <- read_csv("data/suicide_2.csv")
 ```
 
 
