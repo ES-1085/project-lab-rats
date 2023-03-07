@@ -155,6 +155,11 @@ Your results with proper output and graphics go in your presentation, this space
 # cut Somaliland, northern cyprus 
 ```
 
+```{r create-whr-csv}
+
+```
+
+
 ```{r}
 whr <- whr %>%
   mutate(country = case_when(country == "United States" ~ "USA",
