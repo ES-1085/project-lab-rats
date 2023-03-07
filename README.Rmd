@@ -45,17 +45,16 @@ Your results with proper output and graphics go in your presentation, this space
 ```{r tidy-data-2015}
 # whr_2015 <- whr_2015 %>%
 #   mutate(Year = 2015) %>%
-  #subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
-  # rename("Social Support" = "Family") %>%
-  # rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
-  # rename("Social support" = "Social Support") %>%
-  #  rename("GDP per capita" = "Economy (GDP per Capita)",
-  #        "Overall rank" = "Happiness Rank",
-  #        "Life expectancy" = "Health (Life Expectancy)") %>%
-  # rename("Happiness score" = "Happiness Score") %>%
-  # subset(select = -c(`Region`)) %>%
-  # clean_names()
-
+#   subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
+#    rename("Social Support" = "Family") %>%
+#    rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+#   rename("Social support" = "Social Support") %>%
+#     rename("GDP per capita" = "Economy (GDP per Capita)",
+#           "Overall rank" = "Happiness Rank",
+#           "Life expectancy" = "Health (Life Expectancy)") %>%
+#    rename("Happiness score" = "Happiness Score") %>%
+#  subset(select = -c(`Region`)) %>%
+#   clean_names()
 ```
 
 ```{r reordering-cols-2015}
@@ -67,15 +66,15 @@ Your results with proper output and graphics go in your presentation, this space
 ```{r tidy-data-2016}
 # whr_2016 <- whr_2016 %>%
 # mutate(Year = 2016) %>%
-# subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
-# rename("Social support"= "Family") %>%
-# rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
-# rename("Overall rank" = "Happiness Rank") %>%
-# rename("Happiness score" = "Happiness Score") %>%
-# rename("GDP per capita" = "Economy (GDP per Capita)") %>%
-# rename("Life expectancy" = "Health (Life Expectancy)") %>%
-# subset(select = -c(`Region`)) %>%
-#clean_names()
+#  subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
+#  rename("Social support"= "Family") %>%
+#  rename("Perceptions of corruption" = "Trust (Government Corruption)") %>%
+#  rename("Overall rank" = "Happiness Rank") %>%
+#  rename("Happiness score" = "Happiness Score") %>%
+#  rename("GDP per capita" = "Economy (GDP per Capita)") %>%
+#  rename("Life expectancy" = "Health (Life Expectancy)") %>%
+#  subset(select = -c(`Region`)) %>%
+# clean_names()
 ```
 
 ```{r reordering-cols-2016}
@@ -86,41 +85,45 @@ Your results with proper output and graphics go in your presentation, this space
 ```{r tidy-data-2017}
 # whr_2017 <- whr_2017 %>%
 #    mutate(Year = 2017) %>%
-   # subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
-      # rename("Social Support"= "Family") %>%
-      #      rename("Overall rank" = "Happiness.Rank") %>%
-      #        rename("Happiness score" = "Happiness.Score") %>%
-      #        rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
-      #        rename("Life expectancy" = "Health..Life.Expectancy.") %>%
-      #        rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
- # clean_names()
+#     subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
+#        rename("Social Support"= "Family") %>%
+#             rename("Overall rank" = "Happiness.Rank") %>%
+#               rename("Happiness score" = "Happiness.Score") %>%
+#               rename("GDP per capita" = "Economy..GDP.per.Capita.") %>%
+#               rename("Life expectancy" = "Health..Life.Expectancy.") %>%
+#               rename("Perceptions of corruption" = "Trust..Government.Corruption.") %>%
+#   clean_names()
 
 ```
 
 ```{r reordering-cols-2017}
 # whr_2017 <- whr_2017 %>% 
-#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r tidy-data-2018}
 # whr_2018 <- whr_2018 %>% 
 #   mutate (Year = 2018) %>%
-  # rename("Freedom" = "freedom_to_make_life_choices")%>%
-  #rename("Life expectancy" = "Healthy life expectancy",
-         #"Country" = "Country or region",
-         #"Happiness score" = "Score") %>%
-  #clean_names()
+#    rename("Freedom" = "Freedom to make life choices")%>%
+#   rename("Life expectancy" = "Healthy life expectancy",
+#          "Country" = "Country or region",
+#          "Happiness score" = "Score") %>%
+#   clean_names()
 ```
 
 ```{r reordering-cols-2018}
 # whr_2018 <- whr_2018 %>% 
-#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year ))
+#   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
 ```{r tidy-data-2019}
 
 # whr_2019 <- whr_2019 %>%
 #    mutate (Year = 2019) %>%
+#   rename("Freedom" = "Freedom to make life choices") %>%
+#    rename("Country" = "Country or region",
+#           "Life expectancy" = "Healthy life expectancy",
+#           "Happiness score" = "Score") %>%
 #   #rename("Freedom" = "freedom_to_make_life_choices") %>%
 #    #rename("Country" = "Country or region",
 #           #"Life expectancy" = "Healthy life expectancy",
@@ -134,7 +137,7 @@ Your results with proper output and graphics go in your presentation, this space
 ```
 
 ```{r remove-col-2019}
-# whr_2019 <- subset(whr_2019, select = -c(year_2))
+ #whr_2019 <- subset(whr_2019, select = -c(year_2))
 ```
 
 ```{r expand-whr-dataset}
@@ -155,10 +158,6 @@ Your results with proper output and graphics go in your presentation, this space
 # cut Somaliland, northern cyprus 
 ```
 
-```{r create-whr-csv}
-
-```
-
 
 ```{r country-names-whr}
 # whr <- whr %>%
@@ -173,6 +172,11 @@ Your results with proper output and graphics go in your presentation, this space
 #   
 # whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
   
+```
+
+
+```{r create-whr-csv}
+write.csv(whr_2, file= '/Users/kristaps/Data/whr_2.csv')
 ```
 
 
