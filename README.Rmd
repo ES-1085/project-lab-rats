@@ -168,6 +168,7 @@ Your results with proper output and graphics go in your presentation, this space
 #                        country == "Congo (Kinshasa)" ~ "DRC",
 #                        country == "Congo (Brazzaville)" ~ "Congo",
 #                        country == "Central African Republic" ~ "CAR",
+#                         country == "Taiwan Province of China" ~ "Taiwan",
 #      country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
 #   
 # whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
@@ -235,9 +236,9 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 ```{r whr-2015-gdp-happiness}
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
+  ggplot() +
+  geom_point(aes(x = gdp_per_capita, y = happiness_score)) +
+  geom_smooth(aes(x = gdp_per_capita, y = happiness_score), method = "lm") +
   labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
 ```
@@ -255,8 +256,17 @@ visdat::vis_miss(whr)
 ```
 
 
-```{r GDP-Suicide-rates}
-
+```{r suicide-vs-GDP-scatter}
+ suicide_2 %>%
+  filter(sex == "Both sexes", age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+ggplot() +
+  #geom_point(aes(x = gdp_per_capita, y = suicide_rates)) +
+  geom_miss_point(aes(x = gdp_per_capita, y = suicide_rates, color= happiness_score), alpha = 0.5) +
+  geom_smooth(aes(x = gdp_per_capita, y = suicide_rates), method = "lm") +
+  labs(x = "GDP per capita", y = "Suicide Rates", title = "Correlation between GDP per capita and Suicide Rates (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2) +
+  scale_color_viridis_c()
 ```
 
 ## Presentation
