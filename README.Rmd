@@ -172,7 +172,6 @@ Your results with proper output and graphics go in your presentation, this space
 #      country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
 #   
 # whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
-  
 ```
 
 
@@ -182,41 +181,42 @@ whr <- read_csv("data/whr.csv")
 
 whr_2 <- read_csv ("data/whr_2.csv")
 
-suicide <- read_csv ("data/suicide.csv")
+write_csv( suicide, "suicide.csv")
+# suicide <- read_csv ("data/suicide.csv")
 
 suicide_2 <- read_csv("data/suicide_2.csv")
 ```
 
 
 ```{r suicide-tidy-data}
-# suicide <- suicide %>%
-#   clean_names() #%>%
-  # select(-c("who_region_code", "who_region", "country_code", "is_latest_year", "crude_suicide_rates_per_100_000_population_low_estimation", "crude_suicide_rates_per_100_000_population_high_estimation", "crude_suicide_rates_per_100_000_population_string")) %>%
-   #rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %>%
-   #filter(year %in% c("2015", "2016", "2017", "2018", "2019"))
+suicide <- suicide %>%
+  clean_names() %>%
+select(-c("who_region_code", "who_region", "country_code", "is_latest_year", "crude_suicide_rates_per_100_000_population_low_estimation", "crude_suicide_rates_per_100_000_population_high_estimation", "crude_suicide_rates_per_100_000_population_string")) %>%
+rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %>%
+filter(year %in% c("2015", "2016", "2017", "2018", "2019"))
 ```
 
 ```{r country-names-suicide}
 
-#suicide <- suicide #%>%
-    # mutate(country = case_when(#country == "Syrian Arab Republic" ~ "Syria",
-    #                            #country == "United States of America" ~ "USA",
-    #                            #country == "United Republic of Tanzania" ~ "Tanzania",
-    #                            #country =="Russian Federation" ~ "Russia",
-    #                            country == "The former Yugoslav Republic of Macedonia" ~ "North Macedonia", 
-    #                            country == "Lao People's Democratic Republic" ~ "Laos", 
-    #                            country == "Cabo Verde" ~ "Cape Verde", 
-    #                            country == "Brunei Darussalam" ~ "Brunei", 
-    #                            country == "Republic of Korea" ~ "South Korea", 
-    #                            country == "Democratic People's Republic of Korea" ~ "North Korea", 
-    #                            country == "Democratic Republic of the Congo" ~ "DRC", 
-    #                            country == "Iran (Islamic Republic of)" ~ "Iran", 
-    #                            country == "Republic of Moldova" ~ "Moldova", 
-    #                            country == "Venezuela (Bolivarian Republic of)" ~ "Venezuela", 
-    #                            country == "United Arab Emirates" ~ "UAE", 
-    #                            country == "United Kingdom of Great Britain and Northern Ireland" ~ "UK", 
-    #                            country == "Micronesia (Federated States of)" ~ "Micronesia", 
-    #                            country == "Bolivia (Plurinational State of)" ~ "Bolivia", TRUE ~ country))
+suicide <- suicide %>%
+mutate(country = case_when(country == "Syrian Arab Republic" ~ "Syria",
+                           country == "United States of America" ~ "USA",
+                           country == "United Republic of Tanzania" ~ "Tanzania",
+                           country =="Russian Federation" ~ "Russia",
+                           country == "The former Yugoslav Republic of Macedonia" ~ "North Macedonia",
+                           country == "Lao People's Democratic Republic" ~ "Laos",
+                           country == "Cabo Verde" ~ "Cape Verde",
+                           country == "Brunei Darussalam" ~ "Brunei",
+                           country == "Republic of Korea" ~ "South Korea",
+                           country == "Democratic People's Republic of Korea" ~ "North Korea",
+                           country == "Democratic Republic of the Congo" ~ "DRC",
+                           country == "Iran (Islamic Republic of)" ~ "Iran",
+                           country == "Republic of Moldova" ~ "Moldova",
+                           country == "Venezuela (Bolivarian Republic of)" ~ "Venezuela",
+                           country == "United Arab Emirates" ~ "UAE",
+                           country == "United Kingdom of Great Britain and Northern Ireland" ~ "UK",
+                           country == "Micronesia (Federated States of)" ~ "Micronesia",
+                           country == "Bolivia (Plurinational State of)" ~ "Bolivia", TRUE ~ country))
 ```
 
 ```{r expand-suicide-dataset}
@@ -233,13 +233,70 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 
 ## Visualizations
 
-```{r whr-2015-gdp-happiness}
+```{r whr-gdp-happiness}
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
+<<<<<<< HEAD
   ggplot() +
   geom_point(aes(x = gdp_per_capita, y = happiness_score)) +
   geom_smooth(aes(x = gdp_per_capita, y = happiness_score), method = "lm") +
   labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015-2019)") +
+=======
+  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2)
+```
+
+```{r whr-social-support-happiness}
+whr %>% 
+  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
+  ggplot(aes(x = social_support, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Social support", y = "Happiness score", title = "Correlation between social support and happiness score (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2)
+```
+
+```{r whr-life-expectancy-happiness}
+whr %>% 
+  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
+  ggplot(aes(x = life_expectancy, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Life expectancy", y = "Happiness score", title = "Correlation between life expectancy and happiness score (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2)
+```
+
+```{r whr-freedom-happiness}
+whr %>% 
+  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
+  ggplot(aes(x = freedom, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Generosity", y = "Happiness score", title = "Correlation between freedom and happiness score (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2)
+```
+
+```{r whr-generosity-happiness}
+whr %>% 
+  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
+  ggplot(aes(x = generosity, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Generosity", y = "Happiness score", title = "Correlation between generosity and happiness score (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2)
+```
+
+```{r whr-coruption-happiness}
+whr %>% 
+  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
+  ggplot(aes(x = perceptions_of_corruption, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
+>>>>>>> 854825234f2f25e151062d5e97642a0f0012fe0b
   facet_wrap(~ year, ncol = 2)
 ```
 
@@ -271,10 +328,7 @@ ggplot() +
 
 ## Presentation
 
-```{r}
-suicide <- suicide %>%
-  mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
-                             TRUE ~ Country))
+
 
 ```
 
