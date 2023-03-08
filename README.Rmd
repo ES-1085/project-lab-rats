@@ -236,13 +236,6 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 ```{r whr-gdp-happiness}
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-<<<<<<< HEAD
-  ggplot() +
-  geom_point(aes(x = gdp_per_capita, y = happiness_score)) +
-  geom_smooth(aes(x = gdp_per_capita, y = happiness_score), method = "lm") +
-  labs(x = "GDP per capita", y = "Happiness Score", title = "Correlation between GDP per capita and Happiness Score (WHR 2015-2019)") +
-=======
-  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
@@ -296,7 +289,6 @@ whr %>%
   geom_point() +
   geom_smooth(method = "lm") +
   labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
->>>>>>> 854825234f2f25e151062d5e97642a0f0012fe0b
   facet_wrap(~ year, ncol = 2)
 ```
 
