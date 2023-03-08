@@ -67,7 +67,7 @@ missing values by `country`, `age_group`, `sex`, and `year`. Because
 different countries reported results in different ways, some of them
 have summarized values in categories such as “All ages” and “Both
 sexes”, and some have this information only in subdivided categories of
-“Female”, “Male”, etc. Expanding the values to show us the “NAs” was
+“Female”, “Male”, etc. Expanding the values to show the “NAs” was
 important to see how much missing information we had in this dataset.
 
 We had initial plans to add a new `region` column to the both the WHR
