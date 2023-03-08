@@ -1,16 +1,23 @@
 ---
 title: "The Relationship Between World Happiness Report and WHO Country Suicide Rates - an Analysis"
-author: "Lab rats"
+subtitle: "Data Science: Visualizations WI-23"
+author: "Lab rats: Kristaps Brics, Cora Carvalho and Cheyanne Goroshin"
 output: github_document
 ---
 
-```{r load-packages, message = FALSE}
+```{r load-packages, message=FALSE, include=FALSE}
 library(tidyverse)
 library(broom)
-
+library(dplyr)
+library(skimr)
+library(haven)
+library(sjlabelled)
+library(codebookr)
+library(tibble)
 ```
 
-```{r load-data}
+```{r load-data, message=FALSE, include=FALSE}
+
  # write_csv(whr, "whr.csv")
  whr <- read_csv("whr.csv")
 
@@ -34,8 +41,13 @@ We decided that comparing suicide rates to World Happiness Report (WHR) scores w
 WHR includes many independent variables, such as GDP per capita, family size, trust in government, generosity, etc.
 We agreed that GDP per capita would allow us to see exactly how economy affects peoples' happiness, and therefore increase or decrease rates of happiness. 
 
-Primary research question: How does the ranking of a certain country on the World Happiness Report correlate with their respective suicide mortality rate?
-Secondary research question: How does GDP per capita impact happiness, and to what extent does that data correlate with suicide mortality rates?
+#### Primary research question:
+
+##### How does the ranking of a certain country on the World Happiness Report correlate with their respective suicide mortality rate?
+
+#### Secondary research question: 
+
+##### How does GDP per capita impact happiness, and to what extent does that data correlate with suicide mortality rates?
 
 
 ## 2. Data
@@ -44,78 +56,107 @@ We chose two main datasets for our project. The first one was a compilation of s
 for the period 2000 to 2019 (source: https://www.kaggle.com/datasets/mikekzan/who-crude-suicide-mortality-rate). 
 The second one was a collection of scores of the WHR from 2015 to 2019, with data for each year located in a separate subdataset (source: https://www.kaggle.com/datasets/unsdsn/world-happiness).
 
-However, we plan to modify these datasets to a significant degree to fit our needs. For example, we first intend to merge
-the separate subdatasets of the WHR in one large dataset (with an additional column "year"). In addition, we want to harmonise the names of countries
-all datasets (e.g., the WHO dataset has the "Syrian Arab Republic", whereas the WHR dataset has "Syria"). Afterwards, we will filter out countries that
-do not appear in all datasets. Lastly, we will assign consistent regions for all countries, which will not be an easy endeavour,
-recognising the inherent limitations of categorising countries with their unique characteristics.
+However, we modified these datasets to a significant degree to fit our needs. We cleaned all the WHR datasets to have more consistency regarding the countries portrayed each year and the names of variables, as well as the order in which they appeared in each dataset. We also deleted the region columns in the WHR datasets that had them, because the categorization was not homogeneous across datasets. We also created a new column in each of them called `year`, to be able to bind all WHR datasets into one. Additionally, we had to standardize the names of countries, because yearly there was some discrepancy in how some names were reportes. We also wanted to make sure that both the WHO suicide dataset and the WHR datasets had the same input for country names.
+Because some countries are not recognized by the UN or a big enough number of other nation states, we did exclude them from `whr_2`. However, they can still be viewed in the initial compiled dataset `whr`. In addition to all these changes, we also used the `expand()` function to produce rows of all-time reported countries in all the years from 2015 to 2019, which provided us with information on missing values by country and year. 
 
-Our first graph will be a scatterplot showing the correlation between the WHR scores and suicide mortality rates of all countries. Then we plan to
-create such a graph for each region. Afterwards, we want to plot the correlation between GDP per capita (a variable in the WHR datasets) and the
-happiness score on a global and regional scale. Lastly, we want to create graphs showing the correlation of the two aforementioned variables
-with suicide mortality rates. However, it is of utmost importance to state that our plans are subject to change as the project evolves.
+In the WHO `suicide` dataset, we deleted severall columns that would not be required for the purposes of our analysis, leaving only `country`, `year`, `sex`, `age_group`, and `suicide_rates`. The original dataset we extracted from kaggle had several different crude suicide rate variables (i.e. numeric, percentage, high estimate, low estimate), but we decided to only consider the `suicide_rates` numeric variable for our analysis. As previously stated, we did standadized country names in the WHO suicide data as well. We also used the `expand()` function to get the missing  values by `country`, `age_group`, `sex`, and `year`. Because different countries reported results in different ways, some of them have summarized values in categories such as "All ages" and "Both sexes", and some have this information only in subdivided categories of "Female", "Male", etc. Expanding the values to show us the "NAs" was important to see how much missing information we had in this dataset. 
 
-```{r glimpse}
-# whr_2015 <- read_csv("data_copy/whr_2015.csv")
-# whr_2016 <- read_csv("data_copy/whr_2016.csv")
-# whr_2017 <- read_csv("data_copy/whr_2017.csv")
-# whr_2018 <- read_csv("data_copy/whr_2018.csv")
-# whr_2019 <- read_csv("data_copy/whr_2019.csv")
-# whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019)
-whr %>%
-  glimpse() 
+We had initial plans to add a new `region` column to the both the WHR and WHO suicide datasets to make geographical analysis. However, due to all the time we spent tidying the data, we did not have enough time to do that so far. We will determine after we get some more visualizations if we still have time to add one more variable to the equation. 
+
+Initially, we also thought to make an analysis associating light exposure to the happiness index and suicide rates. However, in our preliminary research so far we could not find a dataset with this information by country. We will continue the research to see if it is possible to add this variable from another dataset. 
+
+Our first graph will be a scatterplot showing the correlation between the WHR scores and suicide mortality rates of all countries. Then we plan to create such a graph for each region, if we have the time to add the `region` variable to our datasets. Afterwards, we want to plot the correlation between GDP per capita (a variable in the WHR datasets) and the happiness score on a global and regional scale. Lastly, we want to create graphs showing the correlation of the two aforementioned variables with suicide mortality rates. However,it is of utmost importance to state that our plans are subject to change as the project evolves.
+
+Below we apply the function `glimpse` and `skim` to show a summary of our datasets. We also include a preliminary visualization based on these data. 
+
+##### WHR Summary  
+
+```{r whr-glimpse, echo=TRUE}
+
+glimpse(whr) 
+
+skim(whr)
+
   
 ```
 
+##### WHR_2 Summary 
 
-## 3. Data analysis plan
-Variables we will consider for our analysis: 
+```{r whr2-glimpse, echo=TRUE}
 
-```{r variables}
+glimpse(whr_2) 
 
-names(whr)
+skim(whr_2)
+
+```
+
+##### WHO suicide Summary 
+
+```{r suicide-glimpse, echo=TRUE}
+
+glimpse(suicide) 
+
+skim(suicide)
+
+```
+
+##### WHO suicide_2 Summary
+
+```{r suicide2-glimpse, echo=TRUE}
+
+glimpse(suicide_2) 
+
+skim(suicide_2)
 
 ```
 
 
-World Happiness Report dataset, for the years between 2015-2019: 
-$ `Country`                         
-$ `Region`                          
-$ `Happiness Rank`                
-$ `Happiness Score`                               
-$ `Economy (GDP per Capita)`      
-$ `Social Support`                         
-$ `Health (Life Expectancy)`      
-$ `Freedom`                         
-$ `Trust (Government Corruption)` 
-$ `Generosity `                     
+##### Preliminary Visualization
+
+```{r whr-2015-gdp-happiness, echo=TRUE}
+whr %>% 
+  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
+  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "GDP per capita",
+       y = "Happiness Score", 
+       title = "Correlation between GDP per capita and Happiness Score (WHR 2015-2019)") +
+  facet_wrap(~ year, ncol = 2)
+```
+
+## 3. Data analysis plan
+
+Variables we will consider for our analysis: 
 
 
-World Suicide rates dataset, for the years between 2015-2019: 
+World Happiness Report datase, `whr`:
 
-Initially, we would also like to make an analysis associating light exposure to the happiness index and suicide rates. However, in our preliminary research so far we could not find a dataset with this information by country. We will continue the research to see if it is possible to add this variable from another dataset. 
-=======
+$ `overall_rank`                         
+$ `country`                          
+$ `happiness_score`                
+$ `gdp_per_capita`                               
+$ `social_support`      
+$ `life_expectancy`                         
+$ `freedom`     
+$ `generosity`                         
+$ `perceptions_of_corruption`                                     
+$ `year`
 
-$`WHO Region Code`                                                
-$ `WHO Region`                                                    
-$ `Country Code`                                                  
-$ `Country`                                                      
-$ `Year`                                                         
-$ `IsLatestYear`                                                 
-$ `Sex`                                                           
-$ `Age Group`                                                     
-$ `Crude suicide rates (per 100 000 population) (numeric)`        
-$ `Crude suicide rates (per 100 000 population) (low estimation)` 
-$ `Crude suicide rates (per 100 000 population) (high estimation)`
-$ `Crude suicide rates (per 100 000 population) (string)`
 
-Initially, we would also like to make an analysis associanting light exposure to the happiness index and suicide rates. 
-However, in our preliminary research so far we could not find a dataset with this information byt country. We will continue the research to see if it is possible to add this variable from another dataset. 
+World Suicide rates dataset, `suicide`,  for the years between 2015-2019: 
 
-Since our dataset has a large set of observations, considering 155-158 countries out of the total countries in the world, we envision several possibilities to run our analysis. We could: 
+$ `country`                                                
+$ `year`                                                    
+$ `sex`                                                  
+$ `age_group`                                                     
+$ `suicide_rates`                                                         
+
+Since our dataset has a large set of observations, considering around 170 countries from the world total, we envision several possibilities to run our analysis. We could: 
+
 * consider all of the countries in the dataset, grouping them by their regions 
 * select a specific number of regions to analyze 
 * equalize the population numbers for each region, trying to sample an equal amount of people per region/continent to be analyzed. Doing so, we would have to randomly exclude some countries of the analysis. 
 *  choose specific countries to compare and contrast, dimishing considerably the number of observations. 
->>>>>>> 7a61a61afe8d6263d8900c921a4fafad95e325cf
+
 
