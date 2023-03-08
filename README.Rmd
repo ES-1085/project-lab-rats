@@ -160,17 +160,17 @@ Your results with proper output and graphics go in your presentation, this space
 
 
 ```{r country-names-whr}
-# whr <- whr %>%
-#   mutate(country = case_when(country == "United States" ~ "USA",
-#                        country == "United Kingdom" ~ "UK",
-#                        country == "United Arab Emirates" ~ "UAE",
-#                        country == "Palestinian Territories" ~ "Palestine",
-#                        country == "Congo (Kinshasa)" ~ "DRC",
-#                        country == "Congo (Brazzaville)" ~ "Congo",
-#                        country == "Central African Republic" ~ "CAR",
-#      country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
-#   
-# whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
+whr <- whr %>%
+  mutate(country = case_when(country == "United States" ~ "USA",
+                       country == "United Kingdom" ~ "UK",
+                       country == "United Arab Emirates" ~ "UAE",
+                       country == "Palestinian Territories" ~ "Palestine",
+                       country == "Congo (Kinshasa)" ~ "DRC",
+                       country == "Congo (Brazzaville)" ~ "Congo",
+                       country == "Central African Republic" ~ "CAR",
+     country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
+
+whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
 ```
 
 
@@ -283,13 +283,23 @@ whr %>%
 ```
 
 ```{r whr-coruption-happiness}
-whr %>% 
+whr_sub <- whr_2 %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = perceptions_of_corruption, y = happiness_score)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
+  mutate(perceptions_of_corruption = as.numeric(perceptions_of_corruption)) %>%
+  filter(perceptions_of_corruption > 0.35) %>%
+  distinct(country)
+
+anim1 <-  ggplot(whr_sub, aes(x = perceptions_of_corruption, y = happiness_score)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", aes(group = year)) +
   labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
-  facet_wrap(~ year, ncol = 2)
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year) 
+ # facet_wrap(~ year, ncol = 2)
+
+
+anim2 <- animate(anim1, nframe = 5, fps = 1, render = gifski_renderer())
+anim_save(filename = "anim2.gif")
 ```
 
 ```{r missing-values}
