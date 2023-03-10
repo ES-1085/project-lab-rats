@@ -41,6 +41,7 @@ library(stringr) ## String manipulation
 
 install.packages ("rgeoboundaries")
 library(rgeoboundaries) 
+
 ```
 
 ## Summary
@@ -189,18 +190,17 @@ Your results with proper output and graphics go in your presentation, this space
 
 
 ```{r country-names-whr}
-# whr <- whr %>%
-#   mutate(country = case_when(country == "United States" ~ "USA",
-#                        country == "United Kingdom" ~ "UK",
-#                        country == "United Arab Emirates" ~ "UAE",
-#                        country == "Palestinian Territories" ~ "Palestine",
-#                        country == "Congo (Kinshasa)" ~ "DRC",
-#                        country == "Congo (Brazzaville)" ~ "Congo",
-#                        country == "Central African Republic" ~ "CAR",
-#                         country == "Taiwan Province of China" ~ "Taiwan",
-#      country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
-#   
-# whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
+whr <- whr %>%
+  mutate(country = case_when(country == "United States" ~ "USA",
+                       country == "United Kingdom" ~ "UK",
+                       country == "United Arab Emirates" ~ "UAE",
+                       country == "Palestinian Territories" ~ "Palestine",
+                       country == "Congo (Kinshasa)" ~ "DRC",
+                       country == "Congo (Brazzaville)" ~ "Congo",
+                       country == "Central African Republic" ~ "CAR",
+     country == "Hong Kong S.A.R., China" ~ "Hong Kong", TRUE ~ country))
+
+whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somaliland")))
 ```
 
 
@@ -266,7 +266,7 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -276,7 +276,7 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = social_support, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Social support", y = "Happiness score", title = "Correlation between social support and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -286,7 +286,7 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = life_expectancy, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Life expectancy", y = "Happiness score", title = "Correlation between life expectancy and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -296,7 +296,7 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = freedom, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Generosity", y = "Happiness score", title = "Correlation between freedom and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -306,20 +306,30 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = generosity, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Generosity", y = "Happiness score", title = "Correlation between generosity and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
 ```
 
 ```{r whr-coruption-happiness}
-whr %>% 
+whr_sub <- whr_2 %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = perceptions_of_corruption, y = happiness_score)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
+  mutate(perceptions_of_corruption = as.numeric(perceptions_of_corruption)) %>%
+  filter(perceptions_of_corruption > 0.35) %>%
+  distinct(country)
+
+anim1 <-  ggplot(whr_sub, aes(x = perceptions_of_corruption, y = happiness_score)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", aes(group = year)) +
   labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
-  facet_wrap(~ year, ncol = 2)
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year) 
+ # facet_wrap(~ year, ncol = 2)
+
+
+anim2 <- animate(anim1, nframe = 5, fps = 1, render = gifski_renderer())
+anim_save(filename = "anim2.gif")
 ```
 
 ```{r missing-values}
