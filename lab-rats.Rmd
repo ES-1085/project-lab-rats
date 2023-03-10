@@ -12,6 +12,8 @@ library(tidyverse)
 library(janitor)
 install.packages("naniar")
 install.packages("visdat")
+library(naniar)
+library(visdat)
 ```
 
 ## Summary
@@ -236,7 +238,7 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -246,7 +248,7 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = social_support, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Social support", y = "Happiness score", title = "Correlation between social support and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -256,7 +258,7 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = life_expectancy, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Life expectancy", y = "Happiness score", title = "Correlation between life expectancy and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -266,7 +268,7 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = freedom, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Generosity", y = "Happiness score", title = "Correlation between freedom and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
@@ -276,7 +278,7 @@ whr %>%
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = generosity, y = happiness_score)) +
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "Generosity", y = "Happiness score", title = "Correlation between generosity and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
