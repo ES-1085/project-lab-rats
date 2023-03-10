@@ -6,12 +6,41 @@ author: "Lab rats"
 output: github_document
 ---
 
-```{r}
+```{r install-packages }
 install.packages("tidyverse")
 library(tidyverse)
+
 library(janitor)
+
 install.packages("naniar")
+library (naniar)
+
 install.packages("visdat")
+library (visdat)
+
+install.packages ("leaflet")
+library(leaflet) ## For leaflet interactive maps
+
+install.packages("sf")
+library(sf) ## For spatial data
+
+install.packages("RColorBrewer")
+library(RColorBrewer) ## For colour palettes
+
+install.packages("htmltools")
+library(htmltools) ## For html
+
+install.packages("leafsync")
+library(leafsync) ## For placing plots side by side
+
+install.packages("kableExtra")
+library(kableExtra) ## Table output
+
+install.packages("stringr")
+library(stringr) ## String manipulation
+
+install.packages ("rgeoboundaries")
+library(rgeoboundaries) 
 ```
 
 ## Summary
@@ -40,7 +69,7 @@ Your results with proper output and graphics go in your presentation, this space
 
 ```
 
-### Tidying data 
+### Wrangling and Tidying data 
 
 ```{r tidy-data-2015}
 # whr_2015 <- whr_2015 %>%
