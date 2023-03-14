@@ -265,66 +265,81 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 ## Visualizations
 
 ```{r whr-gdp-happiness, fig.alt= "This faceted scatter plot represents the correlation between GDP per capita and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that higher GDP per capita usually correlates to higher happiness scores." }
-whr %>%
-  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
+
+gdp_per_capita_1 <-  ggplot(whr_2, aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
-  facet_wrap(~ year, ncol = 2)
+  geom_smooth(method = "lm", aes(group = year)) +
+  labs(x = "GDP per capita", y = "Happiness score") +
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year)
+  
+gdp_per_capita_2 <- animate(gdp_per_capita_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "gdp_per_capita_happiness.gif")
 ```
 
 ```{r whr-social-support-happiness, fig.alt= ""This faceted scatter plot represents the correlation between access to social supports and Happiness score for years 2015-2019.These two variables appear to have a positive correlation. The data shows us that more social supports usually correlate to higher happiness scores."}
-whr %>% 
-  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = social_support, y = happiness_score)) +
+
+social_support_1 <-  ggplot(whr_2, aes(x = social_support, y = happiness_score)) +
   geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  labs(x = "Social support", y = "Happiness score", title = "Correlation between social support and happiness score (WHR 2015-2019)") +
-  facet_wrap(~ year, ncol = 2)
+  geom_smooth(method = "lm", aes(group = year)) +
+  labs(x = "Social support", y = "Happiness score") +
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year)
+  
+social_support_2 <- animate(social_support_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "social_support_happiness.gif")
 ```
 
 ```{r whr-life-expectancy-happiness, fig.alt= "This faceted scatter plot represents the correlation between life expectancy and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that longer life expectancies usually correlates to higher happiness scores."}
-whr %>% 
-  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = life_expectancy, y = happiness_score)) +
+
+life_expectancy_1 <-  ggplot(whr_2, aes(x = life_expectancy, y = happiness_score)) +
   geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  labs(x = "Life expectancy", y = "Happiness score", title = "Correlation between life expectancy and happiness score (WHR 2015-2019)") +
-  facet_wrap(~ year, ncol = 2)
+  geom_smooth(method = "lm", aes(group = year)) +
+  labs(x = "Life expectancy", y = "Happiness score") +
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year)
+  
+life_expectancy_2 <- animate(life_expectancy_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "life_expectancy_happiness.gif")
 ```
 
 ```{r whr-freedom-happiness, fig.alt= "This faceted scatter plot represents the correlation between freedom ratings and Happiness score, which appears to have a positive line of average. The data shows us that there's still, although not as distinct, positive correlation between freedom and happiness scores."}
-whr %>% 
-  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = freedom, y = happiness_score)) +
+
+freedom_1 <-  ggplot(whr_2, aes(x = freedom, y = happiness_score)) +
   geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  labs(x = "freedom", y = "Happiness score", title = "Correlation between freedom and happiness score (WHR 2015-2019)") +
-  facet_wrap(~ year, ncol = 2)
+  geom_smooth(method = "lm", aes(group = year)) +
+  labs(x = "Freedom", y = "Happiness score") +
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year)
+  
+freedom_2 <- animate(freedom_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "freedom_happiness.gif")
 ```
 
 ```{r whr-generosity-happiness fig.alt= "This faceted scatter plot represents the correlation between generosity percieved by each country and Happiness score, which appears to not have a strong correlation. The data shows us that happiness scores vary between being very high and low, despite despite percieved generosity for each country."}
-whr %>% 
-  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = generosity, y = happiness_score)) +
+
+generosity_1 <-  ggplot(whr_2, aes(x = generosity, y = happiness_score)) +
   geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm") +
-  labs(x = "Generosity", y = "Happiness score", title = "Correlation between generosity and happiness score (WHR 2015-2019)") +
-  facet_wrap(~ year, ncol = 2)
+  geom_smooth(method = "lm", aes(group = year)) +
+  labs(x = "Generosity", y = "Happiness score") +
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year)
+  
+generosity_2 <- animate(generosity_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "generosity_happiness.gif")
 ```
 
 ```{r whr-corruption-happiness}
-ggplot(whr_2, aes(x = as.factor(perceptions_of_corruption), y = happiness_score, group = year)) +
+
+corruption_1 <-  ggplot(whr_2, aes(x = as.numeric(perceptions_of_corruption), y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
-  #labs(title = 'Year: {frame_time}') +
-  #transition_time(year) +
-  facet_wrap(~ year, ncol = 2)
-
-#anim2 <- animate(anim1, nframes = 5, fps = 1, renderer = gifski_renderer())
-anim_save(filename = "anim2.gif", anim2)
+  labs(x = "Perceptions of corruption", y = "Happiness score") +
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year)
+  
+corruption_2 <- animate(corruption_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "corruption_happiness.gif")
 ```
 
 ```{r missing-values fig.alt= "This Bar Graph represents all possible missing data from our whr dataset. The X axis lists the variables that the data is organized under, and the Y axis represents number of observations. The red represents all character data, while the blue represents all numerical variables, The grey represents what variables are missing data inputs, which is 6.4% of all the data."}
