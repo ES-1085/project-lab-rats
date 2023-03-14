@@ -446,6 +446,8 @@ suicide_2 %>%
     # theme_ipsum()  +
     xlab("Year") +
     ylab("Suicide rates") +
+  labs(title = "Collective Suicide Rates of Randomly Selected Countries",
+       subtitle = "By Sex")
     ylim(0,40)
   
 
@@ -678,7 +680,7 @@ suicide_2 %>%
 ```
 
 
-```{r}
+```{r faceted-bar-plot}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
          age_group == "All Ages") %>%
@@ -696,6 +698,8 @@ suicide_2 %>%
 ```
 
 
+
+
 ```{r lesotho-outlier-barplot}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
@@ -710,6 +714,8 @@ suicide_2 %>%
        y = "Suicide Rates",    
        title = "Suicide Rates of Lesotho By Year", 
        subtitle = "Organized by Sex")
+```
+
 ```
 
 
