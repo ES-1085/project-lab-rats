@@ -537,158 +537,9 @@ leaflet(data = joined_2019) %>%
   #addPolygons()
 ```
 
-```{r portugal-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "Portugal") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.7) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Portugal By Year",
-       subtitle = "Organized by Sex")
-```
-
-```{r china-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "China") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of China By Year",
-       subtitle = "Organized by Sex")
-       
-```
-
-```{r brazil-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "Brazil") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.7) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Brazil By Year",
-       subtitle = "Organized by Sex")
-```
-
-```{r costa-rica-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "Costa Rica") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Costa Rica By Year",
-       subtitle = "Organized by Sex")
-```
-
-```{r zimbabwe-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "Zimbabwe") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
-  geom_bar(position="dodge", stat="identity") +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Zimbabwe By Year",
-       subtitle = "Organized by Sex")
-```
-
-
-```{r israel-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "Israel") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Israel By Year",
-       subtitle = "Organized by Sex")
-```
-
-
-```{r mexico-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "Mexico") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Mexico By Year",
-       subtitle = "Organized by Sex")
-```
-
-
-```{r new-zealand-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "New Zealand") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of New Zealand By Year",
-       subtitle = "Organized by Sex")
-```
-
-```{r south-sudan-bar-plot}
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "South Sudan") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.7) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of South Sudan By Year",
-       subtitle = "Organized by Sex")
-```
 
 
 ```{r faceted-bar-plot fig.alt = "This faceted bar plot is comparing all our randomly selected countries' suicide rate organized by sex. The countries are Zimbabwe (Africa), Mexico (N. America), Brazil (S. America), China (E. Asia), Israel (W. Asia), Costa Rica (C. America), Portugal (Europe), and New Zealand (Oceania). Sex is expressed with color, purple being female and yellow being male. Each country represents a similar trend of higher suicide rates of males compared to their female counterparts. We can also see that Zimbabwe has the highest rates of suicide overall compared to the other countries, but that there has been a steady decline since 2015.}
-
-```{r faceted-bar-plot}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
          age_group == "All Ages") %>%
@@ -704,6 +555,24 @@ suicide_2 %>%
        y = "Suicide Rates",
        title = "Suicide Rates of Randomly Selected Countries",
        subtitle = "Organized by Sex")
+```
+
+
+```{r south-sudan-barplot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "South Sudan") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity", alpha = 0.7) +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of South Sudan By Year",
+       subtitle = "Organized by Sex")
+```
 ```
 
 
