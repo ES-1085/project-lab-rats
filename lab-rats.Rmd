@@ -426,7 +426,8 @@ ggplot() +
        subtitle = " Between 2015-2019") +
   facet_wrap(~ year, ncol = 2) +
   scale_color_viridis_c() +
-  jpeg(filename = "suicide-vs-GDP-scatter.jpeg" )
+  jpeg(filename = "suicide-vs-GDP-scatter.jpeg" ) +
+  theme_ipsum ()
 
 ```
 
