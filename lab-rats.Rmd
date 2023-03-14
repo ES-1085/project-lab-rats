@@ -315,15 +315,14 @@ whr %>%
 ```
 
 ```{r whr-corruption-happiness}
-ggplot(whr_2, aes(x = as.factor(perceptions_of_corruption), y = happiness_score, group = year)) +
+anim1 <-  ggplot(whr_2, aes(x = as.numeric(perceptions_of_corruption), y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
   labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
-  #labs(title = 'Year: {frame_time}') +
-  #transition_time(year) +
-  facet_wrap(~ year, ncol = 2)
-
-#anim2 <- animate(anim1, nframes = 5, fps = 1, renderer = gifski_renderer())
+  labs(title = 'Year: {frame_time}') +
+  transition_time(time = year)
+  
+anim2 <- animate(anim1, nframes = 5, fps = 1, renderer = gifski_renderer())
 anim_save(filename = "anim2.gif", anim2)
 ```
 
