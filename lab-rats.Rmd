@@ -269,7 +269,7 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 gdp_per_capita_1 <-  ggplot(whr_2, aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
+  labs(x = "GDP per capita", y = "Happiness score") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year)
   
@@ -282,7 +282,7 @@ anim_save(filename = "gdp_per_capita_happiness.gif")
 social_support_1 <-  ggplot(whr_2, aes(x = social_support, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Social support", y = "Happiness score", title = "Correlation between social support and happiness score (WHR 2015-2019)") +
+  labs(x = "Social support", y = "Happiness score") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year)
   
@@ -295,7 +295,7 @@ anim_save(filename = "social_support_happiness.gif")
 life_expectancy_1 <-  ggplot(whr_2, aes(x = life_expectancy, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Life expectancy", y = "Happiness score", title = "Correlation between life expectancy and happiness score (WHR 2015-2019)") +
+  labs(x = "Life expectancy", y = "Happiness score") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year)
   
@@ -308,7 +308,7 @@ anim_save(filename = "life_expectancy_happiness.gif")
 freedom_1 <-  ggplot(whr_2, aes(x = freedom, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Freedom", y = "Happiness score", title = "Correlation between freedom and happiness score (WHR 2015-2019)") +
+  labs(x = "Freedom", y = "Happiness score") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year)
   
@@ -321,7 +321,7 @@ anim_save(filename = "freedom_happiness.gif")
 generosity_1 <-  ggplot(whr_2, aes(x = generosity, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Generosity", y = "Happiness score", title = "Correlation between generosity and happiness score (WHR 2015-2019)") +
+  labs(x = "Generosity", y = "Happiness score") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year)
   
@@ -334,7 +334,7 @@ anim_save(filename = "generosity_happiness.gif")
 corruption_1 <-  ggplot(whr_2, aes(x = as.numeric(perceptions_of_corruption), y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
+  labs(x = "Perceptions of corruption", y = "Happiness score") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year)
   
