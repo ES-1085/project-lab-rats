@@ -589,6 +589,21 @@ suicide_2 %>%
        subtitle = "Organized by Sex")
 ```
 
+```{r zimbabwe-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "Zimbabwe") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Zimbabwe By Year (Organized by Sex)")
+```
+
 
 ```{r israel-bar-plot}
 suicide_2 %>%
