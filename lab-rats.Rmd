@@ -7,41 +7,43 @@ output: github_document
 ---
 
 ```{r install-packages }
-install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
 
-library(janitor)
+#library(janitor)
 
-install.packages("naniar")
-library (naniar)
+#install.packages("naniar")
+#library (naniar)
 
-install.packages("visdat")
-library (visdat)
+#install.packages("visdat")
+#library (visdat)
 
-install.packages ("leaflet")
-library(leaflet) ## For leaflet interactive maps
+# install.packages ("leaflet")
+# library(leaflet) ## For leaflet interactive maps
+# 
+# install.packages("sf")
+# library(sf) ## For spatial data
+# 
+# install.packages("RColorBrewer")
+# library(RColorBrewer) ## For colour palettes
+# 
+# install.packages("htmltools")
+# library(htmltools) ## For html
+# 
+# install.packages("leafsync")
+# library(leafsync) ## For placing plots side by side
+# 
+# install.packages("kableExtra")
+# library(kableExtra) ## Table output
+# 
+# install.packages("stringr")
+# library(stringr) ## String manipulation
+# 
+# #install.packages ("rgeoboundaries")
+# #library(rgeoboundaries) 
 
-install.packages("sf")
-library(sf) ## For spatial data
-
-install.packages("RColorBrewer")
-library(RColorBrewer) ## For colour palettes
-
-install.packages("htmltools")
-library(htmltools) ## For html
-
-install.packages("leafsync")
-library(leafsync) ## For placing plots side by side
-
-install.packages("kableExtra")
-library(kableExtra) ## Table output
-
-install.packages("stringr")
-library(stringr) ## String manipulation
-
-install.packages ("rgeoboundaries")
-library(rgeoboundaries) 
-
+install.packages("gganimate")
+library(gganimate)
 ```
 
 ## Summary
@@ -263,12 +265,15 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 ## Visualizations
 
 ```{r whr-gdp-happiness, fig.alt= "This faceted scatter plot represents the correlation between GDP per capita and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that higher GDP per capita usually correlates to higher happiness scores." }
-whr %>% 
+whr %>%
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
+  ggplot(aes(x = gdp_per_capita, y = happiness_score, frame = year)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
+  transition_time(year) +
+  ease_aes('linear') +
+  view_follow(fixed_y = TRUE) +
   facet_wrap(~ year, ncol = 2)
 ```
 
