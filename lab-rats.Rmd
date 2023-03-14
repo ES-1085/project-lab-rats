@@ -704,8 +704,6 @@ suicide_2 %>%
 ```
 
 
-
-
 ```{r lesotho-outlier-barplot}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
