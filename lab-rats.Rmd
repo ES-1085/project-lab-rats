@@ -546,8 +546,8 @@ suicide_2 %>%
   full_join(whr_2, by = join_by(country, year)) %>%
   filter(country == "China") %>%
   group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
-  geom_bar(position="dodge", stat="identity") +
+  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
   scale_fill_viridis_d() +
    labs(x = "Year",
        y = "Suicide Rates",
@@ -562,8 +562,8 @@ suicide_2 %>%
   full_join(whr_2, by = join_by(country, year)) %>%
   filter(country == "Brazil") %>%
   group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
-  geom_bar(position="dodge", stat="identity") +
+  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
   scale_fill_viridis_d() +
    labs(x = "Year",
        y = "Suicide Rates",
@@ -577,8 +577,8 @@ suicide_2 %>%
   full_join(whr_2, by = join_by(country, year)) %>%
   filter(country == "Costa Rica") %>%
   group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
-  geom_bar(position="dodge", stat="identity") +
+  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
   scale_fill_viridis_d() +
    labs(x = "Year",
        y = "Suicide Rates",
@@ -593,8 +593,8 @@ suicide_2 %>%
   full_join(whr_2, by = join_by(country, year)) %>%
   filter(country == "Israel") %>%
   group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
-  geom_bar(position="dodge", stat="identity") +
+  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
   scale_fill_viridis_d() +
    labs(x = "Year",
        y = "Suicide Rates",
@@ -609,8 +609,8 @@ suicide_2 %>%
   full_join(whr_2, by = join_by(country, year)) %>%
   filter(country == "Mexico") %>%
   group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
-  geom_bar(position="dodge", stat="identity") +
+  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
   scale_fill_viridis_d() +
    labs(x = "Year",
        y = "Suicide Rates",
@@ -625,8 +625,8 @@ suicide_2 %>%
   full_join(whr_2, by = join_by(country, year)) %>%
   filter(country == "New Zealand") %>%
   group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
-  geom_bar(position="dodge", stat="identity") +
+  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
   scale_fill_viridis_d() +
    labs(x = "Year",
        y = "Suicide Rates",
