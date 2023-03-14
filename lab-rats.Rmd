@@ -376,7 +376,108 @@ suicide_2 %>%
   filter(gdp_per_capita <= 0.5, suicide_rates <= 4)
 ```
 
+```{r portugal-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "Portugal") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  #geom_violin(position="dodge", alpha=0.5, outlier.colour="transparent") + 
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Portugal By Year (Organized by Sex)")
+  
 
+```
+```{r china-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "China") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of China By Year (Organized by Sex)")
+```
+```{r brazil-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "Brazil") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Brazil By Year (Organized by Sex)")
+```
+
+```{r costa-rica-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "Costa Rica") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Costa Rica By Year (Organized by Sex)")
+```
+```{r israel-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "Israel") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Israel By Year (Organized by Sex)")
+```
+```{r mexico-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "Mexico") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Mexico By Year (Organized by Sex)")
+```
+```{r new-zealand-bar-plot}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country == "New Zealand") %>%
+  group_by(year) %>%
+  ggplot(aes(x = year, y= suicide_rates , fill = sex, alpha = 0.8)) +
+  geom_bar(position="dodge", stat="identity") +
+  scale_fill_viridis_d() +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of New Zealand By Year (Organized by Sex)")
+```
 
 ## Presentation
 
