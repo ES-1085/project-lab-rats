@@ -267,13 +267,10 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 ```{r whr-gdp-happiness, fig.alt= "This faceted scatter plot represents the correlation between GDP per capita and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that higher GDP per capita usually correlates to higher happiness scores." }
 whr %>%
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  ggplot(aes(x = gdp_per_capita, y = happiness_score, frame = year)) +
+  ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   labs(x = "GDP per capita", y = "Happiness score", title = "Correlation between GDP per capita and happiness score (WHR 2015-2019)") +
-  transition_time(year) +
-  ease_aes('linear') +
-  view_follow(fixed_y = TRUE) +
   facet_wrap(~ year, ncol = 2)
 ```
 
@@ -318,25 +315,16 @@ whr %>%
 ```
 
 ```{r whr-corruption-happiness}
-whr_sub <- whr_2 %>% 
-  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  mutate(perceptions_of_corruption = as.numeric(perceptions_of_corruption)) %>%
-  filter(perceptions_of_corruption > 0.35) %>%
-  distinct(country)
-
- # anim1 <-
-
-  ggplot(whr_sub, aes(x = perceptions_of_corruption, y = happiness_score)) +
-   geom_point(alpha = 0.5) +
-   geom_smooth(method = "lm", aes(group = year)) +
-   labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
-   labs(title = 'Year: {frame_time}') +
-   #transition_time(time = year) +
+ggplot(whr_2, aes(x = as.factor(perceptions_of_corruption), y = happiness_score, group = year)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", aes(group = year)) +
+  labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
+  #labs(title = 'Year: {frame_time}') +
+  #transition_time(year) +
   facet_wrap(~ year, ncol = 2)
- # 
- # 
- # anim2 <- animate(anim1, nframe = 5, fps = 1, render = gifski_renderer())
- # anim_save(filename = "anim2.gif")
+
+#anim2 <- animate(anim1, nframes = 5, fps = 1, renderer = gifski_renderer())
+anim_save(filename = "anim2.gif", anim2)
 ```
 
 ```{r missing-values fig.alt= "This Bar Graph represents all possible missing data from our whr dataset. The X axis lists the variables that the data is organized under, and the Y axis represents number of observations. The red represents all character data, while the blue represents all numerical variables, The grey represents what variables are missing data inputs, which is 6.4% of all the data."}
