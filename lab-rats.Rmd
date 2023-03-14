@@ -379,9 +379,9 @@ perceptions_of_corruption_1 <- ggplot(whr_2, aes(x = as.numeric(perceptions_of_c
   transition_time(time = year) +
   theme_minimal() +
   theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 17),
-    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.text = element_text(si,
+    plot.title = element_text(size = 20,ze = 14),
+    axis.title = element_text(size = 17) face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
   ggtitle("The correlation between perceptions of\nand corruption happiness score (WHR {frame_time})")
@@ -403,7 +403,7 @@ visdat::vis_miss(whr)
 ```
 
 
-```{r suicide-vs-GDP-scatter, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7). Though the correlation between suicide rates and GDP per capita don't appear to be strong}
+```{r suicide-vs-GDP-scatter, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, fig.height=8, fig.width=15, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7).}
 
  suicide_2 %>%
   filter(sex == "Both sexes",
@@ -424,10 +424,16 @@ ggplot() +
        color = "WHR Happiness Score",
        title = "Correlation between GDP per capita and Suicide Rates",
        subtitle = " Between 2015-2019") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 15, face = "bold", hjust = 0.5),
+    plot.background = element_rect(fill = "white")
+  ) +
   facet_wrap(~ year, ncol = 2) +
   scale_color_viridis_c() +
-  jpeg(filename = "suicide-vs-GDP-scatter.jpeg" ) +
-  theme_ipsum ()
+  jpeg(filename = "suicide-vs-GDP-scatter.jpeg")
 
 ```
 
@@ -678,6 +684,7 @@ suicide_2 %>%
        title = "Suicide Rates of South Sudan By Year",
        subtitle = "Organized by Sex")
 ```
+
 
 ```{r faceted-bar-plot}
 suicide_2 %>%
