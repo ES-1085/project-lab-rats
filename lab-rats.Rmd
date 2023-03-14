@@ -20,27 +20,27 @@ library(tidyverse)
 
 # install.packages ("leaflet")
 # library(leaflet) ## For leaflet interactive maps
-# 
+#
 # install.packages("sf")
 # library(sf) ## For spatial data
-# 
+#
 # install.packages("RColorBrewer")
 # library(RColorBrewer) ## For colour palettes
-# 
+#
 # install.packages("htmltools")
 # library(htmltools) ## For html
-# 
+#
 # install.packages("leafsync")
 # library(leafsync) ## For placing plots side by side
-# 
+#
 # install.packages("kableExtra")
 # library(kableExtra) ## Table output
-# 
+#
 # install.packages("stringr")
 # library(stringr) ## String manipulation
-# 
+#
 # #install.packages ("rgeoboundaries")
-# #library(rgeoboundaries) 
+# #library(rgeoboundaries)
 
 install.packages("gganimate")
 library(gganimate)
@@ -425,9 +425,9 @@ ggplot() +
        title = "Correlation between GDP per capita and Suicide Rates",
        subtitle = " Between 2015-2019") +
   facet_wrap(~ year, ncol = 2) +
-  scale_color_viridis_c() +
-  jpeg(filename = "suicide-vs-GDP-scatter.jpeg" ) +
-  theme_ipsum ()
+  # scale_color_viridis_c() +
+  # jpeg(filename = "suicide-vs-GDP-scatter.jpeg" ) +
+  # theme_ipsum ()
 
 ```
 
@@ -679,7 +679,7 @@ suicide_2 %>%
        subtitle = "Organized by Sex")
 ```
 
-```{r faceted-bar-plot}
+```{r faceted-bar-plot fig.alt = "This faceted bar plot is comparing all our randomly selected countries' suicide rate organized by sex. The countries are Zimbabwe (Africa), Mexico (N. America), Brazil (S. America), China (E. Asia), Israel (W. Asia), Costa Rica (C. America), Portugal (Europe), and New Zealand (Oceania). Sex is expressed with color, purple being female and yellow being male. Each country represents a similar trend of higher suicide rates of males compared to their female counterparts. We can also see that Zimbabwe has the highest rates of suicide overall compared to the other countries, but that there has been a steady decline since 2015.}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
          age_group == "All Ages") %>%
@@ -690,6 +690,7 @@ suicide_2 %>%
   geom_bar(position="dodge", stat="identity",) +
   scale_fill_viridis_d() +
    facet_wrap(~ country, ncol = 2) +
+  guides(y = guide_axis(angle = 45))
    labs(x = "Year",
        y = "Suicide Rates",
        title = "Suicide Rates of Randomly Selected Countries",
