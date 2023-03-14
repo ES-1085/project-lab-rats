@@ -678,8 +678,6 @@ suicide_2 %>%
        title = "Suicide Rates of South Sudan By Year",
        subtitle = "Organized by Sex")
 ```
-```
-
 
 ```{r faceted-bar-plot}
 suicide_2 %>%
@@ -697,8 +695,6 @@ suicide_2 %>%
        title = "Suicide Rates of Randomly Selected Countries",
        subtitle = "Organized by Sex")
 ```
-
-
 
 
 ```{r lesotho-outlier-barplot}
