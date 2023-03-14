@@ -264,7 +264,7 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 
 ## Visualizations
 
-```{r whr-gdp-happiness, fig.alt= "This faceted scatter plot represents the correlation between GDP per capita and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that higher GDP per capita usually correlates to higher happiness scores." }
+```{r whr-gdp-happiness, fig.alt= "This gif shows the correlation between GDP per capita and happiness score from 2015 through 2019 in the World Happiness Report. The two variables have a positive correlation. That means higher GDP per capita correlates with higher happiness scores." }
 
 gdp_per_capita_1 <- ggplot(whr_2, aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -285,7 +285,7 @@ gdp_per_capita_2 <- animate(gdp_per_capita_1, nframes = 5, fps = 1.5, renderer =
 anim_save(filename = "gdp_per_capita_happiness.gif")
 ```
 
-```{r whr-social-support-happiness, fig.alt= ""This faceted scatter plot represents the correlation between access to social supports and Happiness score for years 2015-2019.These two variables appear to have a positive correlation. The data shows us that more social supports usually correlate to higher happiness scores."}
+```{r whr-social-support-happiness, fig.alt= ""This gif shows the correlation between access to social support and happiness score from 2015 through 2019 in the World Happiness Report. The two variables have a positive correlation. That means more social supports usually correlates with higher happiness scores."}
 
 social_support_1 <- ggplot(whr_2, aes(x = social_support, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -306,7 +306,7 @@ social_support_2 <- animate(social_support_1, nframes = 5, fps = 1.5, renderer =
 anim_save(filename = "social_support_happiness.gif")
 ```
 
-```{r whr-life-expectancy-happiness, fig.alt= "This faceted scatter plot represents the correlation between life expectancy and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that longer life expectancies usually correlates to higher happiness scores."}
+```{r whr-life-expectancy-happiness, fig.alt= "This gif shows the correlation between life expectancy and happiness score from 2015 through 2019 in the World Happiness Report. The two variables have a positive correlation. This means that longer life expectancies usually correlate with higher happiness scores."}
 
 life_expectancy_1 <- ggplot(whr_2, aes(x = life_expectancy, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -327,7 +327,7 @@ life_expectancy_2 <- animate(life_expectancy_1, nframes = 5, fps = 1.5, renderer
 anim_save(filename = "life_expectancy_happiness.gif")
 ```
 
-```{r whr-freedom-happiness, fig.alt= "This faceted scatter plot represents the correlation between freedom ratings and Happiness score, which appears to have a positive line of average. The data shows us that there's still, although not as distinct, positive correlation between freedom and happiness scores."}
+```{r whr-freedom-happiness, fig.alt= "This gif shows the correlation between freedom ratings and the happiness score from 2015 through 2019 in the World Happiness Report. The two variables have a positive correlation. This means that more freedom usually correlates with higher happiness scores."}
 
 freedom_1 <- ggplot(whr_2, aes(x = freedom, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -348,7 +348,7 @@ freedom_2 <- animate(freedom_1, nframes = 5, fps = 1.5, renderer = gifski_render
 anim_save(filename = "freedom_happiness.gif")
 ```
 
-```{r whr-generosity-happiness fig.alt= "This faceted scatter plot represents the correlation between generosity percieved by each country and Happiness score, which appears to not have a strong correlation. The data shows us that happiness scores vary between being very high and low, despite despite percieved generosity for each country."}
+```{r whr-generosity-happiness fig.alt= "This gif shows the correlation between generosity percieved by each country and the happiness score in the World Happiness Report from 2015 through 2019. The two variables have a mild positive correlation. This means that more generosity does not frequently correlate with higher happiness scores."}
 
 generosity_1 <- ggplot(whr_2, aes(x = generosity, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -379,9 +379,9 @@ perceptions_of_corruption_1 <- ggplot(whr_2, aes(x = as.numeric(perceptions_of_c
   transition_time(time = year) +
   theme_minimal() +
   theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 17),
-    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.text = element_text(si,
+    plot.title = element_text(size = 20,ze = 14),
+    axis.title = element_text(size = 17) face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
   ggtitle("The correlation between perceptions of\nand corruption happiness score (WHR {frame_time})")
@@ -393,7 +393,7 @@ anim_save(filename = "perceptions_of_corruption_happiness.gif")
 ```{r missing-values fig.alt= "This Bar Graph represents all possible missing data from our whr dataset. The X axis lists the variables that the data is organized under, and the Y axis represents number of observations. The red represents all character data, while the blue represents all numerical variables, The grey represents what variables are missing data inputs, which is 6.4% of all the data."}
 
 
-# visdat::vis_miss(suicide_2)
+visdat::vis_miss(suicide_2)
 
 visdat::vis_dat(whr)
 
@@ -403,7 +403,7 @@ visdat::vis_miss(whr)
 ```
 
 
-```{r suicide-vs-GDP-scatter, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7). Though the correlation between suicide rates and GDP per capita don't appear to be strong}
+```{r suicide-vs-GDP-scatter, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, fig.height=8, fig.width=15, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7).}
 
  suicide_2 %>%
   filter(sex == "Both sexes",
@@ -424,11 +424,17 @@ ggplot() +
        color = "WHR Happiness Score",
        title = "Correlation between GDP per capita and Suicide Rates",
        subtitle = " Between 2015-2019") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 12),
+    axis.title = element_text(size = 12),
+    plot.title = element_text(size = 15, face = "bold", hjust = 0.5),
+    plot.background = element_rect(fill = "white")
+  ) +
   facet_wrap(~ year, ncol = 2) +
-  # scale_color_viridis_c() +
-  # jpeg(filename = "suicide-vs-GDP-scatter.jpeg" ) +
-  # theme_ipsum ()
 
+  scale_color_viridis_c() +
+  jpeg(filename = "suicide-vs-GDP-scatter.jpeg")
 ```
 
 ```{r attempt-violinplot}
@@ -679,7 +685,10 @@ suicide_2 %>%
        subtitle = "Organized by Sex")
 ```
 
+
 ```{r faceted-bar-plot fig.alt = "This faceted bar plot is comparing all our randomly selected countries' suicide rate organized by sex. The countries are Zimbabwe (Africa), Mexico (N. America), Brazil (S. America), China (E. Asia), Israel (W. Asia), Costa Rica (C. America), Portugal (Europe), and New Zealand (Oceania). Sex is expressed with color, purple being female and yellow being male. Each country represents a similar trend of higher suicide rates of males compared to their female counterparts. We can also see that Zimbabwe has the highest rates of suicide overall compared to the other countries, but that there has been a steady decline since 2015.}
+
+```{r faceted-bar-plot}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
          age_group == "All Ages") %>%
