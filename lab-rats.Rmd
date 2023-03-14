@@ -7,41 +7,43 @@ output: github_document
 ---
 
 ```{r install-packages }
-install.packages("tidyverse")
+#install.packages("tidyverse")
 library(tidyverse)
 
-library(janitor)
+#library(janitor)
 
-install.packages("naniar")
-library (naniar)
+#install.packages("naniar")
+#library (naniar)
 
-install.packages("visdat")
-library (visdat)
+#install.packages("visdat")
+#library (visdat)
 
-install.packages ("leaflet")
-library(leaflet) ## For leaflet interactive maps
+# install.packages ("leaflet")
+# library(leaflet) ## For leaflet interactive maps
+# 
+# install.packages("sf")
+# library(sf) ## For spatial data
+# 
+# install.packages("RColorBrewer")
+# library(RColorBrewer) ## For colour palettes
+# 
+# install.packages("htmltools")
+# library(htmltools) ## For html
+# 
+# install.packages("leafsync")
+# library(leafsync) ## For placing plots side by side
+# 
+# install.packages("kableExtra")
+# library(kableExtra) ## Table output
+# 
+# install.packages("stringr")
+# library(stringr) ## String manipulation
+# 
+# #install.packages ("rgeoboundaries")
+# #library(rgeoboundaries) 
 
-install.packages("sf")
-library(sf) ## For spatial data
-
-install.packages("RColorBrewer")
-library(RColorBrewer) ## For colour palettes
-
-install.packages("htmltools")
-library(htmltools) ## For html
-
-install.packages("leafsync")
-library(leafsync) ## For placing plots side by side
-
-install.packages("kableExtra")
-library(kableExtra) ## Table output
-
-install.packages("stringr")
-library(stringr) ## String manipulation
-
-install.packages ("rgeoboundaries")
-library(rgeoboundaries) 
-
+install.packages("gganimate")
+library(gganimate)
 ```
 
 ## Summary
@@ -262,8 +264,8 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 
 ## Visualizations
 
-```{r whr-gdp-happiness}
-whr %>% 
+```{r whr-gdp-happiness, fig.alt= "This faceted scatter plot represents the correlation between GDP per capita and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that higher GDP per capita usually correlates to higher happiness scores." }
+whr %>%
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -272,7 +274,7 @@ whr %>%
   facet_wrap(~ year, ncol = 2)
 ```
 
-```{r whr-social-support-happiness}
+```{r whr-social-support-happiness, fig.alt= ""This faceted scatter plot represents the correlation between access to social supports and Happiness score for years 2015-2019.These two variables appear to have a positive correlation. The data shows us that more social supports usually correlate to higher happiness scores."}
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = social_support, y = happiness_score)) +
@@ -282,7 +284,7 @@ whr %>%
   facet_wrap(~ year, ncol = 2)
 ```
 
-```{r whr-life-expectancy-happiness}
+```{r whr-life-expectancy-happiness, fig.alt= "This faceted scatter plot represents the correlation between life expectancy and Happiness score (years 2015-2019), which appears to have a positive correlation. The data shows us that longer life expectancies usually correlates to higher happiness scores."}
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = life_expectancy, y = happiness_score)) +
@@ -292,17 +294,17 @@ whr %>%
   facet_wrap(~ year, ncol = 2)
 ```
 
-```{r whr-freedom-happiness}
+```{r whr-freedom-happiness, fig.alt= "This faceted scatter plot represents the correlation between freedom ratings and Happiness score, which appears to have a positive line of average. The data shows us that there's still, although not as distinct, positive correlation between freedom and happiness scores."}
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = freedom, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
-  labs(x = "Generosity", y = "Happiness score", title = "Correlation between freedom and happiness score (WHR 2015-2019)") +
+  labs(x = "freedom", y = "Happiness score", title = "Correlation between freedom and happiness score (WHR 2015-2019)") +
   facet_wrap(~ year, ncol = 2)
 ```
 
-```{r whr-generosity-happiness}
+```{r whr-generosity-happiness fig.alt= "This faceted scatter plot represents the correlation between generosity percieved by each country and Happiness score, which appears to not have a strong correlation. The data shows us that happiness scores vary between being very high and low, despite despite percieved generosity for each country."}
 whr %>% 
   filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
   ggplot(aes(x = generosity, y = happiness_score)) +
@@ -312,27 +314,20 @@ whr %>%
   facet_wrap(~ year, ncol = 2)
 ```
 
-```{r whr-coruption-happiness}
-whr_sub <- whr_2 %>% 
-  filter(year %in% c(2015, 2016, 2017, 2018, 2019)) %>%
-  mutate(perceptions_of_corruption = as.numeric(perceptions_of_corruption)) %>%
-  filter(perceptions_of_corruption > 0.35) %>%
-  distinct(country)
-
-anim1 <-  ggplot(whr_sub, aes(x = perceptions_of_corruption, y = happiness_score)) +
+```{r whr-corruption-happiness}
+ggplot(whr_2, aes(x = as.factor(perceptions_of_corruption), y = happiness_score, group = year)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
   labs(x = "Perceptions of corruption", y = "Happiness score", title = "Correlation between perceptions of corruption and happiness score (WHR 2015-2019)") +
-  labs(title = 'Year: {frame_time}') +
-  transition_time(time = year) 
- # facet_wrap(~ year, ncol = 2)
+  #labs(title = 'Year: {frame_time}') +
+  #transition_time(year) +
+  facet_wrap(~ year, ncol = 2)
 
-
-anim2 <- animate(anim1, nframe = 5, fps = 1, render = gifski_renderer())
-anim_save(filename = "anim2.gif")
+#anim2 <- animate(anim1, nframes = 5, fps = 1, renderer = gifski_renderer())
+anim_save(filename = "anim2.gif", anim2)
 ```
 
-```{r missing-values}
+```{r missing-values fig.alt= "This Bar Graph represents all possible missing data from our whr dataset. The X axis lists the variables that the data is organized under, and the Y axis represents number of observations. The red represents all character data, while the blue represents all numerical variables, The grey represents what variables are missing data inputs, which is 6.4% of all the data."}
 
 
 # visdat::vis_miss(suicide_2)
@@ -344,7 +339,10 @@ visdat::vis_miss(whr)
 
 ```
 
-```{r suicide-vs-GDP-scatter}
+
+
+```{r suicide-vs-GDP-scatter, fig.alt= "This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7). Though the correlation between suicide rates and GDP per capita don't appear to be strong, there's a concentration on higher suicide rates in countries that have mid-range happiness scores and GDP per capita between 1 and 1.5."  }
+
  suicide_2 %>%
   filter(sex == "Both sexes",
          age_group == "All Ages") %>%
