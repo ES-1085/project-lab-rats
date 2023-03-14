@@ -344,7 +344,6 @@ visdat::vis_miss(whr)
 
 ```
 
-
 ```{r suicide-vs-GDP-scatter}
  suicide_2 %>%
   filter(sex == "Both sexes",
@@ -374,6 +373,78 @@ suicide_2 %>%
   filter(gdp_per_capita <= 0.5, suicide_rates <= 4)
 ```
 
+```{r joined-datasets}
+
+sui_joined_1 <- suicide_2 %>%
+  filter(sex == "Both sexes",
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) 
+  
+sui_joined_1$overall_rank <- as.numeric(as.character(sui_joined_1$overall_rank))
+
+```
+
+
+```{r map-viz}
+
+download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
+
+unzip("data/world_shape_file.zip")
+
+ library(rgdal)
+joined_1 <- readOGR(
+  dsn= paste0(getwd(),"/TM_WORLD_BORDERS_SIMPL-0.3.shp") ,
+  layer="TM_WORLD_BORDERS_SIMPL-0.3",
+  verbose=FALSE)
+
+
+joined_1 <- st_as_sf(joined_1)
+joined_2 <- full_join(joined_1, sui_joined_1, by = join_by(NAME == country))
+
+# library(dplyr)
+# world_spdf@data$POP2005[ which(world_spdf@data$POP2005 == 0)] = NA
+# world_spdf@data$POP2005 <- as.numeric(as.character(world_spdf@data$POP2005)) / 1000000 %>% round(2)
+
+
+```
+
+```{r}
+
+
+
+
+# m <- leaflet(joined_1) %>% 
+#   addTiles()  %>% 
+#   setView(lat=10, lng=0 , zoom=1)%>%
+#    addPolygons( fillColor = ~mypalette(POP2005), 
+#                 stroke=TRUE,
+#                 )
+
+
+# joined_1 %>%
+#   leaflet() %>%
+#   addTiles() %>% 
+#   addPolygons(fillColor = -pal (overall_rank))
+
+
+```
+
+```{r}
+joined_2019 <- joined_2 %>%
+  filter(year == 2019)
+
+mypalette <- colorNumeric(palette="OrRd", domain=joined_2019$overall_rank, na.color="transparent")
+
+
+
+leaflet(data = joined_2019) %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  setView(lng = -80, 
+          lat = 34.5, 
+          zoom = 5) %>%
+  addPolygons(fillColor = ~mypalette(overall_rank))
+  #addPolygons()
+```
 
 
 ## Presentation
