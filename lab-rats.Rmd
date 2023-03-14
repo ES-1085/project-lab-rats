@@ -378,6 +378,28 @@ ggplot() +
   scale_color_viridis_c()
 ```
 
+```{r attempt-violinplot}
+suicide_2 %>%
+  filter(sex %in% c ("Male","Female"),
+         age_group == "All Ages",
+         country %in% c ("Lesotho","South Sudan",
+                         "New Zealand","Portugal",
+                         "China", "Brazil",
+                         "Costa Rica", "Zimbabwe",
+                         "Israel", "Mexico")) %>%
+  mutate(year = factor(year, levels=c(2015, 2016, 2017, 2018, 2019)))%>%
+   ggplot(aes(fill=sex, y= suicide_rates, x= year)) +
+  geom_violin(position="dodge", alpha=0.5, outlier.colour="transparent") +
+    scale_fill_viridis_d(name= "Sex") +
+    # theme_ipsum()  +
+    xlab("Year") +
+    ylab("Suicide rates") +
+    ylim(0,40)
+  
+
+```
+
+
 ```{r finding-special-cases}
 suicide_2 %>%
   filter(sex == "Both sexes", age_group == "All Ages") %>%
