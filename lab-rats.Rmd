@@ -379,9 +379,9 @@ perceptions_of_corruption_1 <- ggplot(whr_2, aes(x = as.numeric(perceptions_of_c
   transition_time(time = year) +
   theme_minimal() +
   theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 17),
-    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.text = element_text(si,
+    plot.title = element_text(size = 20,ze = 14),
+    axis.title = element_text(size = 17) face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
   ggtitle("The correlation between perceptions of\nand corruption happiness score (WHR {frame_time})")
