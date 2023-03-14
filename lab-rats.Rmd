@@ -676,7 +676,6 @@ suicide_2 %>%
        title = "Suicide Rates of South Sudan By Year",
        subtitle = "Organized by Sex")
 ```
-```
 
 
 ```{r}
