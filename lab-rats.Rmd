@@ -687,7 +687,8 @@ suicide_2 %>%
    facet_wrap(~ country, ncol = 2) +
    labs(x = "Year",
        y = "Suicide Rates",
-       title = "Suicide Rates of Randomly Selected Countries")
+       title = "Suicide Rates of Randomly Selected Countries",
+       subtitle = "Organized by Sex")
 ```
 
 
@@ -702,9 +703,9 @@ suicide_2 %>%
   geom_bar(position="dodge", stat="identity", alpha = 0.8) +
   scale_fill_viridis_d() +
    labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Lesotho By Year (Organized by Sex)")
-
+       y = "Suicide Rates",    
+       title = "Suicide Rates of Lesotho By Year", 
+       subtitle = "Organized by Sex")
 ```
 
 
