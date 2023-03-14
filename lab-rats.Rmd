@@ -601,7 +601,8 @@ suicide_2 %>%
   scale_fill_viridis_d() +
    labs(x = "Year",
        y = "Suicide Rates",
-       title = "Suicide Rates of Zimbabwe By Year (Organized by Sex)")
+       title = "Suicide Rates of Zimbabwe By Year",
+       subtitle = "Organized by Sex")
 ```
 
 
