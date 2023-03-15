@@ -436,7 +436,8 @@ ggplot() +
   jpeg(filename = "suicide-vs-GDP-scatter.jpeg")
 ```
 
-```{r attempt-violinplot}
+```{r violinplot, fig.alt="This violin plot shows the combined suicide rates of ramdomly selected countries according to sex and year. The countries were selected to represent each continent. The combined suicide rates of Males is seen in yellow; Females in purple. Female suicide rates are generally lower than Males, and Males have higher rates overall and a very high outlier. , fig.height=8, fig.width=15, warning=FALSE}
+
 suicide_2 %>%
   filter(sex %in% c ("Male","Female"),
          age_group == "All Ages",
@@ -453,11 +454,37 @@ suicide_2 %>%
     xlab("Year") +
     ylab("Suicide rates") +
   labs(title = "Collective Suicide Rates of Randomly Selected Countries",
-       subtitle = "By Sex")
-    ylim(0,40)
+       subtitle = "By Sex") +
+      jpeg(filename = "suicide-violin.jpep")
   
 
 ```
+
+```{r}
+suicide_2 %>%
+  filter(sex %in% c ("Male","Female"),
+         age_group == "All Ages",
+         country %in% c ("Lesotho","South Sudan",
+                         "New Zealand","Portugal",
+                         "China", "Brazil",
+                         "Costa Rica", "Zimbabwe",
+                         "Israel", "Mexico")) %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  mutate(country = factor(country, levels=c("Lesotho","SouthSudan",
+                        "New Zealand","Portugal",
+                         "China", "Brazil",
+                         "Costa Rica", "Zimbabwe",
+                         "Israel", "Mexico")))%>%
+   ggplot(aes(fill=sex, y= suicide_rates, x= overall_rank)) +
+  geom_violin(position="dodge", alpha=0.5, outlier.colour="transparent") +
+    scale_fill_viridis_d(name= "Sex") +
+    # theme_ipsum()  +
+    xlab("Year") +
+    ylab("Suicide rates") +
+  labs(title = "Collective Suicide Rates of Randomly Selected Countries",
+       subtitle = "By Sex") 
+```
+
 
 
 ```{r finding-special-cases}
@@ -500,7 +527,7 @@ sui_joined_1$overall_rank <- as.numeric(as.character(sui_joined_1$overall_rank))
 ```
 
 
-```{r map-viz}
+```{r map-viz-setup}
 
 # download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
 # 
@@ -519,6 +546,7 @@ merged_data <- merge(worldCountries, sui_joined_1, by.x = "NAME", by.y = "countr
 
 
 ```
+
 ```{r creating-map}
 map <- merged_data %>% 
       leaflet() %>%
@@ -578,7 +606,6 @@ mypalette <- colorNumeric(palette= viridis(256, option = "B"), domain= merged_da
 mypalettesui <- colorNumeric(palette= viridis(256, option = "G"), domain= merged_data$suicide_rates, na.color="transparent")
 
 ```
-
 
 
 ```{r faceted-bar-plot fig.alt = "This faceted bar plot is comparing all our randomly selected countries' suicide rate organized by sex. The countries are Zimbabwe (Africa), Mexico (N. America), Brazil (S. America), China (E. Asia), Israel (W. Asia), Costa Rica (C. America), Portugal (Europe), and New Zealand (Oceania). Sex is expressed with color, purple being female and yellow being male. Each country represents a similar trend of higher suicide rates of males compared to their female counterparts. We can also see that Zimbabwe has the highest rates of suicide overall compared to the other countries, but that there has been a steady decline since 2015.}
