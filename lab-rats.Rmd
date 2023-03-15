@@ -573,8 +573,9 @@ mypalettesui <- colorNumeric(palette= viridis(256, option = "G"), domain= merged
 
 
 ```{r faceted-bar-plot fig.alt = "This faceted bar plot is comparing all our randomly selected countries' suicide rate organized by sex. The countries are Zimbabwe (Africa), Mexico (N. America), Brazil (S. America), China (E. Asia), Israel (W. Asia), Costa Rica (C. America), Portugal (Europe), and New Zealand (Oceania). Sex is expressed with color, purple being female and yellow being male. Each country represents a similar trend of higher suicide rates of males compared to their female counterparts. We can also see that Zimbabwe has the highest rates of suicide overall compared to the other countries, but that there has been a steady decline since 2015.}
+
 suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
+  filter(sex %in% c("Female", "Male") &
          age_group == "All Ages") %>%
   full_join(whr_2, by = join_by(country, year)) %>%
   filter(country %in% c("New Zealand", "Zimbabwe", "Portugal", "Brazil", "China", "Mexico", "Israel")) %>%
@@ -582,12 +583,24 @@ suicide_2 %>%
   ggplot(aes(x = as.numeric(year), y= suicide_rates , fill = sex)) +
   geom_bar(position="dodge", stat="identity",) +
   scale_fill_viridis_d() +
-   facet_wrap(~ country, ncol = 2) +
-  guides(y = guide_axis(angle = 45))
-   labs(x = "Year",
-       y = "Suicide Rates",
-       title = "Suicide Rates of Randomly Selected Countries",
-       subtitle = "Organized by Sex")
+  facet_wrap(~ country, ncol = 2) +
+  coord_flip() +
+  guides(y = guide_axis()) +
+  labs(x = "Year",
+       y = "Suicide rates",
+       title = "Suicide rates (per 100 000)\nof randomly selected countries",
+       subtitle = "Organized by sex",
+       fill = "Sex") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 8),
+    axis.title = element_text(size = 14),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
+    plot.title = element_text(size = 18, face = "bold", hjust = 0),
+    plot.background = element_rect(fill = "white"),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 13)
+  )
 ```
 
 
