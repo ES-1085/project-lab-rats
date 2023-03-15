@@ -442,17 +442,24 @@ suicide_2 %>%
                          "China", "Brazil",
                          "Costa Rica", "Zimbabwe",
                          "Israel", "Mexico")) %>%
-  mutate(year = factor(year, levels=c(2015, 2016, 2017, 2018, 2019)))%>%
-   ggplot(aes(fill=sex, y= suicide_rates, x= year)) +
-  geom_violin(position="dodge", alpha=0.5, outlier.colour="transparent") +
-    scale_fill_viridis_d(name= "Sex") +
-    # theme_ipsum()  +
-    xlab("Year") +
-    ylab("Suicide rates") +
-  labs(title = "Collective Suicide Rates of Randomly Selected Countries",
-       subtitle = "By Sex") +
-      jpeg(filename = "suicide-violin.jpep")
-  
+  mutate(year = factor(year, levels = c(2015, 2016, 2017, 2018, 2019)))%>%
+  ggplot(aes(fill = sex, y = suicide_rates, x= year)) +
+  geom_violin(position = "dodge", alpha = 0.5, outlier.colour = "transparent") +
+  scale_fill_viridis_d(name = "Sex") +
+  xlab("Year") +
+  ylab("Suicide rates") +
+  labs(title = "Collective suicide rates (per 100 000)\nof randomly selected countries",
+       subtitle = "By sex") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 11),
+    axis.title = element_text(size = 14),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
+    plot.title = element_text(size = 18, face = "bold", hjust = 0),
+    plot.background = element_rect(fill = "white"),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 13)
+  )
 ```
 
 ```{r}
