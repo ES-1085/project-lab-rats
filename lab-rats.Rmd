@@ -8,7 +8,7 @@ output: github_document
 
 ```{r install-packages }
 #install.packages("tidyverse")
-#library(tidyverse)
+library(tidyverse)
 
 #library(janitor)
 
@@ -18,8 +18,8 @@ library (naniar)
 install.packages("visdat")
 library (visdat)
 
-# install.packages ("leaflet")
-# library(leaflet) ## For leaflet interactive maps
+ install.packages ("leaflet")
+library(leaflet) 
 #
 # install.packages("sf")
 # library(sf) ## For spatial data
@@ -44,6 +44,9 @@ library (visdat)
 
 #install.packages("gganimate")
 #library(gganimate)
+ 
+install.packages ("viridis")
+library (viridis)
 ```
 
 ## Summary
@@ -543,7 +546,7 @@ merged_data <- merge(worldCountries, sui_joined_1, by.x = "NAME", by.y = "countr
 map <- merged_data %>% 
       leaflet() %>%
       addTiles() %>%
-      setView( lat=10, lng=0 , zoom=2) %>% 
+      setView( lat=10, lng=0 , zoom=1) %>% 
       setMaxBounds( lng1 = -180, lat1 = -87, 
                     lng2 = 200, lat2 = 97 ) %>%
   addPolygons(
@@ -569,16 +572,16 @@ map
 ```
 
 ```{r map-legend1}
-map 
-
-# <- map %>%
-#   addLegend(
-#     position = "bottomright",
-#     colors = c ("#000004FF", "#450A69FF", "#85216BFF","#CF4446FF","#F1731DFF", "#FBB61AFF","#F2F27DFF"),
-#     values = ~merged_data$happiness_score,
-#     title = "World Happiness Score",
-#     label = c ("High score", "","", "Medium score", "","", "Low score"),
-#     opacity = 1)
+map <- map %>%
+  addLegend(
+    position = "bottomright",
+    colors = c ("#F2F27DFF","#FBB61AFF","#F1731DFF","#CF4446FF","#85216BFF","#450A69FF","#000004FF"),
+    values = ~merged_data$happiness_score,
+    title = "World Happiness Score",
+    label = c ("High score", "","", "Medium score", "","", "Low score"),
+    opacity = 1)
+ 
+map
 
 ```
 
@@ -618,6 +621,25 @@ suicide_2 %>%
        subtitle = "Organized by Sex")
 ```
 
+```{r faceted-outliers}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country %in% c("Lesotho", "South Sudan")) %>%
+  group_by(year) %>%
+  ggplot(aes(x = as.numeric(year), y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity",) +
+  scale_fill_viridis_d() +
+   facet_wrap(~ country, ncol = 2) +
+  guides(y = guide_axis(angle = 45)) +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Outlier Countries",
+       fill = "Sex",
+       subtitle = "Organized by Sex")
+```
+
 
 ```{r south-sudan-barplot}
 suicide_2 %>%
@@ -636,8 +658,8 @@ suicide_2 %>%
 ```
 ```
 
+```{r lesotho-barplot}
 
-```{r lesotho-outlier-barplot}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
          age_group == "All Ages") %>%
@@ -651,9 +673,10 @@ suicide_2 %>%
        y = "Suicide Rates",    
        title = "Suicide Rates of Lesotho By Year", 
        subtitle = "Organized by Sex")
+       
 ```
 
-```
+
 
 
 ## Presentation
