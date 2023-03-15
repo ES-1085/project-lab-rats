@@ -290,13 +290,14 @@ anim_save(filename = "gdp_per_capita_happiness.gif")
 social_support_1 <- ggplot(whr_2, aes(x = social_support, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Social support", y = "Happiness score") +
+  labs(x = "Social support", y = "Happiness\nscore") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
@@ -311,13 +312,14 @@ anim_save(filename = "social_support_happiness.gif")
 life_expectancy_1 <- ggplot(whr_2, aes(x = life_expectancy, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Life expectancy", y = "Happiness score") +
+  labs(x = "Life expectancy", y = "Happiness\nscore") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
@@ -332,13 +334,14 @@ anim_save(filename = "life_expectancy_happiness.gif")
 freedom_1 <- ggplot(whr_2, aes(x = freedom, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Freedom", y = "Happiness score") +
+  labs(x = "Freedom", y = "Happiness\nscore") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
@@ -353,13 +356,14 @@ anim_save(filename = "freedom_happiness.gif")
 generosity_1 <- ggplot(whr_2, aes(x = generosity, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Generosity", y = "Happiness score") +
+  labs(x = "Generosity", y = "Happiness\nscore") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
@@ -374,17 +378,18 @@ anim_save(filename = "generosity_happiness.gif")
 perceptions_of_corruption_1 <- ggplot(whr_2, aes(x = as.numeric(perceptions_of_corruption), y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "Perceptions of corruption", y = "Happiness score") +
+  labs(x = "Perceptions of corruption", y = "Happiness\nscore") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 14),
-    plot.title = element_text(size = 20),
-    axis.title = element_text(size = 17, face = "bold", hjust = 0.5),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
+    axis.title = element_text(size = 17),
     plot.background = element_rect(fill = "white")
   ) +
-  ggtitle("The correlation between perceptions of\nand corruption happiness score (WHR {frame_time})")
+  ggtitle("The correlation between\nperceptions of corruption and\nhappiness score (WHR {frame_time})")
 
 perceptions_of_corruption_2 <- animate(perceptions_of_corruption_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
 anim_save(filename = "perceptions_of_corruption_happiness.gif")
@@ -488,16 +493,12 @@ suicide_2 %>%
        subtitle = "By Sex") 
 ```
 
-
-
 ```{r finding-special-cases}
 suicide_2 %>%
   filter(sex == "Both sexes", age_group == "All Ages") %>%
   full_join(whr_2, by = join_by(country, year))  %>%
   filter(gdp_per_capita <= 0.5, suicide_rates <= 4)
 ```
-
-
 
 ```{r joined-datasets}
 
@@ -653,12 +654,23 @@ suicide_2 %>%
   geom_bar(position="dodge", stat="identity",) +
   scale_fill_viridis_d() +
    facet_wrap(~ country, ncol = 2) +
-  guides(y = guide_axis(angle = 45)) +
+  guides(y = guide_axis()) +
    labs(x = "Year",
        y = "Suicide Rates",
-       title = "Suicide Rates of Outlier Countries",
+       title = "Suicide rates of outlier countries",
        fill = "Sex",
-       subtitle = "Organized by Sex")
+       subtitle = "Organized by sex") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 11),
+    axis.title = element_text(size = 14),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
+    plot.title = element_text(size = 18, face = "bold", hjust = 0),
+    plot.background = element_rect(fill = "white"),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 13),
+    strip.text.x = element_text(size = 13),
+)
 ```
 
 
