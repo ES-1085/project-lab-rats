@@ -8,15 +8,15 @@ output: github_document
 
 ```{r install-packages }
 #install.packages("tidyverse")
-library(tidyverse)
+#library(tidyverse)
 
 #library(janitor)
 
-#install.packages("naniar")
-#library (naniar)
+install.packages("naniar")
+library (naniar)
 
-#install.packages("visdat")
-#library (visdat)
+install.packages("visdat")
+library (visdat)
 
 # install.packages ("leaflet")
 # library(leaflet) ## For leaflet interactive maps
@@ -42,11 +42,8 @@ library(tidyverse)
 # #install.packages ("rgeoboundaries")
 # #library(rgeoboundaries)
 
-install.packages("gganimate")
-library(gganimate)
-
-install.packages(viridis)
-library(viridis)
+#install.packages("gganimate")
+#library(gganimate)
 ```
 
 ## Summary
@@ -378,9 +375,9 @@ perceptions_of_corruption_1 <- ggplot(whr_2, aes(x = as.numeric(perceptions_of_c
   transition_time(time = year) +
   theme_minimal() +
   theme(
-    axis.text = element_text(si,
-    plot.title = element_text(size = 20,ze = 14),
-    axis.title = element_text(size = 17) face = "bold", hjust = 0.5),
+    axis.text = element_text(size = 14),
+    plot.title = element_text(size = 20),
+    axis.title = element_text(size = 17, face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
   ggtitle("The correlation between perceptions of\nand corruption happiness score (WHR {frame_time})")
@@ -404,36 +401,32 @@ visdat::vis_miss(whr)
 
 ```{r suicide-vs-GDP-scatter, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, fig.height=8, fig.width=15, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7).}
 
- suicide_2 %>%
+suicide_anim <- suicide_2 %>%
   filter(sex == "Both sexes",
          age_group == "All Ages") %>%
   full_join(whr_2, by = join_by(country, year)) %>%
-ggplot() +
-  geom_point(aes(x = gdp_per_capita, 
-                 y = suicide_rates)) +
-  geom_miss_point(aes(x = gdp_per_capita, 
-                      y = suicide_rates, 
-                      color = happiness_score), 
-                  alpha = 0.5) +
-  geom_smooth(aes(x = gdp_per_capita, 
-                  y = suicide_rates), 
-              method = "lm") +
-  labs(x = "GDP per capita", 
-       y = "Suicide Rates", 
-       color = "WHR Happiness Score",
-       title = "Correlation between GDP per capita and Suicide Rates",
-       subtitle = " Between 2015-2019") +
+  filter(gdp_per_capita >= 0, suicide_rates >= 0, happiness_score >= 0) %>%
+  ggplot(aes(x = as.numeric(gdp_per_capita), y = suicide_rates)) +
+  geom_point(alpha = 0.5) +
+  geom_miss_point(aes(color = happiness_score), alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  labs(x = "GDP per capita", y = "Suicide Rates", color = "WHR Happiness Score",
+       title = "Correlation between GDP per capita,\nsuicide rates, and happiness score ({frame_time})") +
   theme_minimal() +
   theme(
-    axis.text = element_text(size = 12),
-    axis.title = element_text(size = 12),
-    plot.title = element_text(size = 15, face = "bold", hjust = 0.5),
-    plot.background = element_rect(fill = "white")
+    axis.text = element_text(size = 15),
+    axis.title = element_text(size = 18),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0),
+    plot.background = element_rect(fill = "white"),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15)
   ) +
-  facet_wrap(~ year, ncol = 2) +
-
   scale_color_viridis_c() +
-  jpeg(filename = "suicide-vs-GDP-scatter.jpeg")
+  ylim(0, 36) +
+  transition_time(year)
+
+suicide_gif <- animate(suicide_anim, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "suicide_gdp_happiness.gif")
 ```
 
 ```{r violinplot, fig.alt="This violin plot shows the combined suicide rates of ramdomly selected countries according to sex and year. The countries were selected to represent each continent. The combined suicide rates of Males is seen in yellow; Females in purple. Female suicide rates are generally lower than Males, and Males have higher rates overall and a very high outlier. , fig.height=8, fig.width=15, warning=FALSE}
@@ -457,7 +450,6 @@ suicide_2 %>%
        subtitle = "By Sex") +
       jpeg(filename = "suicide-violin.jpep")
   
-
 ```
 
 ```{r}
