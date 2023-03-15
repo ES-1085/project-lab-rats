@@ -407,6 +407,37 @@ visdat::vis_miss(whr)
 
 ```
 
+```{r suicide-vs-GDP-scatter, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, fig.height=8, fig.width=15, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7).}
+
+suicide_anim_1 <- suicide_2 %>%
+  filter(sex == "Both sexes",
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(suicide_rates >= 0, happiness_score >= 0) %>%
+  ggplot(aes(x = happiness_score, y = suicide_rates)) +
+  geom_point(alpha = 0.5) +
+  geom_miss_point(aes(color = happiness_score), alpha = 0.5) +
+  geom_smooth(method = "lm") +
+  labs(x = "Happiness score", y = "Suicide\nrates", color = "WHR happiness\nscore",
+       title = "Correlation between happiness score\nand suicide rates ({frame_time})") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 15),
+    axis.title = element_text(size = 18),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.25),
+    plot.background = element_rect(fill = "white"),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15)
+  ) +
+  scale_color_viridis_c() +
+  ylim(0,40) +
+  xlim(2.5,8) +
+  transition_time(year)
+
+suicide_gif <- animate(suicide_anim_1, nframes = 5, fps = 1.5, renderer = gifski_renderer())
+anim_save(filename = "suicide_happiness.gif")
+```
 
 ```{r suicide-vs-GDP-scatter, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, fig.height=8, fig.width=15, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7).}
 
@@ -414,8 +445,8 @@ suicide_anim <- suicide_2 %>%
   filter(sex == "Both sexes",
          age_group == "All Ages") %>%
   full_join(whr_2, by = join_by(country, year)) %>%
-  filter(gdp_per_capita >= 0, suicide_rates >= 0, happiness_score >= 0) %>%
-  ggplot(aes(x = as.numeric(gdp_per_capita), y = suicide_rates)) +
+  filter(suicide_rates >= 0, happiness_score >= 0) %>%
+  ggplot(aes(x = as.numeric(gdp_per_capita), y =  happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_miss_point(aes(color = happiness_score), alpha = 0.5) +
   geom_smooth(method = "lm") +
