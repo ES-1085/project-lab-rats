@@ -8,7 +8,7 @@ output: github_document
 
 ```{r install-packages }
 #install.packages("tidyverse")
-#library(tidyverse)
+library(tidyverse)
 
 #library(janitor)
 
@@ -18,8 +18,8 @@ library (naniar)
 install.packages("visdat")
 library (visdat)
 
-# install.packages ("leaflet")
-# library(leaflet) ## For leaflet interactive maps
+ install.packages ("leaflet")
+library(leaflet) 
 #
 # install.packages("sf")
 # library(sf) ## For spatial data
@@ -44,6 +44,9 @@ library (visdat)
 
 #install.packages("gganimate")
 #library(gganimate)
+ 
+install.packages ("viridis")
+library (viridis)
 ```
 
 ## Summary
@@ -429,7 +432,8 @@ suicide_gif <- animate(suicide_anim, nframes = 5, fps = 1.5, renderer = gifski_r
 anim_save(filename = "suicide_gdp_happiness.gif")
 ```
 
-```{r attempt-violinplot}
+```{r violinplot, fig.alt="This violin plot shows the combined suicide rates of ramdomly selected countries according to sex and year. The countries were selected to represent each continent. The combined suicide rates of Males is seen in yellow; Females in purple. Female suicide rates are generally lower than Males, and Males have higher rates overall and a very high outlier. , fig.height=8, fig.width=15, warning=FALSE}
+
 suicide_2 %>%
   filter(sex %in% c ("Male","Female"),
          age_group == "All Ages",
@@ -446,9 +450,36 @@ suicide_2 %>%
     xlab("Year") +
     ylab("Suicide rates") +
   labs(title = "Collective Suicide Rates of Randomly Selected Countries",
-       subtitle = "By Sex")
-    ylim(0,40)
+       subtitle = "By Sex") +
+      jpeg(filename = "suicide-violin.jpep")
+  
 ```
+
+```{r}
+suicide_2 %>%
+  filter(sex %in% c ("Male","Female"),
+         age_group == "All Ages",
+         country %in% c ("Lesotho","South Sudan",
+                         "New Zealand","Portugal",
+                         "China", "Brazil",
+                         "Costa Rica", "Zimbabwe",
+                         "Israel", "Mexico")) %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  mutate(country = factor(country, levels=c("Lesotho","SouthSudan",
+                        "New Zealand","Portugal",
+                         "China", "Brazil",
+                         "Costa Rica", "Zimbabwe",
+                         "Israel", "Mexico")))%>%
+   ggplot(aes(fill=sex, y= suicide_rates, x= overall_rank)) +
+  geom_violin(position="dodge", alpha=0.5, outlier.colour="transparent") +
+    scale_fill_viridis_d(name= "Sex") +
+    # theme_ipsum()  +
+    xlab("Year") +
+    ylab("Suicide rates") +
+  labs(title = "Collective Suicide Rates of Randomly Selected Countries",
+       subtitle = "By Sex") 
+```
+
 
 
 ```{r finding-special-cases}
@@ -491,7 +522,7 @@ sui_joined_1$overall_rank <- as.numeric(as.character(sui_joined_1$overall_rank))
 ```
 
 
-```{r map-viz}
+```{r map-viz-setup}
 
 # download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
 # 
@@ -510,11 +541,12 @@ merged_data <- merge(worldCountries, sui_joined_1, by.x = "NAME", by.y = "countr
 
 
 ```
+
 ```{r creating-map}
 map <- merged_data %>% 
       leaflet() %>%
       addTiles() %>%
-      setView( lat=10, lng=0 , zoom=2) %>% 
+      setView( lat=10, lng=0 , zoom=1) %>% 
       setMaxBounds( lng1 = -180, lat1 = -87, 
                     lng2 = 200, lat2 = 97 ) %>%
   addPolygons(
@@ -540,16 +572,16 @@ map
 ```
 
 ```{r map-legend1}
-map 
-
-# <- map %>%
-#   addLegend(
-#     position = "bottomright",
-#     colors = c ("#000004FF", "#450A69FF", "#85216BFF","#CF4446FF","#F1731DFF", "#FBB61AFF","#F2F27DFF"),
-#     values = ~merged_data$happiness_score,
-#     title = "World Happiness Score",
-#     label = c ("High score", "","", "Medium score", "","", "Low score"),
-#     opacity = 1)
+map <- map %>%
+  addLegend(
+    position = "bottomright",
+    colors = c ("#F2F27DFF","#FBB61AFF","#F1731DFF","#CF4446FF","#85216BFF","#450A69FF","#000004FF"),
+    values = ~merged_data$happiness_score,
+    title = "World Happiness Score",
+    label = c ("High score", "","", "Medium score", "","", "Low score"),
+    opacity = 1)
+ 
+map
 
 ```
 
@@ -569,7 +601,6 @@ mypalette <- colorNumeric(palette= viridis(256, option = "B"), domain= merged_da
 mypalettesui <- colorNumeric(palette= viridis(256, option = "G"), domain= merged_data$suicide_rates, na.color="transparent")
 
 ```
-
 
 
 ```{r faceted-bar-plot fig.alt = "This faceted bar plot is comparing all our randomly selected countries' suicide rate organized by sex. The countries are Zimbabwe (Africa), Mexico (N. America), Brazil (S. America), China (E. Asia), Israel (W. Asia), Costa Rica (C. America), Portugal (Europe), and New Zealand (Oceania). Sex is expressed with color, purple being female and yellow being male. Each country represents a similar trend of higher suicide rates of males compared to their female counterparts. We can also see that Zimbabwe has the highest rates of suicide overall compared to the other countries, but that there has been a steady decline since 2015.}
@@ -603,6 +634,25 @@ suicide_2 %>%
   )
 ```
 
+```{r faceted-outliers}
+suicide_2 %>%
+   filter(sex %in% c("Female", "Male") &
+         age_group == "All Ages") %>%
+  full_join(whr_2, by = join_by(country, year)) %>%
+  filter(country %in% c("Lesotho", "South Sudan")) %>%
+  group_by(year) %>%
+  ggplot(aes(x = as.numeric(year), y= suicide_rates , fill = sex)) +
+  geom_bar(position="dodge", stat="identity",) +
+  scale_fill_viridis_d() +
+   facet_wrap(~ country, ncol = 2) +
+  guides(y = guide_axis(angle = 45)) +
+   labs(x = "Year",
+       y = "Suicide Rates",
+       title = "Suicide Rates of Outlier Countries",
+       fill = "Sex",
+       subtitle = "Organized by Sex")
+```
+
 
 ```{r south-sudan-barplot}
 suicide_2 %>%
@@ -621,8 +671,8 @@ suicide_2 %>%
 ```
 ```
 
+```{r lesotho-barplot}
 
-```{r lesotho-outlier-barplot}
 suicide_2 %>%
    filter(sex %in% c("Female", "Male") &
          age_group == "All Ages") %>%
@@ -636,9 +686,10 @@ suicide_2 %>%
        y = "Suicide Rates",    
        title = "Suicide Rates of Lesotho By Year", 
        subtitle = "Organized by Sex")
+       
 ```
 
-```
+
 
 
 ## Presentation
