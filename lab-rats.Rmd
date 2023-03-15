@@ -268,13 +268,14 @@ suicide_2 <- suicide %>% dplyr::right_join(suicide_complete)
 gdp_per_capita_1 <- ggplot(whr_2, aes(x = gdp_per_capita, y = happiness_score)) +
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm", aes(group = year)) +
-  labs(x = "GDP per capita", y = "Happiness score") +
+  labs(x = "GDP per capita", y = "Happiness\nscore") +
   labs(title = 'Year: {frame_time}') +
   transition_time(time = year) +
   theme_minimal() +
   theme(
     axis.text = element_text(size = 14),
     axis.title = element_text(size = 17),
+    axis.title.y = element_text(angle = 0, vjust = 0.5),
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     plot.background = element_rect(fill = "white")
   ) +
