@@ -77,7 +77,7 @@ whr_2019 <- read_csv("data/whr_2019.csv")
 
 ### Wrangling and Tidying data 
 
-```{r tidy-data-2015}
+```{r tidy-data-2015, echo=FALSE, message=TRUE}
 # whr_2015 <- whr_2015 %>%
 #   mutate(Year = 2015) %>%
 #   subset(select = -c(`Standard Error`,`Dystopia Residual`)) %>%
@@ -92,13 +92,13 @@ whr_2019 <- read_csv("data/whr_2019.csv")
 #   clean_names()
 ```
 
-```{r reordering-cols-2015}
+```{r reordering-cols-2015, echo=FALSE}
 
 # whr_2015 <- whr_2015 %>% 
 #   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
-```{r tidy-data-2016}
+```{r tidy-data-2016, echo=FALSE}
 # whr_2016 <- whr_2016 %>%
 # mutate(Year = 2016) %>%
 #  subset(select = -c(`Lower Confidence Interval`, `Upper Confidence Interval`, `Dystopia Residual`)) %>%
@@ -112,12 +112,12 @@ whr_2019 <- read_csv("data/whr_2019.csv")
 # clean_names()
 ```
 
-```{r reordering-cols-2016}
+```{r reordering-cols-2016 , echo=FALSE}
 # whr_2016 <- whr_2016 %>% 
 #   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
-```{r tidy-data-2017}
+```{r tidy-data-2017 , echo=FALSE}
 # whr_2017 <- whr_2017 %>%
 #    mutate(Year = 2017) %>%
 #     subset(select = -c(`Whisker.high`,`Whisker.low`,`Dystopia.Residual`)) %>%
@@ -131,12 +131,12 @@ whr_2019 <- read_csv("data/whr_2019.csv")
 
 ```
 
-```{r reordering-cols-2017}
+```{r reordering-cols-2017 , echo=FALSE}
 # whr_2017 <- whr_2017 %>% 
 #   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
-```{r tidy-data-2018}
+```{r tidy-data-2018 , echo=FALSE}
 # whr_2018 <- whr_2018 %>% 
 #   mutate (Year = 2018) %>%
 #    rename("Freedom" = "Freedom to make life choices")%>%
@@ -146,12 +146,12 @@ whr_2019 <- read_csv("data/whr_2019.csv")
 #   clean_names()
 ```
 
-```{r reordering-cols-2018}
+```{r reordering-cols-2018 , echo=FALSE}
 # whr_2018 <- whr_2018 %>% 
 #   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
 
-```{r tidy-data-2019}
+```{r tidy-data-2019, echo=FALSE}
 
 whr_2019 <- whr_2019 %>%
    mutate (Year = 2019) %>%
@@ -162,7 +162,7 @@ whr_2019 <- whr_2019 %>%
    clean_names()
 ```
 
-```{r reordering-cols-2019}
+```{r reordering-cols-2019 , echo=FALSE}
 # whr_2019 <- whr_2019 %>% 
 #   select(c (overall_rank, country,happiness_score, gdp_per_capita,social_support, life_expectancy, freedom, generosity, perceptions_of_corruption, year))
 ```
@@ -182,15 +182,15 @@ whr_2019 <- whr_2019 %>%
 ```
 
 
-```{r create-whr}
-# whr <- rbind(whr_2015, whr_2016, whr_2017, whr_2018, whr_2019) %>%
+```{r create-whr , echo=FALSE}
+# whr <- rbind(whr_2015,whr_2016, 
+               # whr_2017, whr_2018, 
+               # whr_2019) %>%
 #   arrange(country)
-
-# cut Somaliland, northern cyprus 
 ```
 
 
-```{r country-names-whr}
+```{r country-names-whr, echo=FALSE}
 whr <- whr %>%
   mutate(country = case_when(country == "United States" ~ "USA",
                        country == "United Kingdom" ~ "UK",
@@ -205,7 +205,7 @@ whr_2 <- subset(whr, !(country %in% c("North Cyprus", "Northern Cyprus", "Somali
 ```
 
 
-```{r read-new-datasets}
+```{r read-new-datasets, echo=FALSE}
 
 whr <- read_csv("data/whr.csv")
 
@@ -218,7 +218,7 @@ suicide_2 <- read_csv("data/suicide_2.csv")
 ```
 
 
-```{r suicide-tidy-data}
+```{r suicide-tidy-data, echo=FALSE}
 suicide <- suicide %>%
   clean_names() %>%
 select(-c("who_region_code", "who_region", "country_code", "is_latest_year", "crude_suicide_rates_per_100_000_population_low_estimation", "crude_suicide_rates_per_100_000_population_high_estimation", "crude_suicide_rates_per_100_000_population_string")) %>%
@@ -226,7 +226,7 @@ rename("suicide_rates" = "crude_suicide_rates_per_100_000_population_numeric") %
 filter(year %in% c("2015", "2016", "2017", "2018", "2019"))
 ```
 
-```{r country-names-suicide}
+```{r country-names-suicide, echo=FALSE}
 
 suicide <- suicide %>%
 mutate(country = case_when(country == "Syrian Arab Republic" ~ "Syria",
@@ -249,7 +249,7 @@ mutate(country = case_when(country == "Syrian Arab Republic" ~ "Syria",
                            country == "Bolivia (Plurinational State of)" ~ "Bolivia", TRUE ~ country))
 ```
 
-```{r expand-suicide-dataset}
+```{r expand-suicide-dataset, echo=FALSE}
 
 suicide_complete <- suicide %>% 
   expand (country, year, sex, age_group)
@@ -284,7 +284,7 @@ gdp_per_capita_2 <- animate(gdp_per_capita_1, nframes = 5, fps = 1.5, renderer =
 anim_save(filename = "gdp_per_capita_happiness.gif")
 ```
 
-```{r whr-social-support-happiness, fig.alt= ""This gif shows the correlation between access to social support and happiness score from 2015 through 2019 in the World Happiness Report. The two variables have a positive correlation. That means more social supports usually correlates with higher happiness scores."}
+```{r whr-social-support-happiness, fig.alt= "This gif shows the correlation between access to social support and happiness score from 2015 through 2019 in the World Happiness Report. The two variables have a positive correlation. That means more social supports usually correlates with higher happiness scores."}
 
 social_support_1 <- ggplot(whr_2, aes(x = social_support, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -347,7 +347,7 @@ freedom_2 <- animate(freedom_1, nframes = 5, fps = 1.5, renderer = gifski_render
 anim_save(filename = "freedom_happiness.gif")
 ```
 
-```{r whr-generosity-happiness fig.alt= "This gif shows the correlation between generosity percieved by each country and the happiness score in the World Happiness Report from 2015 through 2019. The two variables have a mild positive correlation. This means that more generosity does not frequently correlate with higher happiness scores."}
+```{r whr-generosity-happiness fig.alt = "This gif shows the correlation between generosity percieved by each country and the happiness score in the World Happiness Report from 2015 through 2019. The two variables have a mild positive correlation. This means that more generosity does not frequently correlate with higher happiness scores."}
 
 generosity_1 <- ggplot(whr_2, aes(x = generosity, y = happiness_score)) +
   geom_point(alpha = 0.5) +
@@ -392,12 +392,12 @@ anim_save(filename = "perceptions_of_corruption_happiness.gif")
 ```{r missing-values fig.alt= "This Bar Graph represents all possible missing data from our whr dataset. The X axis lists the variables that the data is organized under, and the Y axis represents number of observations. The red represents all character data, while the blue represents all numerical variables, The grey represents what variables are missing data inputs, which is 6.4% of all the data."}
 
 
-visdat::vis_miss(suicide_2)
+vis_miss(suicide_2)
 
-visdat::vis_dat(whr)
-
-
-visdat::vis_miss(whr)
+# visdat::vis_dat(whr_2)
+# 
+# 
+# visdat::vis_miss(whr_2)
 
 ```
 
@@ -451,7 +451,7 @@ suicide_2 %>%
     ylab("Suicide rates") +
   labs(title = "Collective Suicide Rates of Randomly Selected Countries",
        subtitle = "By Sex") +
-      jpeg(filename = "suicide-violin.jpep")
+      jpeg(filename = "suicide-violin.jpeg")
   
 ```
 
@@ -477,7 +477,8 @@ suicide_2 %>%
     xlab("Year") +
     ylab("Suicide rates") +
   labs(title = "Collective Suicide Rates of Randomly Selected Countries",
-       subtitle = "By Sex") 
+       subtitle = "By Sex") +
+  jpeg(filename = "suicide-violin.jpeg")
 ```
 
 
@@ -524,21 +525,34 @@ sui_joined_1$overall_rank <- as.numeric(as.character(sui_joined_1$overall_rank))
 
 ```{r map-viz-setup}
 
-# download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
-# 
-# unzip("data/world_shape_file.zip")
+download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="data/world_shape_file.zip")
+
+unzip("data/world_shape_file.zip")
 
  library(rgdal)
 worldCountries <- readOGR(
-  dsn= paste0(getwd(),"/TM_WORLD_BORDERS_SIMPL-0.3.shp") ,
+  dsn= paste0(getwd(),"/data/TM_WORLD_BORDERS_SIMPL-0.3.shp") ,
   layer="TM_WORLD_BORDERS_SIMPL-0.3",
   verbose=FALSE)
 
 
 merged_data <- merge(worldCountries, sui_joined_1, by.x = "NAME", by.y = "country", all.y = TRUE)
 
-# worldCountries <- merge(sui_joined_1,by.x = "country", by.y = "NAME", all.x = TRUE)
 
+```
+```{r list-color-palette}
+
+viridis::inferno(256)
+
+colors <- viridis::inferno(256)
+
+```
+
+```{r creating-palettes}
+
+mypalette <- colorNumeric(palette= viridis(256, option = "B"), domain= merged_data$happiness_score, na.color="transparent")
+
+mypalettesui <- colorNumeric(palette= viridis(256, option = "G"), domain= merged_data$suicide_rates, na.color="transparent")
 
 ```
 
@@ -568,7 +582,6 @@ map <- merged_data %>%
   # ) %>%
   # addLegend( pal=mypalette, values=~mag, opacity=0.9, title = "Magnitude", position = "bottomright" )
 
-map
 ```
 
 ```{r map-legend1}
@@ -585,14 +598,6 @@ map
 
 ```
 
-
-```{r list-color-palette}
-
-viridis::inferno(256)
-
-colors <- viridis::inferno(256)
-
-```
 
 ```{r creating-palettes}
 
@@ -657,25 +662,6 @@ suicide_2 %>%
        subtitle = "Organized by Sex")
 ```
 ```
-
-```{r lesotho-barplot}
-
-suicide_2 %>%
-   filter(sex %in% c("Female", "Male") &
-         age_group == "All Ages") %>%
-  full_join(whr_2, by = join_by(country, year)) %>%
-  filter(country == "Lesotho") %>%
-  group_by(year) %>%
-  ggplot(aes(x = year, y= suicide_rates , fill = sex)) +
-  geom_bar(position="dodge", stat="identity", alpha = 0.8) +
-  scale_fill_viridis_d() +
-   labs(x = "Year",
-       y = "Suicide Rates",    
-       title = "Suicide Rates of Lesotho By Year", 
-       subtitle = "Organized by Sex")
-       
-```
-
 
 
 

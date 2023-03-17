@@ -1,8 +1,8 @@
 ---
-title: "Presentation title"
-subtitle: "Presentation subtitle (if any)"
-author: "Team name <br> Names of team members"
-institute: "Bates College"
+title: "The Relationship Between World Happiness Report Scores and WHO Country Suicide Rates"
+subtitle: "an Analysis"
+author: "Lab rats <br> Kristaps Brics, Cora Carvalho, Cheyanne Goroshin"
+institute: "College of the Atlantic"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:

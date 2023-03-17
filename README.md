@@ -169,9 +169,7 @@ whr_2019 <- whr_2019 %>%
 ## Presentation
 
 ``` r
-suicide <- suicide %>%
-  mutate(Country = case_when(Country %in% "Syrian Arab Republic" ~ "Syria",
-                             TRUE ~ Country))
+
 ```
 
 ## Data
