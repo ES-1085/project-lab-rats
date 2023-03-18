@@ -6,7 +6,7 @@ author: "Lab rats"
 output: github_document
 ---
 
-```{r install-packages }
+```{r install-packages, echo=FALSE}
 #install.packages("tidyverse")
 library(tidyverse)
 
@@ -399,7 +399,7 @@ anim_save(filename = "perceptions_of_corruption_happiness.gif")
 ```{r missing-values, echo = FALSE , fig.alt= "This Bar Graph represents all possible missing data from our whr dataset. The X axis lists the variables that the data is organized under, and the Y axis represents number of observations. The red represents all character data, while the blue represents all numerical variables, The grey represents what variables are missing data inputs, which is 6.4% of all the data."}
 
 
-vis_miss(suicide_2)
+#vis_miss(suicide_2)
 
 # visdat::vis_dat(whr_2)
 # 
@@ -408,7 +408,7 @@ vis_miss(suicide_2)
 
 ```
 
-```{r suicide-vs-GDP-scatter, echo = FALSE, fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, fig.height=8, fig.width=15, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7).}
+```{r suicide-vs-happiness-scatter, echo = FALSE, fig.alt = "This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7)" fig.height=8, fig.width=15, warning=FALSE}
 
 suicide_anim_1 <- suicide_2 %>%
   filter(sex == "Both sexes",
@@ -440,7 +440,7 @@ suicide_gif <- animate(suicide_anim_1, nframes = 5, fps = 1.5, renderer = gifski
 anim_save(filename = "suicide_happiness.gif")
 ```
 
-```{r suicide-vs-GDP-scatter, echo = FALSE , fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, fig.height=8, fig.width=15, warning=FALSE, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7).}
+```{r suicide-vs-GDP-scatter, echo = FALSE , fig.alt="This faceted scatterplot looks at the correlation of three variables: suicide rates on the Y axis in regards to GDP on the X axis, and then WHR happiness scores that are being represented in a color gradient. Low happiness scores are expressed with deep purple and blue (3-4), mid-range scores are expressed with lighter blue and green (5-6), and high happiness scores are expressed with bright green and yellow (>=7), fig.height=8, fig.width=15, warning=FALSE.}
 
 suicide_anim <- suicide_2 %>%
   filter(sex == "Both sexes",
@@ -697,16 +697,32 @@ suicide_2 %>%
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTGLc4g4RlIvc3A5DvOiyx5sbPnOCC0YceVKR-iVQePDTLBCN3fi61DQfpZ4NY0-FS5JVHpIVyZ9spd/embed?start=true&loop=true&delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
+https://docs.google.com/presentation/d/e/2PACX-1vTGLc4g4RlIvc3A5DvOiyx5sbPnOCC0YceVKR-iVQePDTLBCN3fi61DQfpZ4NY0-FS5JVHpIVyZ9spd/pub?start=false&loop=false&delayms=3000
+
 
 ```
 
 
 ## Data 
 
-Include a citation for your data here. 
-See http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840 for guidance on proper citation for datasets. 
-If you got your data off the web, make sure to note the retrieval date.
+
+Mathurin Ache. (2021). World Happiness Report 2015-2021 [Data set]. Kaggle. https://www.kaggle.com/datasets/mathurinache/world-happiness-report-20152021?select=2015.csv Retrieved February 3, 2023.
+
+Omkar Gowda. (2021). Suicide Rates Overview 1985 to 2021 [Data set]. Kaggle. https://www.kaggle.com/datasets/omkargowda/suicide-rates-overview-1985-to-2021 Retrieved February 3, 2023.
+
 
 ## References
 
-List any references here. You should, at a minimum, list your data source.
+
+Mathurin Ache. (2021). World Happiness Report 2015-2021 [Data set]. Kaggle. https://www.kaggle.com/datasets/mathurinache/world-happiness-report-20152021?select=2015.csv Retrieved February 3, 2023.
+
+Omkar Gowda. (2021). Suicide Rates Overview 1985 to 2021 [Data set]. Kaggle. https://www.kaggle.com/datasets/omkargowda/suicide-rates-overview-1985-to-2021 Retrieved February 3, 2023.
+
+World Bank. (2018). World development indicators: GDP (current US$) by country:1985 to 2016. Retrieved from http://databank.worldbank.org/data/source/world-development-indicators#
+
+World Health Organization. (2018). Suicide prevention. Retrieved from http://www.who.int/mental_health/suicide-prevention/en/
+
+Helliwell, John F., Richard Layard, Jeffrey Sachs, and Jan-Emmanuel De Neve, eds. 2020. World Happiness Report 2020. New York: Sustainable Development Solutions Network
+
+Berghaus, R. (2008, October 6). Confronting Lesotho’s Health-Care Crisis. BU Today. https://www.bu.edu/articles/2009/confronting-lesotho%E2%80%99s-health-care-crisis/
+
